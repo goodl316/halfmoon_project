@@ -39,10 +39,10 @@
 		<beans:property name="preparerFactoryClass" 
 			value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
 	</beans:bean>
-	
-<!-- 	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+
+ 	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<beans:property name="jdbcUrl" value="jdbc:mysql://localhost/board_4?serverTimezone=UTC"/>
+		<beans:property name="jdbcUrl" value="jdbc:mysql://localhost/halfmoon?serverTimezone=UTC"/>
 		<beans:property name="username" value="root"/>
 		<beans:property name="password" value="koreait2020"/>
 	</beans:bean>
@@ -54,7 +54,7 @@
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <beans:property name="dataSource" ref="dataSource"/>
         <beans:property name="typeAliasesPackage" value="com.koreait.sboard"/>
-    </beans:bean> -->
+    </beans:bean> 
     
 	<mybatis-spring:scan base-package="com.koreait.sboard"/>
 	
