@@ -21,15 +21,15 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="order" value="2" />
+		<beans:property name="order" value="1" />
 	</beans:bean>
 	
-	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+<!-- 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
 	</beans:bean>
 	
-	<!-- Tiles 설정 파일 -->
+	Tiles 설정 파일
 	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
@@ -38,7 +38,7 @@
 		</beans:property>
 		<beans:property name="preparerFactoryClass" 
 			value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
-	</beans:bean>
+	</beans:bean> -->
 
  	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
@@ -56,7 +56,7 @@
         <beans:property name="typeAliasesPackage" value="com.koreait.sboard"/>
     </beans:bean> 
     
-	<mybatis-spring:scan base-package="com.koreait.sboard"/>
+	<mybatis-spring:scan base-package="com.halfmoon.market"/>
 	
 <!-- 	<beans:bean class="com.koreait.sboard.common.MailUtils">
 		<beans:property name="userId" value="yh5330"/>

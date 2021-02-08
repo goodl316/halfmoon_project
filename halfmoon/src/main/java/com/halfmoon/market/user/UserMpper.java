@@ -1,4 +1,4 @@
-package com.halfmoon.market.User;
+package com.halfmoon.market.user;
 
 import org.apache.ibatis.annotations.Mapper;
 
