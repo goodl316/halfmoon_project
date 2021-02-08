@@ -1,10 +1,10 @@
-package com.halfmoon.market.board;
+package com.halfmoon.market.review;
 
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class BoardService {
+public class ReviewService {
 	
 	
 }

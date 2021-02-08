@@ -1,8 +1,16 @@
 package com.halfmoon.market.board;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public class BoardMapper {
+import com.halfmoon.market.model.BoardEntity;
 
+@Mapper
+public interface BoardMapper {
+	List<BoardEntity> selBoardList();
+	BoardEntity selBoard(BoardEntity p);
+	int insBoard(BoardEntity p);
+	int updBoard(BoardEntity p);
+	int delBoard(BoardEntity p);
 }

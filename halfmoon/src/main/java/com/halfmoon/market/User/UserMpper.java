@@ -2,7 +2,15 @@ package com.halfmoon.market.User;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.halfmoon.market.model.UserEntity;
+
 @Mapper
-public class UserMpper {
+public interface UserMpper {
+	
+	UserEntity selUser(UserEntity p);
+	int insUser(UserEntity p);
+	int updUser(UserEntity p);
+	int deluSER(UserEntity p);
+	
 
 }
