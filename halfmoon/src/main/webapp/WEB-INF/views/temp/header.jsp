@@ -5,6 +5,11 @@
 <tiles:importAttribute name="menuList"/>
 <header>
 	<ul>	
-		<li>카테고리 뿌리기</li>
+		<c:forEach var="item" items="${menuList}">
+			<li>${item.type_title}</li>
+		</c:forEach>
 	</ul>
+	<button id="btn_login">로그인</button>
+	<button id="btn_join">회원가입</button>	
+	
 </header>

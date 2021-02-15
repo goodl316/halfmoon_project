@@ -2,11 +2,12 @@ package com.halfmoon.market.common;
 
 import java.util.List;
 
-import com.halfmoon.market.model.ProductTypeEntity;
+import com.halfmoon.market.model.ProductTypeDomain;
+
 
 public class Const {
 	
-public static List<ProductTypeEntity> menuList = null;
+public static List<ProductTypeDomain> menuList = null;
 	
 	public static final String KEY_LOGINUSER = "loginUser";
 	public static final String KEY_LIST = "list";

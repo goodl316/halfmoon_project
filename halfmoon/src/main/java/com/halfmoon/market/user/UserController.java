@@ -1,14 +1,20 @@
 package com.halfmoon.market.user;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 	
-	@RequestMapping("login")
-	public void login() {}
+	@GetMapping("/login")
+	public void login() {
+		
+	}
+	
+	@GetMapping("/join")
+	public void join() {
+		
+	}
 	
 
 }
