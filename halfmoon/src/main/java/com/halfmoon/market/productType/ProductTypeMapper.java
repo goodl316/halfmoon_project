@@ -8,5 +8,5 @@ import com.halfmoon.market.model.ProductTypeEntity;
 
 @Mapper
 public interface ProductTypeMapper {
-	List<ProductTypeEntity> selManageBoardList();
+	List<ProductTypeEntity> selCategoryList();
 }

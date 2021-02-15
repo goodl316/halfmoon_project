@@ -13,7 +13,7 @@ public class ProductTypeService {
 	@Autowired
 	ProductTypeMapper mapper;
 	
-	public List<ProductTypeEntity> selManageBoardList(){
-		return mapper.selManageBoardList();
+	public List<ProductTypeEntity> selCategoryList(){
+		return mapper.selCategoryList();
 	};
 }

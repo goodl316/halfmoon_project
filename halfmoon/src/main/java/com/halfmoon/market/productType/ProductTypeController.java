@@ -19,7 +19,7 @@ public class ProductTypeController implements ViewPreparer {
 	public void execute(Request tilesContext, AttributeContext attributeContext) {
 		if(Const.menuList == null) {
 			System.out.println(" ----- get menus from DB -----");	
-			Const.menuList = service.selManageBoardList();
+			Const.menuList = service.selCategoryList();
 		}
         attributeContext.putAttribute("menuList", new Attribute(Const.menuList), true);		
 	}
