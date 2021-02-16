@@ -9,7 +9,7 @@ import com.halfmoon.market.model.UserEntity;
 public interface UserMapper {
 	
 	UserEntity selUser(UserDTO p);
-	int insUser(UserEntity p);
+	int insUser(UserDTO p);
 	int updUser(UserEntity p);
 	int deluSER(UserEntity p);
 	
