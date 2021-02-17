@@ -4,6 +4,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 
 <tiles:importAttribute name="menuList"/>
 <header>
+	<img src="/res/img/mainLogo/mainLogo.png">
 	<ul>	
 		<c:forEach var="item" items="${menuList}">
 			<li>${item.type_title}</li>

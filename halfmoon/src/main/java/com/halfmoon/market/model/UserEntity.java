@@ -3,8 +3,8 @@ package com.halfmoon.market.model;
 public class UserEntity {
 	private int i_user;
 	private String id_email;
+	private String user_nm;
 	private String user_pw;
-	private String salt;
 	private String ph;
 	private String user_address;
 	private int gender;
@@ -23,17 +23,17 @@ public class UserEntity {
 	public void setId_email(String id_email) {
 		this.id_email = id_email;
 	}
+	public String getUser_nm() {
+		return user_nm;
+	}
+	public void setUser_nm(String user_nm) {
+		this.user_nm = user_nm;
+	}
 	public String getUser_pw() {
 		return user_pw;
 	}
 	public void setUser_pw(String user_pw) {
 		this.user_pw = user_pw;
-	}
-	public String getSalt() {
-		return salt;
-	}
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	public String getPh() {
 		return ph;

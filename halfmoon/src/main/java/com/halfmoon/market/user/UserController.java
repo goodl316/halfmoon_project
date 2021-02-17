@@ -1,5 +1,8 @@
 package com.halfmoon.market.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import com.halfmoon.market.model.UserDTO;
 
 @Controller
 public class UserController {
+	
 	@Autowired
 	private UserService service;
 	
@@ -26,6 +30,7 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public String loginProc(UserDTO p) {
+		System.out.println("ddd");
 		int result = service.login(p);
 		
 		if(result == 1) {
@@ -36,9 +41,12 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/join")
-	public void joinProc(@RequestBody UserDTO p) {
-		service.join(p);
+	@PostMapping("/joinProc")
+	public Map<String,Object> joinProc(@RequestBody UserDTO p) {
+		System.out.println("11111");
+		Map<String, Object> val = new HashMap<>();
+		val.put("result", service.join(p));
 		
+		return val;
 	}
 }

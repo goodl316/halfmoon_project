@@ -4,27 +4,27 @@
 
 <insert id="insUser">
 		INSERT INTO t_user
-		( user_id, user_pw, salt, nm, gender, ph, email )
+		(id_email,user_pw,user_nm,gender,user_address, ph)
 		VALUES
-		( #{user_id}, #{user_pw}, #{salt}, #{nm}, #{gender}, #{ph}, #{email} )
-	</insert>
+		(#{id_email}, #{user_pw}, #{user_nm}, #{gender},#{user_address}, #{ph})
+</insert>
 
 <select id="selUser" resultType="UserEntity">
 	SELECT
-			i_user, nm, email
+			i_user, user_nm,
 			<if test="i_user > 0">
-				, user_id, ph, gender, profile_img
+				, id_email, ph, gender, profile_img
 			</if>
-			<if test="user_id != null and user_id !=''">
-				, salt, user_pw
+			<if test="id_email != null and id_email !=''">
+				, user_pw
 			</if>
 		FROM t_user
 		<where>
 			<if test="i_user > 0">
 				i_user = ${i_user}
 			</if>
-			<if test="user_id != null and user_id !=''">
-				and user_id = #{user_id}
+			<if test="id_email != null and id_email !=''">
+				and id_email = #{id_email}
 			</if>
 		</where>
 
