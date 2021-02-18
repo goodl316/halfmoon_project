@@ -10,24 +10,9 @@
 </insert>
 
 <select id="selUser" resultType="UserEntity">
-	SELECT
-			i_user, user_nm,
-			<if test="i_user > 0">
-				, id_email, ph, gender, profile_img
-			</if>
-			<if test="id_email != null and id_email !=''">
-				, user_pw
-			</if>
-		FROM t_user
-		<where>
-			<if test="i_user > 0">
-				i_user = ${i_user}
-			</if>
-			<if test="id_email != null and id_email !=''">
-				and id_email = #{id_email}
-			</if>
-		</where>
-
+	select i_user, user_nm, user_pw, ph, user_address, gender, r_dt, profile_img
+	from t_user
+	where id_email = #{id_email}
 </select>
 
 </mapper>

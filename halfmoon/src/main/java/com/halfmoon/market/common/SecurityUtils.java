@@ -36,12 +36,11 @@ public class SecurityUtils {
 		return BCrypt.hashpw(pw, salt);
 	}
 	
-	public static boolean chekPassword(UserDTO p) {
+	public static boolean checkPassword(UserDTO p) {
 		if (BCrypt.checkpw(p.getUser_pw(), p.getClk_pw())){
 			return true;
 		}
 		return false;
-
 	}
 	
 	public static String getPrivateCode(int len) {

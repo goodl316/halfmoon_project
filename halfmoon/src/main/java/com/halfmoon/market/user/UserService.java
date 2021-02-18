@@ -2,6 +2,7 @@ package com.halfmoon.market.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +24,17 @@ public class UserService {
 	}
 	
 	public int login(UserDTO p) {
-		UserEntity dbData = selUser(p);
-		if(dbData == null) {
+		UserEntity vo = selUser(p);
+		System.out.println(vo + "23232");
+		if(vo == null) {
 			return 2;
 		}
-		if(SecurityUtils.chekPassword(p)) {
+		p.setUser_pw(vo.getUser_pw());
+		if(!BCrypt.checkpw(p.getClk_pw(), vo.getUser_pw())) {
 			return 3;
 		}
-		dbData.setUser_pw(null);
-		hs.setAttribute(Const.KEY_LOGINUSER, dbData);
+		vo.setUser_pw(null);
+		hs.setAttribute(Const.KEY_LOGINUSER, vo);
 		return 1;
 	}
 	

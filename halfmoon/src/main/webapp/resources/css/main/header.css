@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+header {
+	position: fixed;
+    width: 100%;
+    background-color: #fff;
+    z-index: 100;
+}
+
+a {
+	text-decoration: none;
+}
+
+button {
+	text-decoration: none;
+}
+
+#top{
+	display: flex;
+}
+
+.mainlogodiv{
+	background-color: white;
+	margin: 20 0 20 0;
+}
+
+.mainlogodiv2 {
+	width: 1000px;
+	margin: auto;
+	display: flex;
+}
+
+.mainlogo a-img {
+}
+
+.mainlogodiv a{
+	margin: 0;
+	text-decoration: none;
+}
+
+
+.mainlogo {
+	width: 220px;
+}
+
+
+.main-form{
+	display: flex;
+}
+
+.form-select{
+	 margin: 20px 0 0 70px;
+}
+
+.main-form-input{
+	padding: 10px 30px 0 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    height: 20px;
+}
+
+.select {
+	display: flex;	
+	width: 600px;
+}
+
+.main-select{
+	width: 100px;
+}
+
+#btn_login{
+	background-color: Transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+    font-weight: 700;
+}
+
+#btn_login::after{
+	margin-left: 10px;
+	content: "|";
+}
+
+#btn_join{
+	background-color: Transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+    font-weight: 700;
+}
+
+
+#main-nav{
+	width: 1000px;
+    margin: auto;
+}
+
+#menuListUl{
+	padding: 0px;
+    display: flex;
+    width: 100%;
+}
+
+#menuListLi{
+    list-style: none;
+    margin: 0px;
+}
