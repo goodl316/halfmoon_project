@@ -74,7 +74,8 @@ var joinBtn = document.querySelector('#joinBtn')
                 break;
              case 4:
                  alert('가입에 성공하였습니다.');
-                 joinAjax()
+                 joinAjax();
+				 location.href=`/login`
                  break;
             default:
                 alert('모든 칸을 조건에 맞게 작성해주세요.');
@@ -85,7 +86,7 @@ var joinBtn = document.querySelector('#joinBtn')
 		function joinAjax() {
 			id_email = id_email_Elem.value
 			user_pw = user_pw_Elem.value
-			user_pw_chk = user_pw_chk_Elem.value
+			user_pw_chk = user_pw_chk_Elem.value	
 			user_nm = user_nm_Elem.value
 			gender = gender_Elem.value
 			ph = ph_Elem.value

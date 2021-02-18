@@ -56,6 +56,6 @@ public class UserController {
 		
 		return val;
 	}
-	
+	/*  프로필,마이페이지,비밀번호 찾기 기능 추가해야함  */
 	
 }
