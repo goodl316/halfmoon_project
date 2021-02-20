@@ -4,10 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.halfmoon.market.model.UserDTO;
 import com.halfmoon.market.model.UserEntity;
+import com.halfmoon.market.model.dto.UserDTO;
 
 public class SecurityUtils {
 	@Autowired

@@ -6,11 +6,24 @@ public class UserEntity {
 	private String user_nm;
 	private String user_pw;
 	private String ph;
-	private String user_address;
+	private String user_addr;
 	private int gender;
 	private String r_dt;
 	private String profile_img; 
+	private String rating;
 	
+	public String getUser_addr() {
+		return user_addr;
+	}
+	public void setUser_addr(String user_addr) {
+		this.user_addr = user_addr;
+	}
+	public String getRating() {
+		return rating;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
 	public int getI_user() {
 		return i_user;
 	}
@@ -41,12 +54,6 @@ public class UserEntity {
 	public void setPh(String ph) {
 		this.ph = ph;
 	}
-	public String getUser_address() {
-		return user_address;
-	}
-	public void setUser_address(String user_address) {
-		this.user_address = user_address;
-	}
 	public int getGender() {
 		return gender;
 	}
@@ -65,6 +72,4 @@ public class UserEntity {
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
 	}
-	
-	
 }

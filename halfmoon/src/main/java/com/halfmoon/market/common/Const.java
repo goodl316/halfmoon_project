@@ -2,7 +2,7 @@ package com.halfmoon.market.common;
 
 import java.util.List;
 
-import com.halfmoon.market.model.ProductTypeDomain;
+import com.halfmoon.market.model.domain.ProductTypeDomain;
 
 
 public class Const {

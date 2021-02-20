@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.halfmoon.market.common.Const;
 import com.halfmoon.market.common.SecurityUtils;
-import com.halfmoon.market.model.UserDTO;
 import com.halfmoon.market.model.UserEntity;
+import com.halfmoon.market.model.dto.UserDTO;
 
 @Service
 public class UserService {
