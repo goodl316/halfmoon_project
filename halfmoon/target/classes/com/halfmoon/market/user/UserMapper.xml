@@ -15,4 +15,19 @@
 	where id_email = #{id_email}
 </select>
 
+<update id="updUser">
+UPDATE t_user
+<if test='status =1'>
+SET profile_img = #{profile_img}
+</if>
+<if test='status =2'>
+SET user_pw = #{user_pw}
+</if>
+<if test='status =3'>
+SET user_addr = #{user_addr}
+</if>
+
+WHERE i_user = #{i_user}
+</update>
+
 </mapper>

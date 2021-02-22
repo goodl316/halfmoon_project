@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.halfmoon.market.common.Const;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Controller
@@ -44,7 +45,7 @@ public class UserController {
 		System.out.println(p.getClk_pw());
 		System.out.println(p.getId_email());
 		Map<String, Object> val = new HashMap<>();
-		val.put("result", service.login(p));
+		val.put(Const.KEY_RESULT, service.login(p));
 		return val;
 	}
 	
@@ -52,10 +53,19 @@ public class UserController {
 	@PostMapping("/joinProc")
 	public Map<String,Object> joinProc(@RequestBody UserDTO p) {
 		Map<String, Object> val = new HashMap<>();
-		val.put("result", service.join(p));
+		val.put(Const.KEY_RESULT, service.join(p));
 		
 		return val;
 	}
 	/*  프로필,마이페이지,비밀번호 찾기 기능 추가해야함  */
+	@GetMapping("/profile")
+	public void profile() {}
 	
+	@PostMapping("/profile")
+	@ResponseBody
+	public Map<String,Object> prfileProc(@RequestBody UserDTO p){
+		Map<String,Object> val = new HashMap<String, Object>();
+		
+		return val;
+	}
 }

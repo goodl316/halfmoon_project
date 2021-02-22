@@ -10,8 +10,12 @@ public interface UserMapper {
 	
 	UserEntity selUser(UserDTO p);
 	int insUser(UserDTO p);
-	int updUser(UserEntity p);
-	int deluSER(UserEntity p);
+	int updUser(UserDTO p);
 	
+	//-----------내정보 수정-----------------
+	int updProfile(UserDTO p);
+	int delProdile(UserDTO p);
+	int updUserPw(UserDTO p);
+	int updUserAddress(UserDTO p);
 
 }
