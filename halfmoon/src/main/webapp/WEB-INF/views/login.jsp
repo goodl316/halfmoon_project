@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/res/css/main/login.css?ver=5">
 <div id="loginPage">
 	<a href="/main/home">
-		<img alt="반월마켓" src="/res/img/mainLogo.jpg">
+		<img alt="반월마켓" src="/res/img/mainLogo.png">
 	</a>
 	<form id="loginCont">
 		<div><input class="login_id" type="text" name="id_email" placeholder="id_email" value="abc@naver.com"></div>

@@ -16,7 +16,7 @@
 		<div class="mainlogodiv2">
 			<div class="mainlogo a-img">
 				<a href="/main/home">
-					<img class="mainlogo" alt="" src="/res/img/mainLogo.jpg">
+					<img class="mainlogo" alt="" src="/res/img/mainLogo.png">
 				</a>
 			</div>
 			

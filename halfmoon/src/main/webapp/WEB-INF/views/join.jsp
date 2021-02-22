@@ -5,7 +5,7 @@
 
 <div id=joinpage>
 	<a href="/main/home">
-		<img class="mainLogo" alt="반월마켓" src="/res/img/mainLogo.jpg">
+		<img class="mainLogo" alt="반월마켓" src="/res/img/mainLogo.png">
 	</a>
 	<div>
 		<div style="font-weight:bold;">이메일</div>
