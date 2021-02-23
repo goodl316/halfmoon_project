@@ -8,10 +8,12 @@
 		<input type="button" value="업로드" onclick="uploadImg()">
 	</div>
 	<div>아이디 : ${loginUser.id_email} </div> 
-	<div>비밀번호 : <input type="button" value="비밀번호 변경" onclick="chPw"></div>
+	<div>비밀번호 : <input type="password" name="user_pw" placeholder="현재 비밀번호" >
+				 <input type="button" value="비밀번호 변경" onclick="clkPw()"></div>						
 	<div>이름 : ${loginUser.nm} </div>
 	<div id="Uph">핸드폰번호 : ${loginUser.ph} </div>
-	<div id=Uaddress>주소 : ${loginUser.address} 
+	<div id=Uaddress>주소 : ${loginUser.address}
+	<input type="button" value="주소변경" onclick="chAddr()">
 	<div id="daumAddrApi">
 		<input type="text" id="postcode" placeholder="우편번호">
 		<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
