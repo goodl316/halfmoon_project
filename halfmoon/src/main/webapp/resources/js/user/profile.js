@@ -14,7 +14,7 @@ function uploadImg(){
 	imgAjax()
 }
 function clkPw(i_user){
-	location.href=`/user/chPw?i_user=${i_user}`
+	location.href=`/user/my/changPw?i_user=${i_user}`
 }
 
 function chPw(){

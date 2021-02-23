@@ -4,13 +4,13 @@
 
 <insert id="insUser">
 		INSERT INTO t_user
-		(id_email,user_pw,user_nm,gender,user_address, ph)
+		(id_email,user_pw,user_nm,gender,user_addr, ph)
 		VALUES
-		(#{id_email}, #{user_pw}, #{user_nm}, #{gender},#{user_address}, #{ph})
+		(#{id_email}, #{user_pw}, #{user_nm}, #{gender},#{user_addr}, #{ph})
 </insert>
 
-<select id="selUser" resultType="UserEntity">
-	select i_user, user_nm, user_pw, ph, user_address, gender, r_dt, profile_img
+<select id="selUser" resultType="UserDomain">
+	select i_user, user_nm, user_pw, ph, user_addr, gender, r_dt, profile_img
 	from t_user
 	where id_email = #{id_email}
 </select>

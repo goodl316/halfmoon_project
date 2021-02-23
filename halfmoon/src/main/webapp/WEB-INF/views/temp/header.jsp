@@ -10,7 +10,7 @@
 		<c:if test="${loginUser != null}">
 			<li>${loginUser.user_nm}님 환영합니다</li>
 			<li><a href="/logout">Logout</a></li>
-			<li><a href="/user/profile">내정보</a>
+			<li><a href="/user/my/profile">내정보</a>
 		</c:if>	
 	</ul>
 	
