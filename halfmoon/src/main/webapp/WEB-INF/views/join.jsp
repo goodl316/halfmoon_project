@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link rel="stylesheet" href="/res/css/main/join.css?ver=5">
+<link rel="stylesheet" href="/res/css/main/join.css?ver=7">
 
 <div id=joinpage>
 	<a href="/main/home">
@@ -31,7 +31,7 @@
 	<div style="font-weight:bold;">주소</div>
 	<div id="daumAddrApi">
 		<input type="text" id="postcode" placeholder="우편번호">
-		<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="button" id="buttonAddress" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 		<input type="text" id="roadAddress" placeholder="도로명주소">
 		<input type="text" id="jibunAddress" placeholder="지번주소">
 		<span id="guide" style="color:#999;display:none"></span>
@@ -39,13 +39,20 @@
 		<input type="text" id="extraAddress" placeholder="참고항목">
 	</div>
 	<div style="font-weight:bold;">성별</div> 
-		<label>Woman<input type="radio" name="gender" value="0" checked></label>
-		<label>Man<input type="radio" name="gender" value="1"></label>
-		<label>None<input type="radio" name="gender" value="2"></label>		
+		<label>여성<input type="radio" name="gender" value="0" checked></label>
+		<label>남성<input type="radio" name="gender" value="1"></label>
+		<label>선택안함<input type="radio" name="gender" value="2"></label>		
 		</div>
 	<div><input class="join_button" type="button" id="joinBtn" value="회원가입" onclick="join_chk()"></div>
 </div>
 <script defer src="/res/js/user/join.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
+
+
+
+
+
 
 

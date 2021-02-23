@@ -1,8 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>      
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 
-<link rel="stylesheet" href="/res/css/main/header.css?ver=13">
+<link rel="stylesheet" href="/res/css/main/header.css?ver=15">
 <tiles:importAttribute name="menuList"/>
 <header>
 	<ul>
@@ -24,8 +25,31 @@
 			<div class="main-form">
 				<div class="select">
 					<form class="form-select" action="" method="">
-						<input class="main-form-input" type="text" name="" value="">
+						<input class="main-form-input" placeholder="상품명 검색" type="text" name="" value="">
 						<img class="main-select" alt="" src="/res/img/search.png">
+						<div class="form-select-window">
+							<div class="window-div1">
+								<a href="" class="window-a1">최근검색어</a>
+								<a href="" class="window-a2">인기검색어</a>
+							</div>
+							<div class="window-div2">
+								dddd
+							</div>
+							<div class="window-div2">
+								dddd
+							</div>
+							<div class="window-div2">
+								dddd
+							</div>
+							<div class="window-div2">
+								dddd
+							</div>
+							
+							<div class="window-div3">
+								<a>검색어 전체 삭제</a>
+								<a>닫기</a>
+							</div>
+						</div>
 					</form>
 				</div>
 				<c:if test="${loginUser == null}">
@@ -43,23 +67,16 @@
 				<c:forEach var="item" items="${menuList}">
 					<li id="menuListLi">
 						<img class="btn_menu_img" alt="" src="/res/img/menuImg/${item.i_product_type}.png">
+						<ul id="menuListul-ul">
+							<li id="menuListli-li">
+								<a href="">ddd</a>
+								<a href="">ddd</a>
+								<a href="">ddd</a>
+							</li>
+						</ul>
 					</li>
 				</c:forEach>
 			</ul>
 		</nav>
 	</div>
-	<div id="sub_menu_cont">
-				<c:forEach var="item" items="${menuList}">
-			<li class="sub_menu_li">
-				<div>111</div>
-				<div>222</div>
-				<div>333</div>
-				<div>444</div>
-				<div>555</div>
-			</li>
-		</c:forEach>
-	</div>
 </header>
-
-
-
