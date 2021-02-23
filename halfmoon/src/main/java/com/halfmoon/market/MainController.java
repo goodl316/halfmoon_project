@@ -29,7 +29,6 @@ public class MainController implements ViewPreparer  {
 			System.out.println("------- server start --------");
 			Const.menuList = service.selMenuList();
 		}
-		System.out.println(Const.menuList.size());
 		attributeContext.putAttribute("menuList", new Attribute(Const.menuList), true);
 	}
 	

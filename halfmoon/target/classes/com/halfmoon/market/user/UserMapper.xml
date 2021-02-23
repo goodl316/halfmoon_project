@@ -2,20 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfmoon.market.user.UserMapper">
 
-<insert id="insUser">
-		INSERT INTO t_user
-		(id_email,user_pw,user_nm,gender,user_addr, ph)
-		VALUES
-		(#{id_email}, #{user_pw}, #{user_nm}, #{gender},#{user_addr}, #{ph})
-</insert>
-
-<select id="selUser" resultType="UserDomain">
-	select i_user, user_nm, user_pw, ph, user_addr, gender, r_dt, profile_img
-	from t_user
-	where id_email = #{id_email}
-</select>
-
-<update id="updUser">
+	<insert id="insUser" useGeneratedKeys="true" keyProperty="i_user">
+			INSERT INTO t_user
+			(id_email, user_nm, user_pw, gender, ph, postcode, roadAddr, jibunAddr, detailAddr, extraAddr)
+			VALUES
+			(#{id_email}, #{user_nm}, #{user_pw}, #{gender} ,#{ph}, #{postcode}, #{roadAddr}, #{jibunAddr}, #{detailAddr}, #{extraAddr})
+	</insert>
+	
+	<select id="selUser" resultType="UserDomain">
+		select *
+		from t_user
+		<where>
+			<if test="i_user > 0">
+				i_user = ${i_user}
+				AND isAuth = 1	<!-- 인증 검사 -->
+			</if>
+			<if test="id_email != null and id_email !=''">
+				id_email = #{id_email}
+				AND isAuth = 1	<!-- 인증 검사 -->				
+			</if>
+		</where>		
+	</select>
+	
+	<update id="updAuth">
+		UPDATE t_user
+		SET isAuth = 1
+		WHERE i_user = #{i_user};
+	</update>
+	
+	<update id="updUser">
 	UPDATE t_user
 	<if test='status =1'>
 	SET user_pw = #{user_pw}
@@ -24,10 +39,12 @@
 	SET profile_img = #{profile_img}
 	</if>
 	<if test='status =3'>
-	SET user_addr = #{user_addr}
+	
 	</if>
 
 	WHERE i_user = #{i_user}
 </update>
-
+	
+	
+	
 </mapper>

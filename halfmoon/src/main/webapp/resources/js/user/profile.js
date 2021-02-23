@@ -5,6 +5,7 @@ var jibunAddr = document.querySelector('#jibunAddress') // 지번 주소
 var detailAddr = document.querySelector('#detailAddress') // 상세 주소
 var extraAddr = document.querySelector('#extraAddress') // 참고 항목
 var inputImgElem = document.querySelector('#inputImg')
+var user_pwElem = document.querySelector('#user_pw')
 
 function uploadImg(){
 	if(inputImgElem.files.length==0){
@@ -14,7 +15,16 @@ function uploadImg(){
 	imgAjax()
 }
 function clkPw(i_user){
-	location.href=`/user/my/changPw?i_user=${i_user}`
+	var user_pw = document.querySelector('#user_pw').value
+	console.log(user_pw)
+	fetch(`/user/my/changePw?i_user=${i_user}`,{
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(param)
+	})
+		//location.href=`/user/my/changePw?i_user=${i_user}`
 }
 
 function chPw(){

@@ -9,8 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.halfmoon.market.common.Const;
 import com.halfmoon.market.common.FileUtils;
+import com.halfmoon.market.common.MailUtils;
 import com.halfmoon.market.common.SecurityUtils;
-import com.halfmoon.market.model.UserEntity;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
@@ -19,8 +19,12 @@ public class UserService {
 	
 	@Autowired
 	private UserMapper mapper;
+	
 	@Autowired
 	private HttpSession hs;
+	
+	@Autowired
+	private MailUtils mUtils;
 	@Autowired
 	private FileUtils fUtils;
 	
@@ -29,8 +33,7 @@ public class UserService {
 	}
 	
 	public int login(UserDTO p) {
-		UserEntity vo = selUser(p);
-		System.out.println(vo + "23232");
+		UserDomain vo = selUser(p);
 		if(vo == null) {
 			return 2;
 		}
@@ -43,6 +46,29 @@ public class UserService {
 		return 1;
 	}
 	
+	public int chkJoinMail(UserDTO dto) {
+		return mUtils.sendJoinEmail(dto.getId_email(), dto);
+	}
+	
+	public int join(UserDTO dto) {
+		int result = 0;
+		// 비밀번호 암호화
+		String encryptPw = SecurityUtils.hashPassword(dto.getUser_pw(), SecurityUtils.getsalt());
+		dto.setUser_pw(encryptPw);
+		
+		// 정보 입력
+		result = mapper.insUser(dto);
+		System.out.println("join i_user : " + dto.getI_user());
+		if (result == 0) {
+			return 2; // 2: 정보입력 실패 : 중복된 ID
+		}
+		// 인증메일 전송	
+		System.out.println("send mail...");
+		result = chkJoinMail(dto);
+		System.out.println("result : " + result);
+		return result;
+	}
+	
 	UserDomain updAuth(UserDTO dto) {
 		// 권한 승인
 		mapper.updAuth(dto);
@@ -53,15 +79,7 @@ public class UserService {
 		return vo;
 	}
 	
-	
-	public int join(UserDTO p) {
-		String encryptPw = SecurityUtils.hashPassword(p.getUser_pw(), SecurityUtils.getsalt());
-		p.setUser_pw(encryptPw);
-		
-		return mapper.insUser(p);
-	}
-	
-	/* profile 작업*/
+/* profile 작업*/
 	
 	public int updPw(UserDTO p) {
 		p.setStatus(1);
@@ -101,4 +119,19 @@ public class UserService {
 		return mapper.updUser(p);
 	}
 	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

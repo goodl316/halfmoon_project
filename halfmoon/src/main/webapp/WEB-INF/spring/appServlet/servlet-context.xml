@@ -42,7 +42,7 @@
 	
 	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<beans:property name="jdbcUrl" value="jdbc:mysql://localhost/halfmoon?serverTimezone=UTC"/>
+		<beans:property name="jdbcUrl" value="jdbc:mysql://localhost:3306/halfmoon?serverTimezone=UTC"/>
 		<beans:property name="username" value="root"/>
 		<beans:property name="password" value="koreait2020"/>
 	</beans:bean>
@@ -59,11 +59,11 @@
 	<mybatis-spring:scan base-package="com.halfmoon.market"/>
 	
 	<beans:bean class="com.halfmoon.market.common.MailUtils">
-		<beans:property name="userId" value="pirbak"/>
-		<beans:property name="userPw" value="33gkrhwhg9Dy"/>
+		<beans:property name="userId" value="gotmd37"/>
+		<beans:property name="userPw" value="gotmd!1!1!1"/>
 		<beans:property name="host" value="smtp.naver.com"/>
 		<beans:property name="port" value="587"/>
-		<beans:property name="fromEmail" value="pirbak@naver.com"/>
+		<beans:property name="fromEmail" value="gotmd37@naver.com"/>
 	</beans:bean>
 	
 	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

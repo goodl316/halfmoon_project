@@ -9,15 +9,16 @@ import com.halfmoon.market.model.dto.UserDTO;
 @Mapper
 public interface UserMapper {
 	
-	int insUser(UserDTO p);
-	int updUser(UserDTO p);
+	int insUser(UserDTO dto);
 	int updAuth(UserDTO dto);
+	int updUser(UserDTO p);
+	
 	UserDomain selUser(UserDTO dto);
 	
-	//-----------내정보 수정-----------------
-	int updProfile(UserDTO p);
-	int delProdile(UserDTO p);
-	int updUserPw(UserDTO p);
-	int updUserAddress(UserDTO p);
+
+	
+
+
+	
 
 }

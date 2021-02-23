@@ -6,17 +6,35 @@ public class UserEntity {
 	private String user_nm;
 	private String user_pw;
 	private String ph;
-	private String user_addr;
+	
+	// 주소
+	private String postcode;
+	private String roadAddr;
+	private String jibunAddr;
+	private String detailAddr;
+	private String extraAddr;
+	
 	private int gender;
 	private String r_dt;
 	private String profile_img; 
 	private String rating;
 	
-	public String getUser_addr() {
-		return user_addr;
+	// 회원가입 인증
+	private String join_code;
+	private String isAuth;
+	
+	
+	public String getJoin_code() {
+		return join_code;
 	}
-	public void setUser_addr(String user_addr) {
-		this.user_addr = user_addr;
+	public void setJoin_code(String join_code) {
+		this.join_code = join_code;
+	}
+	public String getIsAuth() {
+		return isAuth;
+	}
+	public void setIsAuth(String isAuth) {
+		this.isAuth = isAuth;
 	}
 	public String getRating() {
 		return rating;
@@ -35,12 +53,6 @@ public class UserEntity {
 	}
 	public void setId_email(String id_email) {
 		this.id_email = id_email;
-	}
-	public String getUser_nm() {
-		return user_nm;
-	}
-	public void setUser_nm(String user_nm) {
-		this.user_nm = user_nm;
 	}
 	public String getUser_pw() {
 		return user_pw;
@@ -72,4 +84,40 @@ public class UserEntity {
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
 	}
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+	public String getJibunAddr() {
+		return jibunAddr;
+	}
+	public void setJibunAddr(String jibunAddr) {
+		this.jibunAddr = jibunAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+	public String getExtraAddr() {
+		return extraAddr;
+	}
+	public void setExtraAddr(String extraAddr) {
+		this.extraAddr = extraAddr;
+	}	
+	public String getUser_nm() {
+		return user_nm;
+	}
+	public void setUser_nm(String user_nm) {
+		this.user_nm = user_nm;
+	}	
 }
