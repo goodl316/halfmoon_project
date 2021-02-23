@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.halfmoon.market.common.Const;
+import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Controller
@@ -50,14 +52,15 @@ public class UserController {
 		return val;
 	}
 	
-	@ResponseBody
-	@PostMapping("/joinProc")
-	public Map<String,Object> joinProc(@RequestBody UserDTO p) {
-		Map<String, Object> val = new HashMap<>();
-		val.put(Const.KEY_RESULT, service.join(p));
-		
-		return val;
+	@GetMapping("/joinSucess")
+	public void joinSucess(Model model, UserDTO dto) {
+		System.out.println("sucess : " + dto.getI_user());
+		// 회원권한 승인 및 로그인 처리.
+		UserDomain vo = service.updAuth(dto);
+		model.addAttribute("user_nm", vo.getUser_nm());
 	}
+	
+	
 	/*  프로필,마이페이지,비밀번호 찾기 기능 추가해야함  */
 	@GetMapping("/profile")
 	public void profile() {}

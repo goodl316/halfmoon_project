@@ -11,6 +11,7 @@ import com.halfmoon.market.common.Const;
 import com.halfmoon.market.common.FileUtils;
 import com.halfmoon.market.common.SecurityUtils;
 import com.halfmoon.market.model.UserEntity;
+import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Service
@@ -23,7 +24,7 @@ public class UserService {
 	@Autowired
 	private FileUtils fUtils;
 	
-	public UserEntity selUser(UserDTO p) {
+	public UserDomain selUser(UserDTO p) {
 		return mapper.selUser(p);
 	}
 	
@@ -41,6 +42,17 @@ public class UserService {
 		hs.setAttribute(Const.KEY_LOGINUSER, vo);
 		return 1;
 	}
+	
+	UserDomain updAuth(UserDTO dto) {
+		// 권한 승인
+		mapper.updAuth(dto);
+		// 로그인 처리
+		UserDomain vo = mapper.selUser(dto);
+		vo.setUser_pw(null);
+		hs.setAttribute(Const.KEY_LOGINUSER, vo);
+		return vo;
+	}
+	
 	
 	public int join(UserDTO p) {
 		String encryptPw = SecurityUtils.hashPassword(p.getUser_pw(), SecurityUtils.getsalt());

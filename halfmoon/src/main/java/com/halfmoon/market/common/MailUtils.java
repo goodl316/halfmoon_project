@@ -12,28 +12,26 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.halfmoon.market.model.dto.UserDTO;
+
 public class MailUtils {
-	
 	private String userId;
 	private String userPw;	
 	private String host;
 	private String port;
 	private String fromEmail;
 	
-	public int sendFindPwEmail(final String toEmail, final String user_id, final String code) {
-		String subject = "sboard 비밀번호 찾기 인증 이메일 입니다.";
-		StringBuilder sb = new StringBuilder();
-		sb.append("<div>")
-		.append("<a href=\"http://localhost:8090/user/findPwAuth?cd=")
-		.append(code)
-		.append("&user_id=")
-		.append(user_id)
-		.append("\" target=\"_blank\">비밀번호 변경하러 가기</a>")		
-		.append("</div>");
-		
-		//<div><a href="http://localhost:8090/user/findPwAuth?cd=1234&user_id=mic" target="_blank">
-		//비밀번호 변경하러 가기</a></div>
-		return sendMail(toEmail, subject, sb.toString());
+	public int sendJoinEmail(final String toEmail, final UserDTO dto) {
+		String subject = "[반월마켓] 회원가입 인증 이메일 입니다.";
+		// 나중에 본인이 구동하는 서버 ip로 고칠것.
+		String body = String.format("<div><a href=\"http://192.168.219.105:8090/joinSucess?i_user=%d\">회원가입 인증하기</a></div>", dto.getI_user());		
+		return sendMail(toEmail, subject, body);
+	}
+	
+	public int sendFindPwEmail(final String toEmail, final String code) {
+		String subject = "[반월마켓] 비밀번호 찾기 인증 이메일 입니다.";
+		String body = String.format("<div>안녕하세요 코드는 %s입니다.</div>", code);		
+		return sendMail(toEmail, subject, body);
 	}
 	
 	public int sendMail(final String toEmail, final String subject, final String body) {
@@ -71,25 +69,19 @@ public class MailUtils {
 		return 1;
 	}
 
-	
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
-
 	public void setHost(String host) {
 		this.host = host;
 	}
-
 	public void setPort(String port) {
 		this.port = port;
 	}
-
 	public void setFromEmail(String fromEmail) {
 		this.fromEmail = fromEmail;
 	}
-
 }
