@@ -2,16 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>      
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 
-<link rel="stylesheet" href="/res/css/main/header.css?ver=15">
+<link rel="stylesheet" href="/res/css/main/header.css?ver=12">
 <tiles:importAttribute name="menuList"/>
 <header>
-	<ul>
-		<c:if test="${loginUser != null}">
-			<li>${loginUser.user_nm}님 환영합니다</li>
-			<li><a href="/logout">Logout</a></li>
-			<li><a href="/user/my/profile">내정보</a>
-		</c:if>	
-	</ul>
 	
 	<div class="mainlogodiv">
 		<div class="mainlogodiv2">
@@ -56,6 +49,11 @@
 			<button id="btn_login">로그인</button>
 			<button id="btn_join">회원가입</button>	
 		</c:if>
+		<c:if test="${loginUser != null}">
+			<button id="btn_my_sell">내 물건 팔기</button>
+			<button id="btn_logout"><a href="/logout">Logout</a></button>
+			<button id="btn_my_page"><a href="/user/my/profile">내정보</a></button>
+		</c:if>	
 		
 			</div>
 		</div>

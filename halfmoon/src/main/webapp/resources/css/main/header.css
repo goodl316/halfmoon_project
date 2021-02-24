@@ -23,7 +23,7 @@ button {
 
 .mainlogodiv{
 	background-color: white;
-	margin: 20 0 20 0;
+	margin: 20px 0 20px 0;
 }
 
 .mainlogodiv2 {
@@ -70,6 +70,7 @@ button {
     z-index: 100;
     top: 90px;
     padding: 0 10px;
+    display: none;
 }
 
 
@@ -108,7 +109,6 @@ button {
 
 .select {
 	display: flex;	
-	width: 500px;
 }
 
 .main-select{
@@ -125,12 +125,10 @@ button {
 	font-size: 15px;
     font-weight: 700;
 }
-
 #btn_my_sell::after{
 	margin-left: 10px;
 	content: "|";
 }
-
 #btn_login{
 	background-color: Transparent;
 	border: none;
@@ -138,12 +136,10 @@ button {
 	font-size: 15px;
     font-weight: 700;
 }
-
 #btn_login::after{
 	margin-left: 10px;
 	content: "|";
 }
-
 #btn_join{
 	background-color: Transparent;
 	border: none;
@@ -151,6 +147,27 @@ button {
 	font-size: 15px;
     font-weight: 700;
 }
+
+#btn_logout{
+	background-color: Transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+    font-weight: 700;
+    
+}
+#btn_logout::after{
+	margin-left: 10px;
+	content: "|";
+}
+#btn_my_page{
+	background-color: Transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+    font-weight: 700;
+}
+
 
 #main-nav{
 	width: 1000px;
@@ -196,6 +213,7 @@ button {
 #main-nav ul li:hover > ul{
 	display:block;
 }
+
 
 #menuListLi:hover{
 	cursor: pointer;
