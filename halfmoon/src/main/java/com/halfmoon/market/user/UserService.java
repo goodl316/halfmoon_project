@@ -116,7 +116,12 @@ public class UserService {
 	}
 	
 	public int updAddr(UserDTO p) {
-		return mapper.updUser(p);
+		int result = mapper.updUser(p);
+		return 1;
+	}
+	public int updPh(UserDTO p) {
+		int result = mapper.updUser(p);
+		return 1;
 	}
 	
 

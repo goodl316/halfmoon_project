@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.halfmoon.market.common.Const;
+import com.halfmoon.market.common.SecurityUtils;
+import com.halfmoon.market.model.UserEntity;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
@@ -55,8 +58,6 @@ public class UserController {
 	@PostMapping("/joinProc")
 	public Map<String,Object> joinProc(@RequestBody UserDTO dto) {
 		// proc : 일단회원가입(코드삽입) -> 코드와 i_user값 가져와서 ->  
-
-	
 		Map<String, Object> val = new HashMap<>();
 		val.put(Const.KEY_RESULT, service.join(dto));
 		return val;
@@ -79,7 +80,6 @@ public class UserController {
 	public void changPw(UserDTO p) {
 		System.out.println(p.getI_user());
 		System.out.println(p.getUser_pw());
-		
 	}
 	
 	@ResponseBody
@@ -100,11 +100,28 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/updAddr")
-	public Map<String,Object> chAddr(UserDTO p) {
+	@PostMapping("/user/my/updAddr")
+	public Map<String,Object> chAddr(@RequestBody UserDTO p,MultipartFile[] imgs) {
+		UserDomain vo1 = service.selUser(p);
+		UserEntity vo2 = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		p.setI_user(vo2.getI_user());
 		Map<String,Object> val = new HashMap<String, Object>();
-		val.put(Const.KEY_RESULT, service.updAddr(p));
-		return val;
+		if(p.getStatus()==1) {
+			if(!BCrypt.checkpw(p.getUser_pw(), vo1.getUser_pw()))
+			val.put(Const.KEY_RESULT, service.updPw(p));
+		}
+		else if(p.getStatus()==2) {
+			val.put(Const.KEY_RESULT, service.profileUpload(imgs,p));
+		}
+		else if(p.getStatus()==3) {
+			val.put(Const.KEY_RESULT, service.updAddr(p));
+		}
+		else if(p.getStatus()==4) {
+			val.put(Const.KEY_RESULT, service.updPh(p));
+		}
+		hs.invalidate();
+		hs.setAttribute(Const.KEY_LOGINUSER, service.selUser(p));
+		return val;	
 	}
 	
 	

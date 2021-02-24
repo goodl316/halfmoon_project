@@ -4,7 +4,7 @@ import com.halfmoon.market.model.UserEntity;
 
 public class UserDTO extends UserEntity{
 	private String clk_pw;
-	private int status;
+	private int state;
 
 	public String getClk_pw() {
 		return clk_pw;
@@ -15,11 +15,11 @@ public class UserDTO extends UserEntity{
 	}
 
 	public int getStatus() {
-		return status;
+		return state;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatus(int state) {
+		this.state = state;
 	}
 	
 	

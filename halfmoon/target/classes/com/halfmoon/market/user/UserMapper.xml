@@ -32,18 +32,27 @@
 	
 	<update id="updUser">
 	UPDATE t_user
-	<if test='status =1'>
+	<choose>
+	<when test="state ==1">
 	SET user_pw = #{user_pw}
-	</if>
-	<if test='status =2'>
+	</when>
+	<when test="state ==2">
 	SET profile_img = #{profile_img}
-	</if>
-	<if test='status =3'>
-	
-	</if>
-
+	</when>
+	<when test="state ==3">
+	SET postcode = #{postcode},
+	roadAddr =#{roadAddr},
+	jibunAddr = #{jibunAddr},
+	extraAddr = #{extraAddr},
+	detailAddr = #{detailAddr}
+	</when>
+	<when test="state ==4">
+	SET ph= #{ph}
+	</when>
+	</choose>
 	WHERE i_user = #{i_user}
-</update>
+	</update>
+	
 	
 	
 	

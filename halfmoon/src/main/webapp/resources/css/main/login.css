@@ -4,7 +4,6 @@ body{
 	padding: 0px;
     margin: 0px;
     width: auto;
-    background: #eee;
     height: 950px;
 }
 
@@ -25,6 +24,8 @@ body{
     height: 30px;
     padding: 5px 0 5px 0;
     margin: 5px 0 5px 0;
+    border-radius: 4px;
+    border: 0.5px solid gray;
 }
 
 .login_password{
@@ -32,15 +33,19 @@ body{
     height: 30px;
     padding: 5px 0 5px 0;
     margin: 5px 0 5px 0;
+    border-radius: 4px;
+    border: 0.5px solid gray;
 }
 
 .login_button{
-	width: 475px;
+	width: 471px;
     height: 40px;
     margin: 5px 0 10px 0;
-    background-color: #d2d2d2;
-	border-color: #aaaaaa;
-	border-width: 0.2px;
+    background-color: #f0ba5e;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
 }
 .login_id:hover{
 	cursor: pointer;
@@ -64,4 +69,3 @@ body{
 	text-decoration: none;
 	color: gray;
 }
-

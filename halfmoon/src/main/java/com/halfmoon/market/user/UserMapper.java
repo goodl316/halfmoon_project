@@ -12,7 +12,7 @@ public interface UserMapper {
 	int insUser(UserDTO dto);
 	int updAuth(UserDTO dto);
 	int updUser(UserDTO p);
-	
+	int updAddr(UserDTO p);
 	UserDomain selUser(UserDTO dto);
 	
 

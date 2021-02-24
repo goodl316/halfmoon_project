@@ -38,6 +38,7 @@ button {
 .mainlogodiv a{
 	margin: 0;
 	text-decoration: none;
+	color: black;
 }
 
 
@@ -124,6 +125,7 @@ button {
 	cursor: pointer;
 	font-size: 15px;
     font-weight: 700;
+    outline: none;
 }
 #btn_my_sell::after{
 	margin-left: 10px;
@@ -135,6 +137,7 @@ button {
 	cursor: pointer;
 	font-size: 15px;
     font-weight: 700;
+    outline: none;
 }
 #btn_login::after{
 	margin-left: 10px;
@@ -146,6 +149,7 @@ button {
 	cursor: pointer;
 	font-size: 15px;
     font-weight: 700;
+    outline: none;
 }
 
 #btn_logout{
@@ -154,6 +158,7 @@ button {
 	cursor: pointer;
 	font-size: 15px;
     font-weight: 700;
+    outline: none;
     
 }
 #btn_logout::after{
@@ -166,6 +171,7 @@ button {
 	cursor: pointer;
 	font-size: 15px;
     font-weight: 700;
+    outline: none;
 }
 
 
@@ -235,5 +241,3 @@ button {
 #sub_menu_cont:hover{
 	display: flex;
 }
-
-

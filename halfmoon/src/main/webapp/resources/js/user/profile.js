@@ -6,6 +6,8 @@ var detailAddr = document.querySelector('#detailAddress') // 상세 주소
 var extraAddr = document.querySelector('#extraAddress') // 참고 항목
 var inputImgElem = document.querySelector('#inputImg')
 var user_pwElem = document.querySelector('#user_pw')
+var user_phoneElem = document.querySelector('#ph')
+var status = 0;
 
 function uploadImg(){
 	if(inputImgElem.files.length==0){
@@ -36,6 +38,8 @@ function chPw(){
 }
 
 function chAddr(){
+	console.log("aaa")
+	addrAjax()
 	
 }
 
@@ -90,7 +94,50 @@ function pwAjax(){
 
 
 function addrAjax(){
-	
+	var param ={
+		status: 3,
+		postcode: postcode.value,
+		roadAddr: roadAddr.value,
+		jibunAddr: jibunAddr.value,
+		detailAddr: detailAddr.value,
+		extraAddr: extraAddr.value
+		}
+	console.log("dddd")
+	fetch(`/user/my/updAddr`, { 
+			method: 'post',
+			headers: {
+            	'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(param)
+		}).then(res => res.json())
+		.then(function(data){
+			if(data.result ==1){
+				alert('주소가 변경되었습니다.')
+			}
+		})
+}
+function chPh(){
+	phAjax()
+}
+
+function phAjax(){
+	var param ={
+		status: 4,
+		ph: user_phoneElem.value
+		}
+	console.log("dddd")
+	fetch(`/user/my/updAddr`, { 
+			method: 'post',
+			headers: {
+            	'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(param)
+		}).then(res => res.json())
+		.then(function(data){
+			if(data.result ==1){
+				alert('핸드폰 번호가 변경 되었습니.')
+			}
+		})
 }
 //다음 주소 api
 function execDaumPostcode() {
