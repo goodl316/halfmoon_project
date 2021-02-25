@@ -11,6 +11,7 @@ import com.halfmoon.market.common.Const;
 import com.halfmoon.market.common.FileUtils;
 import com.halfmoon.market.common.MailUtils;
 import com.halfmoon.market.common.SecurityUtils;
+import com.halfmoon.market.model.UserEntity;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
@@ -86,14 +87,15 @@ public class UserService {
 		return mapper.updUser(p);
 	}
 	
-	public int profileUpload(MultipartFile[] imgs,UserDTO p) {	
-		int i_user = SecurityUtils.getLoingUserPk();
-		p.setStatus(2);
-		if(i_user < 1 || imgs.length == 0) {
+	public int profileUpload(MultipartFile[] imgs) {	
+		UserEntity vo2 = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		vo2.getI_user();
+		UserDTO p = new UserDTO();
+		if(vo2.getI_user() < 1 || imgs.length == 0) {
 			return 0;
 		}
 		
-		String folder = "/resources/img/user/" + i_user;		
+		String folder = "/resources/img/user/" + vo2.getI_user();		
 				
 		try {
 			for(int i=0; i<imgs.length; i++) { //반복문 필요없을거 같음
@@ -103,9 +105,9 @@ public class UserService {
 					return 0;
 				}
 				if(i==0) { //메인 이미지 업데이트
-					p.setI_user(i_user);
+					p.setI_user(vo2.getI_user());
 					p.setProfile_img(fileNm);	
-					mapper.updUser(p);
+					mapper.updProfileImg(p);
 				}				
 			}
 		} catch(Exception e) {

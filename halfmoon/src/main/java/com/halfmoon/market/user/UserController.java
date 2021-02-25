@@ -75,11 +75,10 @@ public class UserController {
 	@GetMapping("/user/my/profile")
 	public void profile() {}
 	
-	@PostMapping("/user/my/changePw")
+	@GetMapping("/changePw")
 	@ResponseBody
 	public void changPw(UserDTO p) {
-		System.out.println(p.getI_user());
-		System.out.println(p.getUser_pw());
+		
 	}
 	
 	@ResponseBody
@@ -91,27 +90,26 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/profileUpload")
-	public Map<String,Object> profileUpload(MultipartFile[] imgs,UserDTO p) {
+	@PostMapping("/user/my/updProfile")
+	public int profileUpload(MultipartFile[] imgs) {
 		System.out.println("imgs : " + imgs.length);
-		Map<String,Object> val = new HashMap<String, Object>();
-		val.put(Const.KEY_RESULT, service.profileUpload(imgs,p));
-		return val;
+		return service.profileUpload(imgs);
 	}
 	
 	@ResponseBody
-	@PostMapping("/user/my/updAddr")
+	@PostMapping("/user/my/updUser")
 	public Map<String,Object> chAddr(@RequestBody UserDTO p,MultipartFile[] imgs) {
 		UserDomain vo1 = service.selUser(p);
 		UserEntity vo2 = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		
+		
+		System.out.println(imgs.length);
+		System.out.println();
 		p.setI_user(vo2.getI_user());
 		Map<String,Object> val = new HashMap<String, Object>();
 		if(p.getStatus()==1) {
 			if(!BCrypt.checkpw(p.getUser_pw(), vo1.getUser_pw()))
 			val.put(Const.KEY_RESULT, service.updPw(p));
-		}
-		else if(p.getStatus()==2) {
-			val.put(Const.KEY_RESULT, service.profileUpload(imgs,p));
 		}
 		else if(p.getStatus()==3) {
 			val.put(Const.KEY_RESULT, service.updAddr(p));

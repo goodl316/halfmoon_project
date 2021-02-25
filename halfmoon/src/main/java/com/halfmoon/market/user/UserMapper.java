@@ -15,6 +15,8 @@ public interface UserMapper {
 	int updAddr(UserDTO p);
 	UserDomain selUser(UserDTO dto);
 	
+	int updProfileImg(UserDTO p);
+	
 
 	
 

@@ -45,9 +45,10 @@ function chAddr(){
 
 function imgAjax(){
 	var formData = new FormData()
-	formData.append('imgs',inputImgElem.files)
-
-	fetch('user/profileUpload',{
+	for(var i=0; i<inputImgElem.files.length; i++) {
+			formData.append('imgs', inputImgElem.files[i])	
+		}
+	fetch(`/user/my/updProfile`,{
 		method: 'post',
 		body: formData
 	})
@@ -66,7 +67,7 @@ function pwAjax(){
 		user_pw: userPwElem.value
 	}
 	
-	fetch('/user/updPw', { 
+	fetch('/user/my/updUser', { 
 			method: 'post',
 			headers: {
             	'Content-Type': 'application/json'
@@ -95,7 +96,7 @@ function pwAjax(){
 
 function addrAjax(){
 	var param ={
-		status: 3,
+		state: 3,
 		postcode: postcode.value,
 		roadAddr: roadAddr.value,
 		jibunAddr: jibunAddr.value,
@@ -103,7 +104,7 @@ function addrAjax(){
 		extraAddr: extraAddr.value
 		}
 	console.log("dddd")
-	fetch(`/user/my/updAddr`, { 
+	fetch(`/user/my/updUser`, { 
 			method: 'post',
 			headers: {
             	'Content-Type': 'application/json'
@@ -126,7 +127,7 @@ function phAjax(){
 		ph: user_phoneElem.value
 		}
 	console.log("dddd")
-	fetch(`/user/my/updAddr`, { 
+	fetch(`/user/my/updUser`, { 
 			method: 'post',
 			headers: {
             	'Content-Type': 'application/json'
@@ -195,3 +196,13 @@ function execDaumPostcode() {
         }).open();
 }
 
+function clkPwPop(){
+	popupOpen()
+}
+
+function popupOpen(){
+	var url = `/user/my/changePw`
+	var popupOption = 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no'
+
+	window.open("/changePw","비밀번호 변경",popupOption)
+}
