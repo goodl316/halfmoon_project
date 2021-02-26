@@ -14,11 +14,11 @@ public class UserDTO extends UserEntity{
 		this.clk_pw = clk_pw;
 	}
 
-	public int getStatus() {
+	public int getState() {
 		return state;
 	}
 
-	public void setStatus(int state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 	

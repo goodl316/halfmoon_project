@@ -43,16 +43,13 @@
 	SET user_pw = #{user_pw}
 	</when>
 	<when test="state ==2">
-	SET profile_img = #{profile_img}
-	</when>
-	<when test="state ==3">
 	SET postcode = #{postcode},
 	roadAddr =#{roadAddr},
 	jibunAddr = #{jibunAddr},
 	extraAddr = #{extraAddr},
 	detailAddr = #{detailAddr}
 	</when>
-	<when test="state ==4">
+	<when test="state ==3">
 	SET ph= #{ph}
 	</when>
 	</choose>

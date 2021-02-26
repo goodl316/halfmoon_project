@@ -39,9 +39,9 @@
 		<input type="text" id="extraAddress" placeholder="참고항목">
 	</div>
 	<div style="font-weight:bold;">성별</div> 
-		<label>Woman<input type="radio" name="gender" value="0" checked></label>
-		<label>Man<input type="radio" name="gender" value="1"></label>
-		<label>None<input type="radio" name="gender" value="2"></label>		
+		<label>여성<input type="radio" name="gender" value="0" checked></label>
+		<label>남성<input type="radio" name="gender" value="1"></label>
+		<label>선택 안함<input type="radio" name="gender" value="2"></label>		
 		</div>
 	<div><input class="join_button" type="button" id="joinBtn" value="회원가입" onclick="join_chk()"></div>
 </div>

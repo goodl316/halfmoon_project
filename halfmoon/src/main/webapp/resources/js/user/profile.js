@@ -7,6 +7,7 @@ var extraAddr = document.querySelector('#extraAddress') // 참고 항목
 var inputImgElem = document.querySelector('#inputImg')
 var user_pwElem = document.querySelector('#user_pw')
 var user_phoneElem = document.querySelector('#ph')
+var chPwbtnElem = document.querySelector('#chPwbtn')
 var status = 0;
 
 function uploadImg(){
@@ -30,11 +31,7 @@ function clkPw(i_user){
 }
 
 function chPw(){
-	var chPwbtnElem = document.querySelector('#chPwbtn')
-	
-	chPwbtnElem.onclick=function(){
-		pwAjax()
-	}
+	pwAjax()
 }
 
 function chAddr(){
@@ -64,7 +61,8 @@ function pwAjax(){
 	}
 	
 	var param = {
-		user_pw: userPwElem.value
+		user_pw: userPwElem.value,
+		state: 1
 	}
 	
 	fetch('/user/my/updUser', { 
@@ -74,22 +72,12 @@ function pwAjax(){
 			},
 			body: JSON.stringify(param)
 		}).then(res => res.json())
-		.then(myJson => {
-			proc(myJson)
+		.then(function(data){
+			if(data.result==1){
+				alert('비밀번호가 변경되었습니다.')
+				window.opener.close()
+			}
 		})
-		
-		function proc (res) {
-		switch(res.result) {
-			case 0:
-				alert('비밀번호 변경에 실패하였습니다.')
-			return
-			case 1:
-				alert('비밀번호를 변경하였습니다.')
-				location.href='/user/login'
-			return
-		}
-	}
-
 	
 }
 
@@ -196,13 +184,20 @@ function execDaumPostcode() {
         }).open();
 }
 
-function clkPwPop(){
-	popupOpen()
+function clkPwPop(user_pw){
+	console.log(user_pw)
+	console.log(user_pwElem.value)
+	if(!"dddd"==user_pwElem.value){
+		alert('비밀번호가 틀렸습니다.')
+		return
+	}
+	else(popupOpen())
+	
 }
 
 function popupOpen(){
 	var url = `/user/my/changePw`
 	var popupOption = 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no'
 
-	window.open("/changePw","비밀번호 변경",popupOption)
+	window.open("/user/my/changePw","비밀번호 변경",popupOption)
 }

@@ -83,8 +83,13 @@ public class UserService {
 /* profile 작업*/
 	
 	public int updPw(UserDTO p) {
-		p.setStatus(1);
-		return mapper.updUser(p);
+		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		p.setI_user(vo.getI_user());
+		String encryptPw = SecurityUtils.hashPassword(p.getUser_pw(), SecurityUtils.getsalt());
+		p.setUser_pw(encryptPw);
+		mapper.updUser(p);
+		return 1;
+				
 	}
 	
 	public int profileUpload(MultipartFile[] imgs) {	
@@ -118,10 +123,14 @@ public class UserService {
 	}
 	
 	public int updAddr(UserDTO p) {
+		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		p.setI_user(vo.getI_user());
 		int result = mapper.updUser(p);
 		return 1;
 	}
 	public int updPh(UserDTO p) {
+		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		p.setI_user(vo.getI_user());
 		int result = mapper.updUser(p);
 		return 1;
 	}

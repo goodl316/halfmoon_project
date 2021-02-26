@@ -13,9 +13,11 @@
 		<div style="color:red">${msg}</div>
 			<div><input type="password" id="userPw" name="user_pw" placeholder="변경 비밀번호"></div>
 			<div><input type="password" id="chkUserPw" name="chk_user_pw" placeholder="확인 비밀번호"></div>
-			<input id="chPwbtn"type="button" value="변경"  >
+			<input id="chPwbtn"type="button" value="변경" onclick="chPw()" >
 	</div>
 </div>
 
 </body>
+<script src="/res/js/user/profile.js"></script>
 </html>
+
