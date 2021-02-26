@@ -51,7 +51,7 @@
 			<span>비밀번호</span>
 			<span class="profile_pw"> | </span>
 			<input type="password" id="user_pw" name="user_pw" placeholder="현재 비밀번호" >
-			<input type="button" value="비밀번호 변경" onclick="clkPwPop(${loginUser.user_pw})">	
+			<input type="button" value="비밀번호 변경" onclick="clkPwPop(${loginUser.i_user},'${loginUser.code}')">	
 		</div>				
 		<div>
 			<span>이름</span>

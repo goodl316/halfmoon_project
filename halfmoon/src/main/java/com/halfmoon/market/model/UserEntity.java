@@ -6,6 +6,7 @@ public class UserEntity {
 	private String user_nm;
 	private String user_pw;
 	private String ph;
+	private String code;
 	
 	// 주소
 	private String postcode;
@@ -119,5 +120,11 @@ public class UserEntity {
 	}
 	public void setUser_nm(String user_nm) {
 		this.user_nm = user_nm;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}	
 }

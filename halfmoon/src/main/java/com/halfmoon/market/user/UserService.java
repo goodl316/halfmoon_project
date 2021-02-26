@@ -135,6 +135,14 @@ public class UserService {
 		return 1;
 	}
 	
+	public int updCode(UserDTO p) {
+		
+		String code = SecurityUtils.authCode(5);
+		System.out.println(code);
+		p.setCode(code);
+		return mapper.updCode(p);
+	}
+	
 
 }
 

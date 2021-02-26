@@ -51,6 +51,14 @@ public class UserController {
 	public Map<String,Object> loginProc(@RequestBody UserDTO dto) {
 		Map<String, Object> val = new HashMap<>();
 		val.put(Const.KEY_RESULT, service.login(dto));
+		
+		System.out.println(dto.getI_user());
+		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		dto.setI_user(vo.getI_user());
+		System.out.println(dto.getI_user());
+		service.updCode(dto);
+		System.out.println(dto.getCode());
+		
 		return val;
 	}
 	
@@ -79,13 +87,30 @@ public class UserController {
 	public void changePw() {}
 	
 	@ResponseBody
-	@PostMapping("/updPw")
-	public Map<String,Object> chPw(UserDTO p) {
-		Map<String,Object> val = new HashMap<String, Object>();
-		val.put(Const.KEY_RESULT, service.updPw(p));
-		return val;
+	@PostMapping("/user/my/updPw")
+	public Map<String,Object> chPw(@RequestBody UserDTO p) {
+		UserDomain vo  = service.selUser(p);
+		if(!BCrypt.checkpw(p.getClk_pw(), vo.getUser_pw())) {
+			Map<String,Object> val = new HashMap<String, Object>();
+			val.put(Const.KEY_RESULT, 2);
+			return val;
+		} else {
+			Map<String,Object> val = new HashMap<String, Object>();
+			val.put(Const.KEY_RESULT, 1);
+			return val;
+		}
+		
 	}
 	
+
+//	@ResponseBody
+//	@PostMapping("/user/my/updPw")
+//	public Map<String,Object> chPw(UserDTO p) {
+//		Map<String,Object> val = new HashMap<String, Object>();
+//		val.put(Const.KEY_RESULT, service.updPw(p));
+//		return val;
+//	}
+//	
 	@ResponseBody
 	@PostMapping("/user/my/updProfile")
 	public int profileUpload(MultipartFile[] imgs) {
@@ -125,6 +150,8 @@ public class UserController {
 		
 		return val;
 	}
+	
+	
 	
 }
 

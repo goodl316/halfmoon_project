@@ -184,20 +184,34 @@ function execDaumPostcode() {
         }).open();
 }
 
-function clkPwPop(user_pw){
-	console.log(user_pw)
-	console.log(user_pwElem.value)
-	if(!"dddd"==user_pwElem.value){
-		alert('비밀번호가 틀렸습니다.')
-		return
+function clkPwPop(i_user,code){
+	console.log(user_pwElem.value)	
+	var param ={
+		i_user: i_user,
+		clk_pw: user_pwElem.value,
+		code: code
 	}
-	else(popupOpen())
+	
+	fetch(`/user/my/updPw?i_user=${i_user}&code=${code}`,{
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(param)
+	}).then(res => res.json())
+		.then(function(data){
+			if(data.result ==1){
+				popupOpen(i_user,code)
+			} else if(data.result ==2){
+				alert("비밀번호를 확인해주세요.")
+			}
+		})	
 	
 }
 
-function popupOpen(){
-	var url = `/user/my/changePw`
+function popupOpen(i_user,code){
+	var url = `/user/my/changePw?i_user=${i_user}&code=${code}`
 	var popupOption = 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no'
 
-	window.open("/user/my/changePw","비밀번호 변경",popupOption)
+	window.open(url,"비밀번호 변경",popupOption)
 }

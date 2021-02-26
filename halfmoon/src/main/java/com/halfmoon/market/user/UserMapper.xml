@@ -56,6 +56,11 @@
 	WHERE i_user = #{i_user}
 	</update>
 	
+	<update id="updCode">
+	UPDATE t_user
+	SET code = #{code}
+	where i_user = #{i_user}
+	</update>
 	
 	
 	
