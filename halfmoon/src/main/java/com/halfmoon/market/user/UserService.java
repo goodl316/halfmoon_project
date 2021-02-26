@@ -136,9 +136,9 @@ public class UserService {
 	}
 	
 	public int updCode(UserDTO p) {
-		
+		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		p.setI_user(vo.getI_user());
 		String code = SecurityUtils.authCode(5);
-		System.out.println(code);
 		p.setCode(code);
 		return mapper.updCode(p);
 	}

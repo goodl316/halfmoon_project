@@ -4,9 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.halfmoon.market.model.UserEntity;
+import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
 public class SecurityUtils {
@@ -19,12 +19,12 @@ public class SecurityUtils {
 		return getLoginUser() != null;
 	}
 	
-	public static UserEntity getLoginUser() {		
-		return (UserEntity) hs.getAttribute(Const.KEY_LOGINUSER);
+	public static UserDomain getLoginUser() {		
+		return (UserDomain) hs.getAttribute(Const.KEY_LOGINUSER);
 	}
 	
 	public static int getLoingUserPk() {
-		UserEntity loginUser = getLoginUser();
+		UserDomain loginUser = getLoginUser();
 		return loginUser == null ? -1 : loginUser.getI_user();
 	}
 	

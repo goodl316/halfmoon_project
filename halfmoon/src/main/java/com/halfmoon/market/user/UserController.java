@@ -52,12 +52,7 @@ public class UserController {
 		Map<String, Object> val = new HashMap<>();
 		val.put(Const.KEY_RESULT, service.login(dto));
 		
-		System.out.println(dto.getI_user());
-		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
-		dto.setI_user(vo.getI_user());
-		System.out.println(dto.getI_user());
 		service.updCode(dto);
-		System.out.println(dto.getCode());
 		
 		return val;
 	}
@@ -120,17 +115,15 @@ public class UserController {
 	
 	@ResponseBody
 	@PostMapping("/user/my/updUser")
-	public Map<String,Object> chAddr(@RequestBody UserDTO p,MultipartFile[] imgs) {
+	public Map<String,Object> updUser(@RequestBody UserDTO p,MultipartFile[] imgs) {
 		
 		System.out.println(p.getState());
-		System.out.println(p.getUser_pw());
 		Map<String,Object> val = new HashMap<String, Object>();
 		if(p.getState()==1) {
 			
 			val.put(Const.KEY_RESULT, service.updPw(p));
 		}
 		else if(p.getState()==2) {
-			if(BCrypt.checkpw(null, null))
 			val.put(Const.KEY_RESULT, service.updAddr(p));
 		}
 		else if(p.getState()==3) {

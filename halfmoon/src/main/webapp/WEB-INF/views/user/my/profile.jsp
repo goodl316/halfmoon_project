@@ -62,7 +62,7 @@
 			<span>핸드폰번호</span>
 			<span class="profile_ph"> | </span>
 			<input type="text" id="ph" placeholder="Your Phone Number" value="${loginUser.ph}"> 
-			<button onclick="chPh()">핸드폰번호 변경</button>
+			<button onclick="chPh(${loginUser.i_user})">핸드폰번호 변경</button>
 		</div>
 		<div id=Uaddress>
 			주소 
@@ -73,7 +73,7 @@
 			<input type="text" id="jibunAddress" value="${loginUser.jibunAddr}" placeholder="지번주소">
 			<input type="text" id="detailAddress" value="${loginUser.detailAddr}"placeholder="상세주소">
 			<input type="text" id="extraAddress" value="${loginUser.extraAddr}"placeholder="참고항목">
-			<input type="button" value="주소변경" onclick="chAddr()">
+			<input type="button" value="주소변경" onclick="chAddr(${loginUser.i_user})">
 			</div>
 		</div>
 	</div>

@@ -17,41 +17,12 @@ function uploadImg(){
 	}
 	imgAjax()
 }
-function clkPw(i_user){
-	var user_pw = document.querySelector('#user_pw').value
-	console.log(user_pw)
-	fetch(`/user/my/changePw?i_user=${i_user}`,{
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(param)
-	})
-		//location.href=`/user/my/changePw?i_user=${i_user}`
+//비밀번호 변경
+function chPw(i_user){
+	pwAjax(i_user)
 }
 
-function chPw(){
-	pwAjax()
-}
-
-function chAddr(){
-	console.log("aaa")
-	addrAjax()
-	
-}
-
-function imgAjax(){
-	var formData = new FormData()
-	for(var i=0; i<inputImgElem.files.length; i++) {
-			formData.append('imgs', inputImgElem.files[i])	
-		}
-	fetch(`/user/my/updProfile`,{
-		method: 'post',
-		body: formData
-	})
-}
-
-function pwAjax(){
+function pwAjax(i_user){
 	var userPwElem = document.querySelector('#userPw')
 	var chkUserPwElem = document.querySelector('#chkUserPw')
 	
@@ -61,6 +32,7 @@ function pwAjax(){
 	}
 	
 	var param = {
+		i_user: i_user,
 		user_pw: userPwElem.value,
 		state: 1
 	}
@@ -80,11 +52,50 @@ function pwAjax(){
 		})
 	
 }
-
-
-function addrAjax(){
+//비밀번호 변경 팝업창
+function clkPwPop(i_user,code){
+	console.log(user_pwElem.value)	
 	var param ={
-		state: 3,
+		i_user: i_user,
+		clk_pw: user_pwElem.value,
+		code: code
+	}
+	
+	fetch(`/user/my/updPw?i_user=${i_user}&code=${code}`,{
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(param)
+	}).then(res => res.json())
+		.then(function(data){
+			if(data.result ==1){
+				popupOpen(i_user,code)
+			} else if(data.result ==2){
+				alert("비밀번호를 확인해주세요.")
+			}
+		})	
+	
+}
+//팝업창 만들기
+function popupOpen(i_user,code){
+	var url = `/user/my/changePw?i_user=${i_user}&code=${code}`
+	var popupOption = 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no'
+
+	window.open(url,"비밀번호 변경",popupOption)
+}
+
+
+//주소 변경
+function chAddr(i_user){
+	addrAjax(i_user)
+	
+}
+
+function addrAjax(i_user){
+	var param ={
+		i_user: i_user,
+		state: 2,
 		postcode: postcode.value,
 		roadAddr: roadAddr.value,
 		jibunAddr: jibunAddr.value,
@@ -104,14 +115,26 @@ function addrAjax(){
 				alert('주소가 변경되었습니다.')
 			}
 		})
+//프로필 사진
+function imgAjax(){
+	var formData = new FormData()
+	for(var i=0; i<inputImgElem.files.length; i++) {
+			formData.append('imgs', inputImgElem.files[i])	
+		}
+	fetch(`/user/my/updProfile`,{
+		method: 'post',
+		body: formData
+	})
 }
+
+//핸드폰 번호 변경
 function chPh(){
 	phAjax()
 }
 
 function phAjax(){
 	var param ={
-		status: 4,
+		status: 3,
 		ph: user_phoneElem.value
 		}
 	console.log("dddd")
@@ -182,36 +205,4 @@ function execDaumPostcode() {
                 }
             }
         }).open();
-}
-
-function clkPwPop(i_user,code){
-	console.log(user_pwElem.value)	
-	var param ={
-		i_user: i_user,
-		clk_pw: user_pwElem.value,
-		code: code
-	}
-	
-	fetch(`/user/my/updPw?i_user=${i_user}&code=${code}`,{
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(param)
-	}).then(res => res.json())
-		.then(function(data){
-			if(data.result ==1){
-				popupOpen(i_user,code)
-			} else if(data.result ==2){
-				alert("비밀번호를 확인해주세요.")
-			}
-		})	
-	
-}
-
-function popupOpen(i_user,code){
-	var url = `/user/my/changePw?i_user=${i_user}&code=${code}`
-	var popupOption = 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no'
-
-	window.open(url,"비밀번호 변경",popupOption)
 }
