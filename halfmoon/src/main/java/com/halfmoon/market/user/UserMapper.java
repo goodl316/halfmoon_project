@@ -8,15 +8,20 @@ import com.halfmoon.market.model.dto.UserDTO;
 
 @Mapper
 public interface UserMapper {
-	
+	// C
 	int insUser(UserDTO dto);
+	int insCode(UserDTO dto);
+	// R
+	UserDomain selUser(UserDTO dto);
+	// U
 	int updAuth(UserDTO dto);
 	int updUser(UserDTO p);
 	int updAddr(UserDTO p);
 	int updCode(UserDTO p);
-	UserDomain selUser(UserDTO dto);
+	
 	
 	int updProfileImg(UserDTO p);
+	// D
 	
 
 	

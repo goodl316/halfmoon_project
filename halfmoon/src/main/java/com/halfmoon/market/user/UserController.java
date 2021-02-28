@@ -52,7 +52,9 @@ public class UserController {
 		Map<String, Object> val = new HashMap<>();
 		val.put(Const.KEY_RESULT, service.login(dto));
 		
-		service.updCode(dto);
+		if(service.login(dto)==1) { //비밀번호가 틀릴시에도 실행되서 널포인트 발생.
+			service.updCode(dto);
+		}
 		
 		return val;
 	}
@@ -63,6 +65,7 @@ public class UserController {
 		// proc : 일단회원가입(코드삽입) -> 코드와 i_user값 가져와서 ->  
 		Map<String, Object> val = new HashMap<>();
 		val.put(Const.KEY_RESULT, service.join(dto));
+		service.insCode(dto);
 		return val;
 	}
 	

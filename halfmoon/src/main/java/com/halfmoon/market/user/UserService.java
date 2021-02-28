@@ -42,6 +42,7 @@ public class UserService {
 		if(!BCrypt.checkpw(p.getClk_pw(), vo.getUser_pw())) {
 			return 3;
 		}
+		
 		vo.setUser_pw(null);
 		hs.setAttribute(Const.KEY_LOGINUSER, vo);
 		return 1;
@@ -136,11 +137,17 @@ public class UserService {
 	}
 	
 	public int updCode(UserDTO p) {
-		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
-		p.setI_user(vo.getI_user());
+		UserDomain vo = (UserDomain)hs.getAttribute(Const.KEY_LOGINUSER);
+		
 		String code = SecurityUtils.authCode(5);
 		p.setCode(code);
+		p.setI_user(vo.getI_user());
 		return mapper.updCode(p);
+	}
+	public int insCode(UserDTO p) {
+		String code = SecurityUtils.authCode(5);
+		p.setCode(code);
+		return mapper.insCode(p);
 	}
 	
 

@@ -8,7 +8,13 @@
 			VALUES
 			(#{id_email}, #{user_nm}, #{user_pw}, #{gender} ,#{ph}, #{postcode}, #{roadAddr}, #{jibunAddr}, #{detailAddr}, #{extraAddr})
 	</insert>
+	<insert	id="insCode" useGeneratedKeys="true" keyProperty="i_user">
+		INSERT INTO t_user
+		(code)
+		VALUES
+		(#{code})
 	
+	</insert>
 	<select id="selUser" resultType="UserDomain">
 		select *
 		from t_user

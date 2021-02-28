@@ -74,6 +74,9 @@ button {
     display: none;
 }
 
+.window_close{
+	cursor: pointer;
+}
 
 .window-div1{
 	display: flex;
@@ -188,25 +191,14 @@ button {
     margin-left: 95px;
 }
 
-#menuListul-ul{
-	display:none;
-	position:absolute;
-	top:101%;
-	background:#fff;
-	padding:0
-}
 
-#menuListLi{
-    list-style: none;
+#menuListUl li{
+	 list-style: none;
     height: 92px;
     overflow: hidden;
 }
 
-#menuListli-li{
-	float:none;
-	width:82px;
-	list-style: none;
-}
+
 #menuListli-li a{
 	color: gray;
 	display: block;
@@ -215,6 +207,11 @@ button {
     border: 0.5px solid gray;
 }
 
+.List div{
+	display: none;
+	text-align: center;
+	margin: 20px;
+}
 
 #main-nav ul li:hover > ul{
 	display:block;

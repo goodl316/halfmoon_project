@@ -28,8 +28,10 @@ public class MainController implements ViewPreparer  {
 		if (Const.menuList == null) {
 			System.out.println("------- server start --------");
 			Const.menuList = service.selMenuList();
+			Const.subMenuList = service.subSelMenuList();
 		}
 		attributeContext.putAttribute("menuList", new Attribute(Const.menuList), true);
+		attributeContext.putAttribute("subMenuList", new Attribute(Const.subMenuList), true);
 	}
 	
 	

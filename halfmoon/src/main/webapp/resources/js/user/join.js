@@ -154,7 +154,7 @@ function joinAjax() {
 		roadAddr: roadAddr.value,
 		jibunAddr: jibunAddr.value,
 		detailAddr: detailAddr.value,
-		extraAddr: extraAddr.value
+		extraAddr: extraAddr.value,
 	}
 	console.log(param)
 	

@@ -3,9 +3,19 @@ var loginCont = document.querySelector('#loginCont')
 var id_email = loginCont.id_email
 var clk_pw = loginCont.clk_pw
 
+
 btn_login.onclick = function () {
 	loginProc()
 }
+
+
+function enterkey() {
+	if(event.keyCode == 13) {
+		loginProc()
+	}
+}
+
+
 
 function loginProc() {
 	

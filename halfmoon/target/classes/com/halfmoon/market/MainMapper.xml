@@ -6,6 +6,12 @@
 		FROM t_product_type
 		ORDER BY i_product_type 
 	</select>
+	
+	<select id="subSelMenuList" resultType="ProductTypeSubDomain">
+		SELECT *
+		FROM t_product_type_sub
+	</select>
+	
 
 
 

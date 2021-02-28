@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.halfmoon.market.model.domain.ProductTypeDomain;
+import com.halfmoon.market.model.domain.ProductTypeSubDomain;
 
 @Service
 public class MainService {
@@ -17,6 +18,9 @@ public class MainService {
 		return mapper.selMenuList();
 	}
 	
+	List<ProductTypeSubDomain> subSelMenuList() {
+		return mapper.subSelMenuList();
+	}
 	
 	
 	

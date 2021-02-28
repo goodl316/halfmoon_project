@@ -3,11 +3,13 @@ package com.halfmoon.market.common;
 import java.util.List;
 
 import com.halfmoon.market.model.domain.ProductTypeDomain;
+import com.halfmoon.market.model.domain.ProductTypeSubDomain;
 
 
 public class Const {
 	
 public static List<ProductTypeDomain> menuList = null;
+public static List<ProductTypeSubDomain> subMenuList = null;
 	
 	public static final String KEY_LOGINUSER = "loginUser";
 	public static final String KEY_LIST = "list";
