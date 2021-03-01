@@ -13,6 +13,7 @@ public interface UserMapper {
 	int insCode(UserDTO dto);
 	// R
 	UserDomain selUser(UserDTO dto);
+	UserDomain selUserInfo(UserDTO dto);
 	// U
 	int updAuth(UserDTO dto);
 	int updUser(UserDTO p);

@@ -115,6 +115,7 @@ function addrAjax(i_user){
 				alert('주소가 변경되었습니다.')
 			}
 		})
+}
 //프로필 사진
 function imgAjax(){
 	var formData = new FormData()
@@ -134,10 +135,12 @@ function chPh(){
 
 function phAjax(){
 	var param ={
-		status: 3,
+		state: 3,
 		ph: user_phoneElem.value
 		}
 	console.log("dddd")
+	console.log(user_phoneElem.value)
+	console.log(param)
 	fetch(`/user/my/updUser`, { 
 			method: 'post',
 			headers: {
@@ -206,5 +209,5 @@ function execDaumPostcode() {
             }
         }).open();
 }
-}
+
 

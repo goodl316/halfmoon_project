@@ -18,4 +18,4 @@
 		</div>
 	</form>
 </div>
-<script defer src="/res/js/user/login.js"></script>
+<script defer src="/res/js/user/login.js?ver=2"></script>

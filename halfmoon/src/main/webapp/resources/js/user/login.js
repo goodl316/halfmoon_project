@@ -10,7 +10,7 @@ btn_login.onclick = function () {
 
 
 function enterkey() {
-	if(event.keyCode == 13) {
+	if(window.event.keyCode == 13) {
 		loginProc()
 	}
 }
