@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>      
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 
 <link rel="stylesheet" href="/res/css/main/header.css?ver=2">
+
 <tiles:importAttribute name="menuList"/>
 <tiles:importAttribute name="subMenuList"/>
 <header>
@@ -46,14 +47,22 @@
 					</form>
 				</div>
 				<c:if test="${loginUser == null}">
-			<button id="btn_my_sell">내 물건 팔기</button>
-			<button id="btn_login">로그인</button>
-			<button id="btn_join">회원가입</button>	
+				<button id="btn_my_sell">내 물건 팔기</button>
+			<a href="/login">
+				<button id="btn_login">로그인</button>
+			</a>
+			<a href="/join">
+				<button id="btn_join">회원가입</button>
+			</a>
 		</c:if>
 		<c:if test="${loginUser != null}">
-			<button id="btn_my_sell">내 물건 팔기</button>
-			<button id="btn_logout"><a href="/logout">Logout</a></button>
-			<button id="btn_my_page"><a href="/user/my/profile">내정보</a></button>
+				<button id="btn_my_sell">내 물건 팔기</button>
+			<a href="/logout">
+				<button id="btn_logout">로그아웃</button>
+			</a>
+			<a href="/user/my/profile">
+				<button id="btn_my_page">내정보</button>
+			</a>
 		</c:if>	
 		
 			</div>
@@ -69,12 +78,20 @@
 				</c:forEach>
 			</ul>
 		</nav>
+		<div id="sub-nav" style="display: none">
+			<button>서브메뉴  </button>
+			<a href="">상품등록 |</a>
+			<a href="">상품관리 |</a>
+			<a href="">구매/판매내역</a>
+		</div>
 		
 		
 		<div class="subMenuList1">
 			<c:forEach var="subitem" items="${subMenuList}">
 					<c:if  test="${subitem.i_product_type == 1}">
-						${subitem.type_sub_title}
+						<a href="">
+							${subitem.type_sub_title}
+						</a>
 					</c:if>
 			</c:forEach>
 		</div>
@@ -142,7 +159,9 @@
 			</c:forEach>
 		</div>
 		
+		
 	</div>
 </header>
 
-<script defer src="/res/js/main/home.js?ver=2"></script>
+<script defer src="/res/js/temp/header.js"></script>
+<script defer src="/res/js/main/home.js?ver=3"></script>
