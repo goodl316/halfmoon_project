@@ -2,11 +2,12 @@ package com.halfmoon.market.common;
 
 import javax.servlet.http.HttpSession;
 
+import com.halfmoon.market.model.domain.UserDomain;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.halfmoon.market.model.UserEntity;
-import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
 public class SecurityUtils {
@@ -19,7 +20,7 @@ public class SecurityUtils {
 		return getLoginUser() != null;
 	}
 	
-	public static UserDomain getLoginUser() {		
+	public static UserDomain getLoginUser() {
 		return (UserDomain) hs.getAttribute(Const.KEY_LOGINUSER);
 	}
 	

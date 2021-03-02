@@ -26,12 +26,6 @@ var menuListLi8 = document.querySelector('#menuListLi8')
 var menuListLi9 = document.querySelector('#menuListLi9')
 var menuListLi10 = document.querySelector('#menuListLi10')
 
-btn_login.onclick = function() {
-	location.href = `/login`
-}
-btn_join.onclick = function() {
-	location.href = `/join`	
-}
 
 /*
 var arr1 = ['menuListLi1', 'menuListLi2', 'menuListLi3', 'menuListLi4', 'menuListLi5',
@@ -47,13 +41,17 @@ for(var i=0; i<=10; i++) {
 }
 */
 
+var isover = false
+
 //위와 같은 코드 수정해야함
 menuListLi1.onmouseover = function() {
 	subMenuList1.style.display = 'block'
+	isover = true
 }
-menuListLi1.onmouseout = function() {
+subMenuList1.onmouseout = function() {
 	subMenuList1.style.display = 'none'
 }
+
 menuListLi2.onmouseover = function() {
 	subMenuList2.style.display = 'block'
 }

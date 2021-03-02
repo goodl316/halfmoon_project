@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfmoon.market.sale.SaleMapper">
+	<select id="selLoc" resultType="LocDomain">
+		SELECT * 
+		FROM t_loc
+	</select>
+
+	<insert id="regProduct">
+		insert into t_product_sale (p_img_main, p_nm, p_price, i_product_type, type_sub_title, title, ctnt, i_loc, state, tag)
+		values ('test.jsp', #{p_nm}, #{p_price}, #{i_product_type}, #{type_sub_title}, #{title}, #{ctnt}, #{i_loc}, #{state}, #{tag})
+	</insert>
+</mapper>

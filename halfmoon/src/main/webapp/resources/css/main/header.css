@@ -129,6 +129,7 @@ button {
 	font-size: 15px;
     font-weight: 700;
     outline: none;
+    margin-top: 24px;
 }
 #btn_my_sell::after{
 	margin-left: 10px;
@@ -141,6 +142,7 @@ button {
 	font-size: 15px;
     font-weight: 700;
     outline: none;
+    margin-top: 24px;
 }
 #btn_login::after{
 	margin-left: 10px;
@@ -153,6 +155,7 @@ button {
 	font-size: 15px;
     font-weight: 700;
     outline: none;
+    margin-top: 24px;
 }
 
 #btn_logout{
@@ -162,7 +165,7 @@ button {
 	font-size: 15px;
     font-weight: 700;
     outline: none;
-    
+    margin-top: 24px;
 }
 #btn_logout::after{
 	margin-left: 10px;
@@ -175,6 +178,7 @@ button {
 	font-size: 15px;
     font-weight: 700;
     outline: none;
+    margin-top: 24px;
 }
 
 

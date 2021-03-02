@@ -209,11 +209,15 @@ function execDaumPostcode() {
             }
         }).open();
 }
-var UprofileElem = document.querySelector("#Uprofile")
-var img = document.createElement('img')
-var imgSrc = src= `/res/img/1234.png`
+function imgLocation(){
+	var UprofileElem = document.querySelector("#Uprofile")
+	var img = document.createElement('img')
+	var imgSrc = src= `/res/img/1234.png`
 
-UprofileElem.innerHTML =`
-<img class="profile_img" src="${imgSrc}" alt="프로필 이미지">
-`
+	UprofileElem.innerHTML =`
+	<img class="profile_img" src="${imgSrc}" alt="프로필 이미지">
+	`
+	
+}
+
 

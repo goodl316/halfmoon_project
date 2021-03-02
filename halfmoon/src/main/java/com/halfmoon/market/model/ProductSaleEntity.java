@@ -6,7 +6,7 @@ public class ProductSaleEntity {
 	private String p_nm;
 	private int p_price;
 	private int i_product_type;
-	private int i_producnt_type_sub;
+	private String type_sub_title;
 	private String p_img_main;
 	private String title;
 	private String ctnt;
@@ -17,8 +17,8 @@ public class ProductSaleEntity {
 	private String r_dt;
 	private String m_dt;
 	private int hit;
-	
-	
+
+	// check getter and setter
 	public int getI_product() {
 		return i_product;
 	}
@@ -43,11 +43,12 @@ public class ProductSaleEntity {
 	public void setI_product_type(int i_product_type) {
 		this.i_product_type = i_product_type;
 	}
-	public int getI_producnt_type_sub() {
-		return i_producnt_type_sub;
+	public String getType_sub_title() {
+		return type_sub_title;
 	}
-	public void setI_producnt_type_sub(int i_producnt_type_sub) {
-		this.i_producnt_type_sub = i_producnt_type_sub;
+
+	public void setType_sub_title(String type_sub_title) {
+		this.type_sub_title = type_sub_title;
 	}
 	public String getP_img_main() {
 		return p_img_main;
