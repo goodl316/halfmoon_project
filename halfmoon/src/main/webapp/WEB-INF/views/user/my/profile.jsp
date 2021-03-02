@@ -37,7 +37,7 @@
 	</div>
 	<div id="profile_right_div2">
 		<div id="Uprofile">
-			<img class="profile_img" alt="기본 이미지" src="/res/img/1234.png">
+			<!--  <img class="profile_img" alt="기본 이미지" src="/res/img/1234.png">-->
 			<button type="button" onclick="$('.profile_file').trigger( 'click' )">파일선택</button>
 			<input class="profile_file" type="file" id="inputImg" multiple accept="image/*">
 			<input type="button" value="업로드" onclick="uploadImg()">

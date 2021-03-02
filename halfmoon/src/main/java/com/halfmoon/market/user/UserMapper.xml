@@ -4,17 +4,11 @@
 
 	<insert id="insUser" useGeneratedKeys="true" keyProperty="i_user">
 			INSERT INTO t_user
-			(id_email, user_nm, user_pw, gender, ph, postcode, roadAddr, jibunAddr, detailAddr, extraAddr)
+			(id_email, user_nm, user_pw, gender, ph, postcode, roadAddr, jibunAddr, detailAddr, extraAddr,code)
 			VALUES
-			(#{id_email}, #{user_nm}, #{user_pw}, #{gender} ,#{ph}, #{postcode}, #{roadAddr}, #{jibunAddr}, #{detailAddr}, #{extraAddr})
+			(#{id_email}, #{user_nm}, #{user_pw}, #{gender} ,#{ph}, #{postcode}, #{roadAddr}, #{jibunAddr}, #{detailAddr}, #{extraAddr}, #{code} )
 	</insert>
-	<insert	id="insCode" useGeneratedKeys="true" keyProperty="i_user">
-		INSERT INTO t_user
-		(code)
-		VALUES
-		(#{code})
 	
-	</insert>
 	<select id="selUser" resultType="UserDomain">
 		select *
 		from t_user

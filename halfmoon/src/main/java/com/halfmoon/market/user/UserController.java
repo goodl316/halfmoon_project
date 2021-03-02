@@ -21,6 +21,8 @@ import com.halfmoon.market.model.UserEntity;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 public class UserController {
 	
@@ -65,7 +67,6 @@ public class UserController {
 		// proc : 일단회원가입(코드삽입) -> 코드와 i_user값 가져와서 ->  
 		Map<String, Object> val = new HashMap<>();
 		val.put(Const.KEY_RESULT, service.join(dto));
-		service.insCode(dto);
 		return val;
 	}
 	

@@ -57,6 +57,7 @@ public class UserService {
 		// 비밀번호 암호화
 		String encryptPw = SecurityUtils.hashPassword(dto.getUser_pw(), SecurityUtils.getsalt());
 		dto.setUser_pw(encryptPw);
+		dto.setCode(SecurityUtils.authCode(5));
 		
 		// 정보 입력
 		result = mapper.insUser(dto);
@@ -144,12 +145,6 @@ public class UserService {
 		p.setI_user(vo.getI_user());
 		return mapper.updCode(p);
 	}
-	public int insCode(UserDTO p) {
-		String code = SecurityUtils.authCode(5);
-		p.setCode(code);
-		return mapper.insCode(p);
-	}
-	
 
 }
 

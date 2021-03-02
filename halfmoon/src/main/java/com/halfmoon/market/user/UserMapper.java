@@ -10,7 +10,6 @@ import com.halfmoon.market.model.dto.UserDTO;
 public interface UserMapper {
 	// C
 	int insUser(UserDTO dto);
-	int insCode(UserDTO dto);
 	// R
 	UserDomain selUser(UserDTO dto);
 	UserDomain selUserInfo(UserDTO dto);
