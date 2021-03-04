@@ -76,7 +76,6 @@ public class UserController {
 		model.addAttribute("user_nm", vo.getUser_nm());
 	}
 	
-	/*  프로필,마이페이지,비밀번호 찾기 기능 추가해야함  */
 	@GetMapping("/user/my/profile")
 	public void profile() {
 		
@@ -85,14 +84,16 @@ public class UserController {
 	@GetMapping("/user/my/changePw")
 	public void changePw() {}
 	
+	//비밀번호 변경시 기존 비밀번호 확인후 팝업창 생성
 	@ResponseBody
 	@PostMapping("/user/my/updPw")
 	public Map<String,Object> chPw(@RequestBody UserDTO p) {
 		UserDomain vo  = service.selUser(p);
-		if(!BCrypt.checkpw(p.getClk_pw(), vo.getUser_pw())) {
+		if(!BCrypt.checkpw(p.getClk_pw(), vo.getUser_pw())) { //비밀번호 틀린경우
 			Map<String,Object> val = new HashMap<String, Object>();
 			val.put(Const.KEY_RESULT, 2);
 			return val;
+			
 		} else {
 			Map<String,Object> val = new HashMap<String, Object>();
 			val.put(Const.KEY_RESULT, 1);
@@ -100,37 +101,7 @@ public class UserController {
 		}
 		
 	}
-	
-
-//	@ResponseBody
-//	@PostMapping("/user/my/updPw")
-//	public Map<String,Object> chPw(UserDTO p) {
-//		Map<String,Object> val = new HashMap<String, Object>();
-//		val.put(Const.KEY_RESULT, service.updPw(p));
-//		return val;
-//	}
-//	
-//	@ResponseBody
-//	@PostMapping("/user/my/updProfile")
-//	public int profileUpload(UserDTO p,MultipartFile[] imgs) {
-//		System.out.println("imgs : " + imgs.length);
-//		int result= service.profileUpload(imgs);
-//		hs.invalidate();
-//		hs.setAttribute(Const.KEY_LOGINUSER, service.selUser(p));
-//		return result;
-//	}
-	
-	@ResponseBody
-	@PostMapping("/user/my/updProfile")
-	public Map<String,Object> profileUpload(UserDTO p,MultipartFile[] imgs) {
-		Map<String,Object> val = new HashMap<String, Object>();
-		val.put(Const.KEY_RESULT, service.profileUpload(p,imgs));
-		
-		UserEntity vo = service.selUser(p);
-		hs.setAttribute(Const.KEY_LOGINUSER, service.selUser(p));
-		return val;
-	}
-	
+	//유저 비밀번호,주소,핸드폰 번호 변경
 	
 	@ResponseBody
 	@PostMapping("/user/my/updUser")
@@ -156,7 +127,18 @@ public class UserController {
 		return val;	
 	}
 	
+	//유저 프로필 이미지 등록, 변경
 	
+	@ResponseBody
+	@PostMapping("/user/my/updProfile")
+	public Map<String,Object> profileUpload(UserDTO p,MultipartFile[] imgs) {
+		Map<String,Object> val = new HashMap<String, Object>();
+		val.put(Const.KEY_RESULT, service.profileUpload(p,imgs));
+		
+		UserEntity vo = service.selUser(p);
+		hs.setAttribute(Const.KEY_LOGINUSER, service.selUser(p));
+		return val;
+	}
 	
 	
 	@ResponseBody

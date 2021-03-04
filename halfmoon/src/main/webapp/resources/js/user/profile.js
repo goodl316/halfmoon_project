@@ -10,13 +10,7 @@ var user_phoneElem = document.querySelector('#ph')
 var chPwbtnElem = document.querySelector('#chPwbtn')
 var status = 0;
 
-function uploadImg(){
-	if(inputImgElem.files.length==0){
-		alert("사진을 선택해 주세요")
-		return
-	}
-	imgAjax()
-}
+
 //비밀번호 변경
 function chPw(i_user){
 	pwAjax(i_user)
@@ -117,6 +111,14 @@ function addrAjax(i_user){
 		})
 }
 //프로필 사진
+function uploadImg(){ //사진 업로드
+	if(inputImgElem.files.length==0){
+		alert("사진을 선택해 주세요")
+		return
+	}
+	imgAjax()
+}
+
 function imgAjax(){
 	var formData = new FormData()
 	for(var i=0; i<inputImgElem.files.length; i++) {
@@ -125,7 +127,59 @@ function imgAjax(){
 	fetch(`/user/my/updProfile`,{
 		method: 'post',
 		body: formData
+	}).then(window.location.reload())
+}
+//프로필 이미지 가져오기
+function imgLocation(){
+	fetch('/user/profileData')
+	.then(res => res.json())
+	.then(myJson => {
+		proc(myJson)
 	})
+	
+	function proc(myJson){
+	var UprofileElem = document.querySelector("#Uprofile")
+	var div = document.createElement('div')
+	div.id = ''
+	UprofileElem.prepend(div)
+	
+	var delProfileHTML=''
+	var imgSrc = `/res/img/1234.png`
+	if(myJson.profile_img){
+		console.log(myJson.profile_img)
+		imgSrc = `/res/img/user/${myJson.i_user}/${myJson.profile_img}`
+		delProfileHTML=`
+			<div id="delProfileBtnContainer">
+					<button onclick="delProfileImg();">기본이미지 사용</button>
+			</div>
+		`
+	} 
+	
+	div.innerHTML =`
+	<img id="user_profile_img" class="profile_img" src="${imgSrc}" alt="프로필 이미지">
+	${delProfileHTML}
+	`
+	}
+}
+
+imgLocation() //프로필이미지 가져오기 실행
+
+//프로필 기본이미지 사용
+function delProfileImg(){
+	return new Promise(function(resolve) {
+	
+		fetch(`/user/delImg`, {
+			method: 'put',
+		})
+		.then(res => res.json())
+		.then(myJson => {
+			var img_Elem = document.querySelector('#user_profile_img')
+			img_Elem.src = `/res/img/1234.png`
+			resolve(myJson)
+			
+		})	
+	})
+	
 }
 
 //핸드폰 번호 변경
@@ -138,9 +192,6 @@ function phAjax(){
 		state: 3,
 		ph: user_phoneElem.value
 		}
-	console.log("dddd")
-	console.log(user_phoneElem.value)
-	console.log(param)
 	fetch(`/user/my/updUser`, { 
 			method: 'post',
 			headers: {
@@ -208,57 +259,5 @@ function execDaumPostcode() {
                 }
             }
         }).open();
-}
-function imgLocation(){
-	fetch('/user/profileData')
-	.then(res => res.json())
-	.then(myJson => {
-		proc(myJson)
-	})
-	
-	function proc(myJson){
-	var UprofileElem = document.querySelector("#Uprofile")
-	var div = document.createElement('div')
-	div.id = ''
-	UprofileElem.prepend(div)
-	
-	var delProfileHTML=''
-	var imgSrc = `/res/img/1234.png`
-	if(myJson.profile_img){
-		console.log(myJson.profile_img)
-		imgSrc = `/res/img/user/${myJson.i_user}/${myJson.profile_img}`
-		delProfileHTML=`
-			<div id="delProfileBtnContainer">
-					<button onclick="delProfileImg();">기본이미지 사용</button>
-			</div>
-		`
-	} 
-	
-	div.innerHTML =`
-	<img id="user_profile_img" class="profile_img" src="${imgSrc}" alt="프로필 이미지">
-	${delProfileHTML}
-	`
-	}
-	
-	
-}
-imgLocation()
-
-function delProfileImg(){
-	return new Promise(function(resolve) {
-	
-		fetch(`/user/delImg`, {
-			method: 'put',
-			
-		})
-		.then(res => res.json())
-		.then(myJson => {
-			var img_Elem = document.querySelector('#user_profile_img')
-			img_Elem.src = `/res/img/1234.png`
-			resolve(myJson)
-			
-		})	
-	})
-	
 }
 
