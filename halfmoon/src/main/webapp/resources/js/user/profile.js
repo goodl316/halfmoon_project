@@ -210,14 +210,55 @@ function execDaumPostcode() {
         }).open();
 }
 function imgLocation(){
+	fetch('/user/profileData')
+	.then(res => res.json())
+	.then(myJson => {
+		proc(myJson)
+	})
+	
+	function proc(myJson){
 	var UprofileElem = document.querySelector("#Uprofile")
-	var img = document.createElement('img')
-	var imgSrc = src= `/res/img/1234.png`
-
-	UprofileElem.innerHTML =`
-	<img class="profile_img" src="${imgSrc}" alt="프로필 이미지">
+	var div = document.createElement('div')
+	div.id = ''
+	UprofileElem.prepend(div)
+	
+	var delProfileHTML=''
+	var imgSrc = `/res/img/1234.png`
+	if(myJson.profile_img){
+		console.log(myJson.profile_img)
+		imgSrc = `/res/img/user/${myJson.i_user}/${myJson.profile_img}`
+		delProfileHTML=`
+			<div id="delProfileBtnContainer">
+					<button onclick="delProfileImg();">기본이미지 사용</button>
+			</div>
+		`
+	} 
+	
+	div.innerHTML =`
+	<img id="user_profile_img" class="profile_img" src="${imgSrc}" alt="프로필 이미지">
+	${delProfileHTML}
 	`
+	}
+	
 	
 }
+imgLocation()
 
+function delProfileImg(){
+	return new Promise(function(resolve) {
+	
+		fetch(`/user/delImg`, {
+			method: 'put',
+			
+		})
+		.then(res => res.json())
+		.then(myJson => {
+			var img_Elem = document.querySelector('#user_profile_img')
+			img_Elem.src = `/res/img/1234.png`
+			resolve(myJson)
+			
+		})	
+	})
+	
+}
 

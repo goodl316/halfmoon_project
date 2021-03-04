@@ -1,6 +1,8 @@
 var btn_my_sell = document.querySelector('#btn_my_sell')
 var main_nav = document.querySelector('#main-nav')
 var sub_nav = document.querySelector('#sub-nav')
+var sub_nav2 = document.querySelector('#sub_nav')
+
 console.log(window.location.href)
 
 // 현재 url 위치 파싱 (자주 쓰일 듯.)
@@ -20,6 +22,7 @@ console.log(getUrl())
 // 상품등록페이지일때 menuList none and 위치 표시
 if (getUrl() === '/sale/regProduct') {
     sub_nav.style.display = 'block'
+    sub_nav2.style.display = 'block'
     main_nav.innerHTML = '<h3>반월마켓 판매자센터</h3>'
 }
 
@@ -48,3 +51,11 @@ function btn_my_sell_ajax() {
         }
     })
 }
+
+
+
+
+
+
+
+

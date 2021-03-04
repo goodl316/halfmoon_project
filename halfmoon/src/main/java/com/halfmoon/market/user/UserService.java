@@ -30,6 +30,8 @@ public class UserService {
 	private FileUtils fUtils;
 	
 	public UserDomain selUser(UserDTO p) {
+		System.out.println("pk : "  + p.getI_user());
+		System.out.println("id : "  + p.getId_email());
 		return mapper.selUser(p);
 	}
 	
@@ -94,10 +96,10 @@ public class UserService {
 				
 	}
 	
-	public int profileUpload(MultipartFile[] imgs) {	
+	public int profileUpload(UserDTO p,MultipartFile[] imgs) {	
 		UserEntity vo2 = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
 		vo2.getI_user();
-		UserDTO p = new UserDTO();
+		p.setI_user(vo2.getI_user());
 		if(vo2.getI_user() < 1 || imgs.length == 0) {
 			return 0;
 		}
@@ -146,6 +148,19 @@ public class UserService {
 		return mapper.updCode(p);
 	}
 
+	public int delProfileImg(UserDTO p) {
+		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
+		p.setI_user(vo.getI_user());
+		System.out.println("profile_img:"+vo.getProfile_img());
+		int result = mapper.delUserImg(p);
+		if(result==1) {
+			String path = "/img/user/" + p.getI_user()+ "/" + vo.getProfile_img();
+			System.out.println("path:" +path);
+			fUtils.delFile(path);
+		}
+		
+		return result;
+	}
 }
 
 

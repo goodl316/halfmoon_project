@@ -19,10 +19,9 @@ public interface UserMapper {
 	int updAddr(UserDTO p);
 	int updCode(UserDTO p);
 	
-	
 	int updProfileImg(UserDTO p);
 	// D
-	
+	int delUserImg(UserDTO p);
 
 	
 

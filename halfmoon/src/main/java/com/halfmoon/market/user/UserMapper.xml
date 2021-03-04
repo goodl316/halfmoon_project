@@ -62,6 +62,10 @@
 	where i_user = #{i_user}
 	</update>
 	
-	
+	<update id="delUserImg">
+	UPDATE t_user
+	SET profile_img = NULL
+	WHERE i_user = #{i_user}
+	</update>
 	
 </mapper>

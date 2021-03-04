@@ -8,9 +8,13 @@ header {
     height: 195;
     border-bottom:2px solid gray;
 }
+ul, li{
+	list-style: none;
+}
 
 a {
 	text-decoration: none;
+	color: black;
 }
 
 button {
@@ -129,7 +133,6 @@ button {
 	font-size: 15px;
     font-weight: 700;
     outline: none;
-    margin-top: 24px;
 }
 #btn_my_sell::after{
 	margin-left: 10px;
@@ -242,3 +245,83 @@ button {
 #sub_menu_cont:hover{
 	display: flex;
 }
+
+
+
+
+
+
+/* ---------------내 물건 팔기 -------------------*/
+
+
+#sub_nav{
+	width: 1000px;
+    margin: auto;
+}
+
+#sub_nav ul{
+	padding:0;
+}
+
+#sub_nav ul a{
+	display:block;
+	color:#333;
+	text-decoration:none;
+	font-weight:700;
+	font-size:12px;
+	line-height:32px;
+	padding:0 15px;
+}
+#sub_nav ul li{
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#sub_nav ul ul{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	background:#fff;
+	padding:0
+}
+#sub_nav ul ul li{
+	float:none;
+	width:200px;
+	border-top: 1px solid;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	padding: 5px;
+}
+
+#sub_nav ul ul a{
+	line-height:120%;
+	padding:10px 15px
+}
+#sub_nav ul ul ul{
+	top:0;
+	left:100%
+}
+#sub_nav ul li:hover > ul
+{
+	display:block
+}
+
+.line {
+    width: 28px;
+    margin-bottom: 10px;
+    margin-right: 25px;
+}
+
+.last-li{
+	float:none;
+	width:200px;
+	border: 1px solid;
+	padding: 5px;
+}
+
+
+
+

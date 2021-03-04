@@ -27,6 +27,7 @@ var menuListLi9 = document.querySelector('#menuListLi9')
 var menuListLi10 = document.querySelector('#menuListLi10')
 
 
+
 /*
 var arr1 = ['menuListLi1', 'menuListLi2', 'menuListLi3', 'menuListLi4', 'menuListLi5',
 	'menuListLi6','menuListLi7','menuListLi8','menuListLi9','menuListLi10']
@@ -51,61 +52,75 @@ menuListLi1.onmouseover = function() {
 subMenuList1.onmouseout = function() {
 	subMenuList1.style.display = 'none'
 }
-
 menuListLi2.onmouseover = function() {
 	subMenuList2.style.display = 'block'
+	isover = true
 }
-menuListLi2.onmouseout = function() {
+subMenuList2.onmouseout = function() {
 	subMenuList2.style.display = 'none'
 }
 menuListLi3.onmouseover = function() {
 	subMenuList3.style.display = 'block'
+	isover = true
 }
-menuListLi3.onmouseout = function() {
+subMenuList3.onmouseout = function() {
 	subMenuList3.style.display = 'none'
 }
 menuListLi4.onmouseover = function() {
 	subMenuList4.style.display = 'block'
+	isover = true
 }
-menuListLi4.onmouseout = function() {
+subMenuList4.onmouseout = function() {
 	subMenuList4.style.display = 'none'
 }
 menuListLi5.onmouseover = function() {
 	subMenuList5.style.display = 'block'
+	isover = true
 }
-menuListLi5.onmouseout = function() {
+subMenuList5.onmouseout = function() {
 	subMenuList5.style.display = 'none'
 }
 menuListLi6.onmouseover = function() {
 	subMenuList6.style.display = 'block'
+	isover = true
 }
-menuListLi6.onmouseout = function() {
+subMenuList6.onmouseout = function() {
 	subMenuList6.style.display = 'none'
 }
 menuListLi7.onmouseover = function() {
 	subMenuList7.style.display = 'block'
+	isover = true
 }
-menuListLi7.onmouseout = function() {
+subMenuList7.onmouseout = function() {
 	subMenuList7.style.display = 'none'
 }
 menuListLi8.onmouseover = function() {
 	subMenuList8.style.display = 'block'
+	isover = true
 }
-menuListLi8.onmouseout = function() {
+subMenuList8.onmouseout = function() {
 	subMenuList8.style.display = 'none'
 }
 menuListLi9.onmouseover = function() {
 	subMenuList9.style.display = 'block'
+	isover = true
 }
-menuListLi9.onmouseout = function() {
+subMenuList9.onmouseout = function() {
 	subMenuList9.style.display = 'none'
 }
 menuListLi10.onmouseover = function() {
 	subMenuList10.style.display = 'block'
+	isover = true
 }
-menuListLi10.onmouseout = function() {
+subMenuList10.onmouseout = function() {
 	subMenuList10.style.display = 'none'
 }
+
+
+main_form_input.onblur = function() {
+	form_select_window.style.display = 'none'
+}
+
 
 // 검색어 창 띄우기
 main_form_input.onclick = function() {

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>      
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 
-<link rel="stylesheet" href="/res/css/main/header.css?ver=2">
+<link rel="stylesheet" href="/res/css/main/header.css?ver=3">
 
 <tiles:importAttribute name="menuList"/>
 <tiles:importAttribute name="subMenuList"/>
@@ -78,14 +78,6 @@
 				</c:forEach>
 			</ul>
 		</nav>
-		<div id="sub-nav" style="display: none">
-			<button>서브메뉴  </button>
-			<a href="">상품등록 |</a>
-			<a href="">상품관리 |</a>
-			<a href="">구매/판매내역</a>
-		</div>
-		
-		
 		<div class="subMenuList1">
 			<c:forEach var="subitem" items="${subMenuList}">
 					<c:if  test="${subitem.i_product_type == 1}">
@@ -158,9 +150,98 @@
 					</c:if>
 			</c:forEach>
 		</div>
-		
-		
 	</div>
+	<div id="sub_nav" style="display : none;">
+			<ul class="sub-ul">
+				<li><img class="line" src="/res/img/line.png">
+					<ul>
+						<li class="li-border"><a href="">디지털/가전</a>
+							<ul>
+								<li><a href="">생활가전</a></li>
+								<li><a href="">주방가전</a></li>
+								<li><a href="">모바일/태블릿</a></li>
+								<li><a href="">PC</a></li>
+								<li class="last-li"><a href="">PC주변기기</a></li>
+							</ul>
+						</li>
+						<li><a href="">스포츠/레저</a>
+							<ul>
+								<li><a href="">스포츠용품</a></li>
+								<li><a href="">악기용품</a></li>
+								<li><a href="">등산용품</a></li>
+								<li><a href="">캠핑용품</a></li>
+								<li class="last-li"><a href="">낚시용품</a></li>
+							</ul>
+						</li>
+						<li><a href="">남성의류</a>
+							<ul>
+								<li><a href="">상의</a></li>
+								<li><a href="">하의</a></li>
+								<li class="last-li"><a href="">신발/악세사리</a></li>
+							</ul>
+						</li>
+						<li><a href="">여성의류</a>
+							<ul>
+								<li><a href="">상의</a></li>
+								<li><a href="">하의</a></li>
+								<li class="last-li"><a href="">신발/악세사리</a></li>
+							</ul>
+						</li>
+						<li><a href="">가구/인테리어</a>
+							<ul>
+								<li><a href="">가구DIY</a></li>
+								<li><a href="">조명</a></li>
+								<li><a href="">침구/커튼</a></li>
+								<li><a href="">생활용품</a></li>
+								<li class="last-li"><a href="">주방용품</a></li>
+							</ul>
+						</li>
+						<li><a href="">생활/가공식품</a>
+							<ul>
+								<li><a href="">건강식품</a></li>
+								<li><a href="">신선식품</a></li>
+								<li><a href="">즉석식품</a></li>
+								<li class="last-li"><a href="">기타/</a></li>
+							</ul>
+						</li>
+						<li><a href="">게임/취미</a>
+							<ul>
+								<li><a href="">콘솔</a></li>
+								<li class="last-li"><a href="">기타</a></li>
+							</ul>
+						</li>
+						<li><a href="">반려동물</a>
+							<ul>
+								<li><a href="">간식</a></li>
+								<li><a href="">장난감</a></li>
+								<li class="last-li"><a href="">기타</a></li>
+							</ul>
+						</li>
+						<li><a href="">도서/티켓/음반</a>
+							<ul>
+								<li><a href="">일반도서</a></li>
+								<li><a href="">교육도서</a></li>
+								<li><a href="">음반</a></li>
+								<li class="last-li"><a href="">티켓</a></li>
+							</ul>
+						</li>
+						<li class="last-li"><a href="">유아용품</a>
+							<ul>
+								<li><a href="">유아의류</a></li>
+								<li><a href="">장난감</a></li>
+								<li><a href="">유아식품</a></li>
+								<li class="last-li"><a href="">기타</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="sub-nav" style="display : none">
+			<a href="/sale/regProduct">상품등록 |</a>
+			<a href="">상품관리 |</a>
+			<a href="/user/my/profile">구매/판매내역</a>
+		</div>
 </header>
 
 <script defer src="/res/js/temp/header.js"></script>

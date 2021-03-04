@@ -34,6 +34,8 @@ function product_img_upload () {
     }
 }
 
+
+
 // 상품등록하기
 btn_reg.onclick = function () {
 
