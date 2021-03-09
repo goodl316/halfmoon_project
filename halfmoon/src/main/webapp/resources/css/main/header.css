@@ -186,7 +186,7 @@ button {
 
 
 #main-nav{
-	width: 1000px;
+	width: 100%;
     margin: auto;
 }
 
@@ -194,19 +194,18 @@ button {
 	padding: 0px;
     display: flex;
     width: 100%;
-    margin-bottom: auto;
-    margin-left: 95px;
+    margin: 0px;
 }
 
 
 #menuListUl li{
-	 list-style: none;
+	list-style: none;
     height: 92px;
     overflow: hidden;
 }
 
 
-#menuListli-li a{
+#menuList-li a{
 	color: gray;
 	display: block;
 	line-height: 32px;
@@ -214,18 +213,12 @@ button {
     border: 0.5px solid gray;
 }
 
-.List div{
-	display: none;
-	text-align: center;
-	margin: 20px;
-}
-
 #main-nav ul li:hover > ul{
 	display:block;
 }
 
 
-#menuListLi:hover{
+#menuList:hover{
 	cursor: pointer;
 }
 .btn_menu_img{
@@ -246,9 +239,40 @@ button {
 	display: flex;
 }
 
+.List{
+	width: 820px;
+    margin: auto;
+}
 
 
+/* ----------- 메인페이지 sub 카테고리 -------------- */
+.sub_div{
+	width: 820px;
+    margin: auto;
+	border-right: 1px solid #dfdede;
+	border-left: 1px solid #dfdede;
+	display: none;
+}
 
+.sub_ul{
+    padding: 0px;
+    display: flex;
+    height: 60px;
+    margin: 0px;
+    text-align: center;
+}
+.sub_ul li{
+    width: 100px;
+    line-height: 60px;
+    font-size: 14px;
+}
+.sub_ul a:before{
+	content: "· ";
+}
+.sub ul a{
+	padding-left: 10px;
+}
+ 
 
 
 /* ---------------내 물건 팔기 -------------------*/

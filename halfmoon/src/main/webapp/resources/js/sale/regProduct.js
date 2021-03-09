@@ -9,32 +9,22 @@ var p_ctnt = document.querySelector('#p_ctnt')
 var p_tag = document.querySelector('#p_tag')
 var btn_reg = document.querySelector('#btn_reg')
 
+// 유저정보파싱
+var i_user = document.querySelector('#i_user')
+console.log('i_user : ' + i_user.value)
+
 // 상품이미지 날리기
-function product_img_upload () {
-    if(input_img.files.length === 0) {
-        alert('이미지를 선택해 주세요')
-        return
+function product_img_upload (i_product) {
+    var formData = new FormData()
+    for(var i=0; i<input_img.files.length; i++) {
+        formData.append('imgs', input_img.files[i])
     }
-    if(input_img.files.length > 5) {
-        alert('이미지는 최대 5개 까지 등록 가능합니다.')
-        return
-    }
-
-    product_img_upload_ajax()
-
-    function product_img_upload_ajax () {
-        var formData = new FormData()
-        for(var i=0; i<input_img.files.length; i++) {
-            formData.append('imgs', input_img.files[i])
-        }
-        fetch('/productImgUpload',{
-            method: 'post',
-            body: formData
-        })
-    }
+    formData.append('i_product', i_product) // 추가
+    fetch('/productImgUpload',{
+        method: 'post',
+        body: formData
+    })
 }
-
-
 
 // 상품등록하기
 btn_reg.onclick = function () {
@@ -47,6 +37,7 @@ btn_reg.onclick = function () {
     var ctntVal = p_ctnt.value
     var i_locVal = loc.value
     var tagVal = p_tag.value
+
 
     // 필수입력 로직 처리 하기.
     // 제품
@@ -81,11 +72,21 @@ btn_reg.onclick = function () {
         loc.focus()
         return
     }
+    // 이미지 체크
+    if(input_img.files.length === 0) {
+        alert('이미지를 선택해 주세요')
+        return
+    }
+    if(input_img.files.length > 5) {
+        alert('이미지는 최대 5개 까지 등록 가능합니다.')
+        return
+    }
     // tag 저장 : #으로 구분
     tagVal = tagVal.replaceAll(' ', '#')
     console.log(tagVal)
 
     var param = {
+       i_user: i_user.value,
        p_nm: p_nmVal,
        p_price: p_priceVal,
        i_product_type: i_product_typeVal,
@@ -98,8 +99,6 @@ btn_reg.onclick = function () {
     }
     console.log(param)
 
-    // product img 날리기
-    product_img_upload()
     // ajax 실행
     reg_ajax(param)
 }
@@ -123,6 +122,8 @@ function reg_ajax (param) {
         switch(data.result) {
             case 1:
                 // 등록 성공
+                console.log('i_product : ' + data.i_product)
+                product_img_upload(data.i_product)
                 break;
             case 2:
                 // 등록 실패

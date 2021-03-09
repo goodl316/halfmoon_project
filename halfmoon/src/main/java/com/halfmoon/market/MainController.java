@@ -21,6 +21,9 @@ public class MainController implements ViewPreparer  {
 	
 	@GetMapping("/main/home")
 	public void home(Model model) {
+		// 인기상품 뿌리기 list
+		// 전체상품 뿌리기 list
+		model.addAttribute("total_list", service.selTotalList());
 	}
 
 	@Override

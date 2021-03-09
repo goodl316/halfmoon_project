@@ -4,6 +4,7 @@
 <tiles:importAttribute name="menuList"/>
 <script defer src="/res/js/sale/regProduct.js"></script>
 <link rel="stylesheet" href="/res/css/main/regProduct.css?ver=4">
+<input id="i_user" type="hidden" value="${loginUser.i_user}" />
 <div id="regProduct">
 	<div class="regProduct_div1">
 		<h1 class="h1">기본정보</h1>

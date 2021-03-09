@@ -1,5 +1,7 @@
 package com.halfmoon.market.sale;
 import com.halfmoon.market.common.Const;
+import com.halfmoon.market.common.Utils;
+import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,23 +45,41 @@ public class SaleController {
         return val;
     }
 
-    // 상품 이미지 등록
+
+    // 상품 이미지 등록 : 상품정보등록 성공 후 해당 ajax 호
     @ResponseBody
     @PostMapping("/productImgUpload")
-    public int profileUpload(MultipartFile[] imgs) {
-        System.out.println("imgs : " + imgs.length);
-        return 1;   // service 파일 업로드 로직 처리하기.
+    public int profileUpload(MultipartFile[] imgs, int i_product) {
+        //System.out.println("imgs : " + imgs.length);
+        //System.out.println("rec i_product : " + i_product);
+        return service.profileUpload(imgs, i_product);   // service 파일 업로드 로직 처리하기.
     }
     // 상품 정보 등록
     @ResponseBody
     @PostMapping("/regProductProc")
     public Map<String, Object> regProductProc(@RequestBody ProductSaleDTO dto) {
         Map<String,Object> val = new HashMap<String, Object>();
-        //System.out.println("p_nm : " + dto.getP_nm());
-        //System.out.println("reg state : " + dto.getState());
+        // 결과 처리
         val.put(Const.KEY_RESULT, service.regProduct(dto));
+        System.out.println("i_product : " + dto.getI_product());
+        // pk 값 전달
+        val.put("i_product", dto.getI_product());
         return val;
     }
 
+    // 상품 디테일 페이지
+    @GetMapping("/sale/detail")
+    public void saleDetail(Model model, int i_product, int i_user) {
+        ProductSaleDTO dto = new ProductSaleDTO();
+        dto.setI_product(i_product);
+        dto.setI_user(i_user);
 
+        // 상품 데이터 추가
+        ProductSaleDomain vo = service.selProduct(dto);
+        vo.setShow_time(Utils.timeFormatter(vo.getShow_time()));
+        model.addAttribute(Const.KEY_DATA, vo);
+
+        // 상품 기본 유저 정보 추가
+        model.addAttribute("user_basic", service.selProUser(dto));
+    }
 }

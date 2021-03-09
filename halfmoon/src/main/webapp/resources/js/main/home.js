@@ -5,122 +5,63 @@ var form_select_window = document.querySelector('.form-select-window')
 var window_close = document.querySelector('.window_close')
 var rSearch = document.querySelector('.window-a1')
 var pSearch = document.querySelector('.window-a2')
-var subMenuList1 = document.querySelector('.subMenuList1')
-var subMenuList2 = document.querySelector('.subMenuList2')
-var subMenuList3 = document.querySelector('.subMenuList3')
-var subMenuList4 = document.querySelector('.subMenuList4')
-var subMenuList5 = document.querySelector('.subMenuList5')
-var subMenuList6 = document.querySelector('.subMenuList6')
-var subMenuList7 = document.querySelector('.subMenuList7')
-var subMenuList8 = document.querySelector('.subMenuList8')
-var subMenuList9 = document.querySelector('.subMenuList9')
-var subMenuList10 = document.querySelector('.subMenuList10')
-var menuListLi1 = document.querySelector('#menuListLi1')
-var menuListLi2 = document.querySelector('#menuListLi2')
-var menuListLi3 = document.querySelector('#menuListLi3')
-var menuListLi4 = document.querySelector('#menuListLi4')
-var menuListLi5 = document.querySelector('#menuListLi5')
-var menuListLi6 = document.querySelector('#menuListLi6')
-var menuListLi7 = document.querySelector('#menuListLi7')
-var menuListLi8 = document.querySelector('#menuListLi8')
-var menuListLi9 = document.querySelector('#menuListLi9')
-var menuListLi10 = document.querySelector('#menuListLi10')
+
+var preList = document.querySelector('.list')
+
+// 메인메뉴
+var menuList = document.querySelectorAll('.menuList')
+
+var sub_div = document.querySelectorAll('.sub_div')
 
 
+// 디테일 이동 (여기서는 아작스 안씀)
+function moveDetail(i_product, i_user) {
+	location.href = '/sale/detail?i_product=' + i_product + '&i_user=' + i_user;
 
-/*
-var arr1 = ['menuListLi1', 'menuListLi2', 'menuListLi3', 'menuListLi4', 'menuListLi5',
-	'menuListLi6','menuListLi7','menuListLi8','menuListLi9','menuListLi10']
-
-var arr2 = ['subMenuList1','subMenuList2','subMenuList3','subMenuList4','subMenuList5',
-	'subMenuList6','subMenuList7','subMenuList8','subMenuList9','subMenuList10']
-
-for(var i=0; i<=10; i++) {
-	arr1[i].onmouseover = function() {
-	    arr2[i].style.display = 'block'
-    }
-}
-*/
-
-var isover = false
-
-//위와 같은 코드 수정해야함
-menuListLi1.onmouseover = function() {
-	subMenuList1.style.display = 'block'
-	isover = true
-}
-subMenuList1.onmouseout = function() {
-	subMenuList1.style.display = 'none'
-}
-menuListLi2.onmouseover = function() {
-	subMenuList2.style.display = 'block'
-	isover = true
-}
-subMenuList2.onmouseout = function() {
-	subMenuList2.style.display = 'none'
-}
-menuListLi3.onmouseover = function() {
-	subMenuList3.style.display = 'block'
-	isover = true
-}
-subMenuList3.onmouseout = function() {
-	subMenuList3.style.display = 'none'
-}
-menuListLi4.onmouseover = function() {
-	subMenuList4.style.display = 'block'
-	isover = true
-}
-subMenuList4.onmouseout = function() {
-	subMenuList4.style.display = 'none'
-}
-menuListLi5.onmouseover = function() {
-	subMenuList5.style.display = 'block'
-	isover = true
-}
-subMenuList5.onmouseout = function() {
-	subMenuList5.style.display = 'none'
-}
-menuListLi6.onmouseover = function() {
-	subMenuList6.style.display = 'block'
-	isover = true
-}
-subMenuList6.onmouseout = function() {
-	subMenuList6.style.display = 'none'
-}
-menuListLi7.onmouseover = function() {
-	subMenuList7.style.display = 'block'
-	isover = true
-}
-subMenuList7.onmouseout = function() {
-	subMenuList7.style.display = 'none'
-}
-menuListLi8.onmouseover = function() {
-	subMenuList8.style.display = 'block'
-	isover = true
-}
-subMenuList8.onmouseout = function() {
-	subMenuList8.style.display = 'none'
-}
-menuListLi9.onmouseover = function() {
-	subMenuList9.style.display = 'block'
-	isover = true
-}
-subMenuList9.onmouseout = function() {
-	subMenuList9.style.display = 'none'
-}
-menuListLi10.onmouseover = function() {
-	subMenuList10.style.display = 'block'
-	isover = true
-}
-subMenuList10.onmouseout = function() {
-	subMenuList10.style.display = 'none'
 }
 
 
-main_form_input.onblur = function() {
-	form_select_window.style.display = 'none'
+for(let i=0; i < menuList.length; i++) {
+	console.log(menuList[i])
+	menuList[i].onmouseover = function() {
+		console.log(sub_div[i])
+		sub_div[i].style.display = 'block'
+	}
+	menuList[i].onmouseout = function() {
+		sub_div[i].style.display = 'none'
+	}
+	
+	sub_div[i].onmouseover = function() {
+		sub_div[i].style.display = 'block'
+	}
+	sub_div[i].onmouseout = function() {
+		sub_div[i].style.display = 'none'
+	}
 }
 
+
+
+// ==================== 검색어 창 처리 start ======================
+var window1 = false
+// 검색어 창 삭제
+main_form_input.onblur = onblurOut
+
+function onblurOut() {
+	if(window1 == true) {
+		form_select_window.style.display = 'block'
+	} else {
+		form_select_window.style.display = 'none'	
+	}
+}
+form_select_window.onclick = function() {
+	main_form_input.focus()
+}
+form_select_window.onmouseover = function() {
+	window1 = true
+}
+form_select_window.onmouseout = function() {
+	window1 = false
+}
 
 // 검색어 창 띄우기
 main_form_input.onclick = function() {
@@ -146,3 +87,5 @@ pSearch.onclick = function() {
 	rSearch.style.color = 'black'
 	rSearch.style.borderBottom = '2px solid rgb(217, 217, 217)'
 }
+// ==================== 검색어 창 처리 end ======================
+

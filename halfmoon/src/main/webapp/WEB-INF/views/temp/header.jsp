@@ -65,92 +65,100 @@
 			</a>
 		</c:if>	
 		
-			</div>
+		</div>
 		</div>
 	</div>
 	<div class="List">
 		<nav id="main-nav">
 			<ul id="menuListUl">
 				<c:forEach var="item" items="${menuList}">
-					<li id="menuListLi${item.i_product_type}">
+					<li class="menuList">
 						<img class="btn_menu_img" alt="" src="/res/img/menuImg/${item.i_product_type}.png">
 					</li>
 				</c:forEach>
 			</ul>
 		</nav>
-		<div class="subMenuList1">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 1}">
-						<a href="">
-							${subitem.type_sub_title}
-						</a>
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList2">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 2}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList3">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 3}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList4">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 4}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList5">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 5}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList6">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 6}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList7">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 7}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList8">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 8}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList9">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 9}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
-		<div class="subMenuList10">
-			<c:forEach var="subitem" items="${subMenuList}">
-					<c:if  test="${subitem.i_product_type == 10}">
-						${subitem.type_sub_title}
-					</c:if>
-			</c:forEach>
-		</div>
 	</div>
+	
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">생활가전</a></li>
+			<li><a href="">주방가전</a></li>
+			<li><a href="">모바일/태블릿</a></li>
+			<li><a href="">PC</a></li>
+			<li><a href="">PC주변기기</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">스포츠용품</a></li>
+			<li><a href="">악기용품</a></li>
+			<li><a href="">등산용품</a></li>
+			<li><a href="">캠핑용품</a></li>
+			<li><a href="">낚시용품</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">상의</a></li>
+			<li><a href="">하의</a></li>
+			<li><a href="">신발/악세사리</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">상의</a></li>
+			<li><a href="">하의</a></li>
+			<li><a href="">신발/악세사리</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">가구DIY</a></li>
+			<li><a href="">조명</a></li>
+			<li><a href="">침구/커튼</a></li>
+			<li><a href="">생활용품</a></li>
+			<li><a href="">주방용품</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">건강식품</a></li>
+			<li><a href="">신선식품</a></li>
+			<li><a href="">즉석식품</a></li>
+			<li><a href="">기타</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">콘솔</a></li>
+			<li><a href="">기타</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">간식</a></li>
+			<li><a href="">장난감</a></li>
+			<li><a href="">기타</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">일반도서</a></li>
+			<li><a href="">교육도서</a></li>
+			<li><a href="">음반</a></li>
+			<li><a href="">티켓</a></li>
+		</ul>
+	</div>
+	<div class="sub_div">
+		<ul class="sub_ul">
+			<li><a href="">유아의류</a></li>
+			<li><a href="">장난감</a></li>
+			<li><a href="">유아식품</a></li>
+			<li><a href="">기타</a></li>
+		</ul>
+	</div>
+	
 	<div id="sub_nav" style="display : none;">
 			<ul class="sub-ul">
 				<li><img class="line" src="/res/img/line.png">
@@ -242,7 +250,18 @@
 			<a href="">상품관리 |</a>
 			<a href="/user/my/profile">구매/판매내역</a>
 		</div>
+		<%-- <div id="sub-nav" style="display: none">
+			<button>서브메뉴</button>
+			<div id="reg_sub" style="display: none">
+				<a href="">상품등록 |</a>
+				<a href="">상품관리 |</a>
+				<a href="">구매/판매내역</a>
+			</div>
+			<div id="detail_sub" style="display: none">
+				<a>${user_basic.user_nm}님의 상점 | </a>
+				<a>등록된 상품 ${user_basic.p_total}개 | </a>
+				<a>팔로워 ?</a>
+			</div>
+		</div> --%>
 </header>
-
 <script defer src="/res/js/temp/header.js"></script>
-<script defer src="/res/js/main/home.js?ver=3"></script>

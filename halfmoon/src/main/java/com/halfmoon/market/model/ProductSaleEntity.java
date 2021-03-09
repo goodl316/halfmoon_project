@@ -3,8 +3,10 @@ package com.halfmoon.market.model;
 public class ProductSaleEntity {
 	
 	private int i_product;
+	private int i_user;
 	private String p_nm;
 	private int p_price;
+
 	private int i_product_type;
 	private String type_sub_title;
 	private String p_img_main;
@@ -46,7 +48,6 @@ public class ProductSaleEntity {
 	public String getType_sub_title() {
 		return type_sub_title;
 	}
-
 	public void setType_sub_title(String type_sub_title) {
 		this.type_sub_title = type_sub_title;
 	}
@@ -109,5 +110,11 @@ public class ProductSaleEntity {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	public int getI_user() {
+		return i_user;
+	}
+	public void setI_user(int i_user) {
+		this.i_user = i_user;
 	}
 }

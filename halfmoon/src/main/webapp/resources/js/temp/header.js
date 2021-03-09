@@ -1,7 +1,9 @@
 var btn_my_sell = document.querySelector('#btn_my_sell')
 var main_nav = document.querySelector('#main-nav')
 var sub_nav = document.querySelector('#sub-nav')
-var sub_nav2 = document.querySelector('#sub_nav')
+// sub_nav의 자식객체
+//var reg_sub = document.querySelector('#reg_sub')
+var detail_sub = document.querySelector('#detail_sub')
 
 console.log(window.location.href)
 
@@ -19,12 +21,24 @@ function getUrl() {
 }
 
 console.log(getUrl())
+
+// ===================== 페이지 파싱 라인 start =========================
 // 상품등록페이지일때 menuList none and 위치 표시
 if (getUrl() === '/sale/regProduct') {
     sub_nav.style.display = 'block'
-    sub_nav2.style.display = 'block'
+//  reg_sub.style.display = 'block'
+// detail_sub.style.display = 'none'
     main_nav.innerHTML = '<h3>반월마켓 판매자센터</h3>'
 }
+// saleDetail 페이지
+//if (getUrl().includes('/sale/detail')) {
+ //   sub_nav.style.display = 'block'
+ //   reg_sub.style.display = 'none'
+ //   detail_sub.style.display = 'block'
+ //   main_nav.innerHTML = '<h3>반월마켓 상품구매</h3>'
+//}
+
+// ===================== 페이지 파싱 라인 end  =========================
 
 // 물건팔기 ajax
 btn_my_sell.onclick = function () {
@@ -51,14 +65,3 @@ function btn_my_sell_ajax() {
         }
     })
 }
-
-
-
-
-
-
-
-
-
-
-

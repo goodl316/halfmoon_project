@@ -44,3 +44,18 @@ h1{
 #div{
 	height: 100px;
 }
+
+
+/* 상품 리스트 뿌리기 */
+.product_cont {
+	padding: 10px;
+	float: left;
+}
+.product_cont img {
+	width: 150px;
+	height: 150px;
+}
+.mid_cont {
+	/*float: left;*/
+	background: wheat;
+}

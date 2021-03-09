@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <link rel="stylesheet" href="/res/css/common.css?ver=5">
 <div id="main-section">
@@ -9,7 +10,29 @@
 </div>
 <div id="main-section2">
 	<div class="main-sectiondiv">
-		
+		<h3>전체상품(임시List)</h3>
+		<c:forEach items="${total_list}" var="item">
+			<div class="product_cont" onclick="moveDetail(${item.i_product}, ${item.i_user});">
+				<input type="hidden" id="i_product" value="${item.i_product}">
+				<div class="img">
+					<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
+				</div>
+				<div class="title">
+					${item.title}
+				</div>
+				<div class="mid_cont">
+					<div class="price">
+						${item.p_price}원
+					</div>
+					<div class="time">
+						${item.show_time}
+					</div>
+				</div>
+				<div class="loc">
+					${item.show_loc}
+				</div>
+			</div>
+		</c:forEach>
 	</div>
 </div>
 <div id="main-section3">
