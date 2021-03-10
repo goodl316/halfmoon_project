@@ -236,12 +236,19 @@ button {
 }
 
 #sub_menu_cont:hover{
+	
+
+	
 	display: flex;
 }
 
 .List{
 	width: 820px;
     margin: auto;
+}
+#main_h3{
+	width: 1000px;
+	margin: auto;
 }
 
 

@@ -80,6 +80,10 @@
 		</nav>
 	</div>
 	
+	<div id="main_h3">
+		
+	</div>
+	
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<li><a href="">생활가전</a></li>
@@ -245,13 +249,7 @@
 				</li>
 			</ul>
 		</div>
-		<div id="sub-nav" style="display : none">
-			<a href="/sale/regProduct">상품등록 |</a>
-			<a href="">상품관리 |</a>
-			<a href="/user/my/profile">구매/판매내역</a>
-		</div>
-		<%-- <div id="sub-nav" style="display: none">
-			<button>서브메뉴</button>
+		<div id="sub_nav_cont">
 			<div id="reg_sub" style="display: none">
 				<a href="">상품등록 |</a>
 				<a href="">상품관리 |</a>
@@ -262,6 +260,6 @@
 				<a>등록된 상품 ${user_basic.p_total}개 | </a>
 				<a>팔로워 ?</a>
 			</div>
-		</div> --%>
+		</div> 
 </header>
 <script defer src="/res/js/temp/header.js"></script>
