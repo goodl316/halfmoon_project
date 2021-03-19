@@ -19,6 +19,7 @@ public class ProductSaleEntity {
 	private String r_dt;
 	private String m_dt;
 	private int hit;
+	private int p_favorite;
 
 	// check getter and setter
 	public int getI_product() {
@@ -116,5 +117,13 @@ public class ProductSaleEntity {
 	}
 	public void setI_user(int i_user) {
 		this.i_user = i_user;
+	}
+	
+	public int getP_favorite() {
+		return p_favorite;
+	}
+	
+	public void setP_favorite(int p_favorite) {
+		this.p_favorite = p_favorite;
 	}
 }

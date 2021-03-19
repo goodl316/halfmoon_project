@@ -1,5 +1,6 @@
 package com.halfmoon.market.user;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,15 +48,21 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/test")
+	public void test() {
+		
+	}
+	
 	@ResponseBody
 	@PostMapping("/loginProc")
 	public Map<String,Object> loginProc(@RequestBody UserDTO dto) {
 		Map<String, Object> val = new HashMap<>();
-		val.put(Const.KEY_RESULT, service.login(dto));
-		
-		if(service.login(dto)==1) { //비밀번호가 틀릴시에도 실행되서 널포인트 발생.
-			service.updCode(dto);
+		int result = service.login(dto);
+		val.put(Const.KEY_RESULT, result);
+		if(result == 2 || result == 3) {
+			return val;
 		}
+		service.updCode(dto);
 		return val;
 	}
 	
@@ -77,10 +84,41 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/my/profile")
-	public void profile() {
-		
-	}
-	
+	public String profile(Model model, Integer page) {
+		// set loginUser
+		UserEntity user = (UserEntity) hs.getAttribute(Const.KEY_LOGINUSER);
+		if (user == null) {
+			return "/login";
+		}
+		UserDTO dto = new UserDTO();
+		dto.setI_user(user.getI_user());
+		model.addAttribute(Const.KEY_LOGINUSER, service.selUser(dto));
+
+		System.out.println("page : " + page);
+		if (page == null) {
+			page = 0; // default == 0
+		}
+		switch (page) {
+			case 0:
+				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/default.jsp");
+				return "/user/my/profile";
+			case 1:
+				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/mySaleList.jsp");
+				// 내 판매 목록 뿌리기
+				model.addAttribute(Const.KEY_LIST, service.selMySaleList(dto));
+				return "/user/my/profile";
+			case 2:
+				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/modAccount.jsp");
+				return "/user/my/profile";
+//			case 3:
+//				//model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/default.jsp");
+//				return "/user/my/profile";
+//			case 4:
+//				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/default.jsp");
+//				return "/user/my/profile";
+		}
+		return null;
+	}	
 	@GetMapping("/user/my/changePw")
 	public void changePw() {}
 	
@@ -134,26 +172,25 @@ public class UserController {
 	public Map<String,Object> profileUpload(UserDTO p,MultipartFile[] imgs) {
 		Map<String,Object> val = new HashMap<String, Object>();
 		val.put(Const.KEY_RESULT, service.profileUpload(p,imgs));
-		
 		UserEntity vo = service.selUser(p);
 		hs.setAttribute(Const.KEY_LOGINUSER, service.selUser(p));
+		val.put(Const.KEY_LOGINUSER, vo);
 		return val;
 	}
 	
 	
 	@ResponseBody
-	@GetMapping("/user/profileData")
-	public UserEntity profileData(UserDTO p) {
-		UserEntity vo = (UserEntity)hs.getAttribute(Const.KEY_LOGINUSER);
-		p.setI_user(vo.getI_user());
-		return service.selUser(p);
-	}
-	
-	@ResponseBody
 	@PutMapping("/user/delImg")
 	public int delProfileImg(UserDTO p) {
+		
 		return service.delProfileImg(p);
 	}
+	
+	// ======================= 비밀번호 찾기 =============== //
+	
+	@GetMapping("/user/my/findInfo")
+	public void findInfo() {}
+
 	
 }
 

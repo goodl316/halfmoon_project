@@ -24,6 +24,14 @@
 		</where>		
 	</select>
 	
+	<!-- 마이페이지 등록 상품 목록 list -->
+	<select id="selMySaleList" resultType="ProductSaleDomain">
+		select i_product, i_user, title, p_nm, p_price, type_sub_title, hit, state, DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time
+		from t_product_sale
+		where i_user = #{i_user}
+		order by i_product desc
+	</select>
+	
 	<update id="updAuth">
 		UPDATE t_user
 		SET isAuth = 1

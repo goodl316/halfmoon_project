@@ -6,7 +6,9 @@ public class ProductSaleDomain extends ProductSaleEntity{
     private String show_price;
     private String show_loc;
     private String show_time;
-
+    private String user_nm;
+    private int is_favorite;
+    
     public String getShow_time() {
         return show_time;
     }
@@ -25,4 +27,18 @@ public class ProductSaleDomain extends ProductSaleEntity{
     public void setShow_loc(String show_loc) {
         this.show_loc = show_loc;
     }
+	public int getIs_favorite() {
+		return is_favorite;
+	}
+	public void setIs_favorite(int is_favorite) {
+		this.is_favorite = is_favorite;
+	}
+	public String getUser_nm() {
+		return user_nm;
+	}
+	public void setUser_nm(String user_nm) {
+		this.user_nm = user_nm;
+	}
+    
+    
 }

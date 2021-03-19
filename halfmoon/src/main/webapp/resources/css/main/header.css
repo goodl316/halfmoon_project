@@ -85,26 +85,44 @@ button {
 .window-div1{
 	display: flex;
 }
+
 .window-div2{
-	padding: 15px;
+	padding: 10px;
+	margin: 5px;
+}
+
+.window-div2 div{
+	float: left;
+}
+
+.window-div2 .div_b{
+	color: red;
+	margin-left: 10px;
 }
 .window-div3{
 	background: rgb(250, 250, 250);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-    padding: 0 10px 0 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 40px;
+	padding: 0 10px 0 10px;
+	position: relative;
+	left: -10px;
+	width: 310px;
 }
 
-.window-a1{
+.window-div3 #btn_delete_keyword{
+	cursor: pointer;
+}
+
+.window-a2{
 	border-bottom: 2px solid rgb(217, 217, 217);
 	font-weight: 600;
 	width: 50%;
     text-align: center;
     padding: 15px 0 8px 0;
 }
-.window-a2{
+.window-a1{
 	display: inline-block;
     font-weight: 600;
     color: rgb(247, 47, 51);
@@ -125,6 +143,7 @@ button {
     right: 40px;
     top: 9px;
 }
+
 
 #btn_my_sell{
 	background-color: Transparent;

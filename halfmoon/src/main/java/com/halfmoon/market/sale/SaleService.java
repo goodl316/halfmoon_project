@@ -1,18 +1,24 @@
 package com.halfmoon.market.sale;
 
-import com.halfmoon.market.common.FileUtils;
-import com.halfmoon.market.common.SecurityUtils;
-import com.halfmoon.market.model.UserEntity;
-import com.halfmoon.market.model.domain.LocDomain;
-import com.halfmoon.market.model.domain.ProductSaleDomain;
-import com.halfmoon.market.model.domain.UserDomain;
-import com.halfmoon.market.model.dto.ProductSaleDTO;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import com.halfmoon.market.common.Const;
+import com.halfmoon.market.common.FileUtils;
+import com.halfmoon.market.common.SecurityUtils;
+import com.halfmoon.market.model.domain.CmtCmtDomain;
+import com.halfmoon.market.model.domain.CmtDomain;
+import com.halfmoon.market.model.domain.LocDomain;
+import com.halfmoon.market.model.domain.ProductSaleDomain;
+import com.halfmoon.market.model.domain.UserDomain;
+import com.halfmoon.market.model.dto.CmtCmtDTO;
+import com.halfmoon.market.model.dto.CmtDTO;
+import com.halfmoon.market.model.dto.ProductSaleDTO;
 
 @Service
 public class SaleService {
@@ -22,9 +28,16 @@ public class SaleService {
 
     @Autowired
     FileUtils fUtils;
+    @Autowired
+    HttpSession hs;
 
     List<LocDomain> selLoc() {
         return mapper.selLoc();
+    }
+    
+    public List<ProductSaleDomain> selProductList(ProductSaleDTO p){
+    	p.setI_user(SecurityUtils.getUserPk(hs));
+    	return mapper.selProductList(p);
     }
 
     int regProduct(ProductSaleDTO dto) {
@@ -32,7 +45,10 @@ public class SaleService {
     }
 
     ProductSaleDomain selProduct(ProductSaleDTO dto) {
-        return mapper.selProduct(dto);
+    	ProductSaleDomain vo = mapper.selProduct(dto);
+    	System.out.println(vo.getI_loc());
+    	vo.setShow_loc(Const.locArr[vo.getI_loc() - 1]);
+        return vo;
     }
 
     UserDomain selProUser(ProductSaleDTO dto) {
@@ -67,6 +83,51 @@ public class SaleService {
         return 1;
     }
 
-
-
+    
+    
+    public int insFavorite(ProductSaleDTO p) {
+    	return mapper.insFavorite(p);
+    }
+    
+    public int delFavorite(ProductSaleDTO p) {
+    	return mapper.delFavorite(p);
+    }
+    
+    public int updHits(ProductSaleDTO p) {
+    	System.out.println("pppppp");
+    	return mapper.updHits(p);
+    }
+    
+    List<CmtDomain> selCmt(CmtDTO dto) {
+    	return mapper.selCmt(dto);
+    }
+    
+    public int insCmt(CmtDTO dto) {
+   // 	ProductSaleDTO vo = new ProductSaleDTO();
+    //	p.setI_product(vo.getI_product());
+    	dto.setI_user(SecurityUtils.getUserPk(hs));
+    	int result = mapper.insCmt(dto);
+    	return result;
+    }
+    
+    public int updCmt(CmtDTO dto) {
+    	dto.setI_user(SecurityUtils.getUserPk(hs));
+    	int result= mapper.updCmt(dto);
+    	return result;
+    }
+    
+    public int delCmt(CmtDTO dto) {
+    	dto.setI_user(SecurityUtils.getUserPk(hs));
+    	int result = mapper.delCmt(dto);
+    	return result;
+    }
+    
+    List<CmtCmtDomain> selCmtCmt(CmtCmtDTO dto){
+    	return mapper.selCmtcmt(dto);
+    }
+    
+    public int insCmtcmt(CmtCmtDTO dto) {
+    	int result = mapper.insCmtcmt(dto);
+    	return result;
+    }
 }

@@ -2,31 +2,36 @@ package com.halfmoon.market.common;
 
 import javax.servlet.http.HttpSession;
 
-import com.halfmoon.market.model.domain.UserDomain;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.halfmoon.market.model.UserEntity;
+import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
 public class SecurityUtils {
-	@Autowired
-	private static HttpSession hs;
-	
-	
-	//true: 로그인된 상태, false: 로그아웃 된 상태
-	public static boolean isLogin() {
-		return getLoginUser() != null;
+
+
+	// new code
+	public static UserDomain getUserDomain(HttpSession hs) {
+		UserDomain vo = (UserDomain) hs.getAttribute(Const.KEY_LOGINUSER);
+		if (vo == null) {
+			return null;
+		}
+		return vo;
 	}
-	
-	public static UserDomain getLoginUser() {
-		return (UserDomain) hs.getAttribute(Const.KEY_LOGINUSER);
+
+	public static boolean isLogin(HttpSession hs) {
+		if (getUserDomain(hs) == null) {
+			return false;
+		}
+		return true;
 	}
-	
-	public static int getLoingUserPk() {
-		UserDomain loginUser = getLoginUser();
-		return loginUser == null ? -1 : loginUser.getI_user();
+
+	public static int getUserPk(HttpSession hs) {
+		if (!isLogin(hs)) {
+			return 0;
+		}
+		return getUserDomain(hs).getI_user();
 	}
 	
 	public static String getsalt() {

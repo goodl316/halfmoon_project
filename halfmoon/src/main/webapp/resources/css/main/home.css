@@ -12,14 +12,20 @@
 #main-section4{
 	background-color: white;
 }
-#main-section4{
-	background-color: #F8F9FA;
+#main-section5{
+	background-color: white;
 }
 
 .main-sectiondiv{
-	width: 1024px;
+	width: 1104px;
 	margin: auto;
 	height: 500px;
+}
+.main-sectiondiv1{
+	width: 1104px;
+    margin: auto;
+    height: 3000px;
+    background-color: white;
 }
 h1{
 	text-align: center;
@@ -31,14 +37,15 @@ h1{
 .famous-cont{
 	margin: 100px 0 100px 0;
 	height: 768px;
-	background-color: yellow;
+	background-color: white;
 	display: flex;
 	flex-wrap: wrap;
 }
 .famous-box{
 	width: 256px;
-	height: 256px;
-	background-color: #E6F3E6;
+    height: 350px;
+    margin: 20px 10px;
+    background-color: #E6F3E6;
 }
 
 #div{
@@ -59,3 +66,45 @@ h1{
 	/*float: left;*/
 	background: wheat;
 }
+
+
+
+/* 인기 매물 */
+
+.famous_img {
+	width: 256px;
+	height: 256px;
+}
+.famous_tl{
+	display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px;
+}
+
+.famous_pt{
+	display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.famous_title{
+	font-size: 22px;
+}
+
+.famous_time{
+	font-size: 13px;
+}
+
+.famous_price{
+	font-size: 16px;
+}
+
+.famous_loc{
+    text-align: right;
+    font-size: 15px;
+}
+
+
+

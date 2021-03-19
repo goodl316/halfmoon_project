@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>      
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 
-<link rel="stylesheet" href="/res/css/main/header.css?ver=3">
+<link rel="stylesheet" href="/res/css/main/header.css?ver=4">
 
 <tiles:importAttribute name="menuList"/>
 <tiles:importAttribute name="subMenuList"/>
@@ -18,7 +18,7 @@
 			
 			<div class="main-form">
 				<div class="select">
-					<form class="form-select" action="" method="">
+					<form class="form-select" action="" method="" id="form_search">
 						<input class="main-form-input" placeholder="상품명 검색" type="text" name="" value="">
 						<img class="main-select" alt="" src="/res/img/search.png">
 						<div class="form-select-window">
@@ -26,21 +26,16 @@
 								<div class="window-a1">최근검색어</div>
 								<div class="window-a2">인기검색어</div>
 							</div>
-							<div class="window-div2">
-								dddd
+							<div id="recent_keyword">
+								<!-- localstorage saved_keyword show-->
 							</div>
-							<div class="window-div2">
-								dddd
+							<div id="popular_keyword" style="display: none">
+								<div class="window-div2">
+									미구현...
+								</div>
 							</div>
-							<div class="window-div2">
-								dddd
-							</div>
-							<div class="window-div2">
-								dddd
-							</div>
-							
 							<div class="window-div3">
-								<div>검색어 전체 삭제</div>
+								<div id="btn_delete_keyword">검색어 전체 삭제</div>
 								<div class="window_close">닫기</div>
 							</div>
 						</div>

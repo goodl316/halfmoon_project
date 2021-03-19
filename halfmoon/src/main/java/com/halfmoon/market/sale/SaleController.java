@@ -1,19 +1,30 @@
 package com.halfmoon.market.sale;
-import com.halfmoon.market.common.Const;
-import com.halfmoon.market.common.Utils;
-import com.halfmoon.market.model.domain.ProductSaleDomain;
-import com.halfmoon.market.model.domain.UserDomain;
-import com.halfmoon.market.model.dto.ProductSaleDTO;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import com.halfmoon.market.common.Const;
+import com.halfmoon.market.common.SecurityUtils;
+import com.halfmoon.market.common.Utils;
+import com.halfmoon.market.model.domain.CmtCmtDomain;
+import com.halfmoon.market.model.domain.CmtDomain;
+import com.halfmoon.market.model.domain.ProductSaleDomain;
+import com.halfmoon.market.model.domain.UserDomain;
+import com.halfmoon.market.model.dto.CmtCmtDTO;
+import com.halfmoon.market.model.dto.CmtDTO;
+import com.halfmoon.market.model.dto.ProductSaleDTO;
 
 @Controller
 public class SaleController {
@@ -73,13 +84,76 @@ public class SaleController {
         ProductSaleDTO dto = new ProductSaleDTO();
         dto.setI_product(i_product);
         dto.setI_user(i_user);
+       
+        service.updHits(dto);
 
+        // 상품 기본 유저 정보 추가
+        model.addAttribute("user_basic", service.selProUser(dto));
+        dto.setI_user(SecurityUtils.getUserPk(hs));
+       
+        // 댓글 뿌려주기
+        CmtDTO cmtDTO = new CmtDTO();
+        cmtDTO.setI_product(i_product);
+        List<CmtDomain> cmtVo =  service.selCmt(cmtDTO);
+        model.addAttribute("cmtData",cmtVo);
+        CmtCmtDTO cmtCmtDTO = new CmtCmtDTO();
+        cmtCmtDTO.setI_cmt(cmtDTO.getI_cmt());
+        List<CmtCmtDomain> cmtcmtVo= service.selCmtCmt(cmtCmtDTO);
+        model.addAttribute("cmtcmtData",cmtcmtVo);
         // 상품 데이터 추가
         ProductSaleDomain vo = service.selProduct(dto);
         vo.setShow_time(Utils.timeFormatter(vo.getShow_time()));
         model.addAttribute(Const.KEY_DATA, vo);
-
-        // 상품 기본 유저 정보 추가
-        model.addAttribute("user_basic", service.selProUser(dto));
+        
     }
+    
+    
+    
+    
+    @PostMapping("/sale/favoriteAjax")
+    @ResponseBody
+    public Map<String,Object> favorite(@RequestBody ProductSaleDTO dto) {
+    	
+    	dto.setI_user(SecurityUtils.getUserPk(hs));
+    	System.out.println(dto.getI_user());
+    	System.out.println("favorite :"+dto.getI_product());
+    	System.out.println(dto.getToggle());
+    	
+    	Map<String, Object> val = new HashMap<String,Object>();
+    	if(dto.getToggle()==0) {
+    		val.put(Const.KEY_RESULT, service.delFavorite(dto));
+    	}
+    	else{
+    		val.put(Const.KEY_RESULT, service.insFavorite(dto));
+    	}
+    	
+    	return val;
+    }
+    
+    @PostMapping("/sale/insCmt")
+    @ResponseBody
+    public Map<String, Object> insCmt(@RequestBody CmtDTO dto) {
+    	System.out.println(dto.getI_product());
+    	Map<String, Object> val  = new HashMap<String, Object>();
+    	val.put(Const.KEY_RESULT, service.insCmt(dto));
+    	return val;
+    }
+    @PostMapping("/sale/delCmt")
+    @ResponseBody
+    public Map<String, Object> delCmt(@RequestBody CmtDTO dto) {
+    	System.out.println(dto.getI_product());
+    	Map<String, Object> val  = new HashMap<String, Object>();
+    	val.put(Const.KEY_RESULT, service.delCmt(dto));
+    	return val;
+    }
+    
+    @PostMapping("/sale/insCmt_cmt")
+    @ResponseBody
+    public Map<String,Object> insCmtcmt(@RequestBody CmtCmtDTO dto){
+    	Map<String,Object> val = new HashMap<String, Object>();
+    	val.put(Const.KEY_RESULT, service.insCmtcmt(dto));
+    	return val;
+    }
+    
+    
 }

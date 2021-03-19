@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>${title}</title>
 	<script defer src="/res/js/main/home.js"></script>
+	
 	<link rel="stylesheet" href="/res/css/common.css">
 	<link rel="stylesheet" href="/res/css/main/home.css">
 </head>
@@ -19,4 +20,7 @@
 		</section>		
 	</div>
 </body>
+
+
 </html>
+
