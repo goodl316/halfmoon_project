@@ -1,0 +1,502 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+}
+
+#salePage_cont {
+	width: 1024px;
+	margin: auto;
+}
+#seller_info_cont {
+	display: flex;
+	height: 300px;
+	margin-bottom: 30px;
+}
+
+
+
+/* seller_info_left */
+
+#seller_info_left {
+	width: 300px;
+	background-color: #b7b5b5;
+	text-align: center;
+	color: white;
+}
+.seller_img_cont {
+	width: 100px;
+	margin: 20px auto 15px;
+}
+.seller_img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+.seller_star {
+	margin-top: 10px;
+}
+.seller_star img {
+	width: 15px;
+	height: 15px;
+}
+.seller_product_follow {
+	margin-top: 15px;
+    font-size: 12px;
+}
+
+.seller_product_follow a {
+	text-decoration: none;
+    color: white;
+}
+
+.seller_product_a::after{
+	content: " |";
+	margin: 0px 5px;
+}
+
+.seller_follow_talk_btn {
+	margin-top: 15px;
+}
+.seller_follow_talk_btn button {
+	width: 106px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    height: 35px;
+    cursor: pointer;
+    outline: 0px;
+}
+.seller_follow_talk_btn img {
+	width: 20px;
+}
+
+
+
+
+/* seller_info_right */
+
+#seller_info_right {
+	width: 700px;
+	padding-left: 30px;
+	border: 1px solid rgb(238, 238, 238);
+}
+#seller_info_div1 {
+	font-size: 18px;
+    height: 75px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+#seller_info_div2 {
+	display: flex;
+    height: 55px;
+    align-items: center;
+    font-size: 14px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-top: 1px solid rgb(238, 238, 238);
+    margin: 15px 0 15px 0;
+    
+}
+#seller_info_div2 > div {
+	display: flex;
+	margin-right: 25px;
+}
+.seller_sub_info {
+	color: gray;	
+}
+#seller_info_div2 > div > div {
+	margin-right: 5px;
+}
+#seller_info_div2 img {
+	width: 14px;
+	height: 14px;
+	margin-right: 5px;
+}
+
+#seller_info_div3 {
+	height: 90px;
+	font-size: 15px;
+	margin-bottom: 15px;
+}
+#seller_info_div4 a{
+	text-decoration: none;
+	color: gray;
+}
+#seller_info_div4 a img {
+	width: 15px;
+}
+
+#seller_info_div button {
+	background-color: white;
+	padding: 0px 71px;
+}
+
+.product_info_btn {
+    height: 50px;
+    margin-right: -4px;
+    border: 1px solid gray;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 0px;
+    outline: 0px;
+    cursor: pointer;
+}
+.product_question_btn {
+   height: 50px;
+    margin-right: -5px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: none;
+    border-right: 1px solid gray;
+    outline: 0px;
+    cursor: pointer;
+}
+.store_review_btn {
+    height: 50px;
+    margin-right: -5px;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: none;
+    outline: 0px;
+    cursor: pointer;
+}
+.following_btn {
+    height: 50px;
+    margin-right: -5px;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: none;
+    outline: 0px;
+    cursor: pointer;
+}
+.follower_btn {
+    height: 50px;
+    margin-right: -5px;
+    border: 1px solid gray;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: none;
+    outline: 0px;
+    cursor: pointer;
+}
+
+
+.count {
+	color: red;
+}
+.info_div1 {
+}
+.info_div2 {
+	
+}
+.info_div3 {
+}
+.info_div4 {
+}
+.infi_div5 {
+}
+ /* ========= product_info ============= */
+ 
+ 
+.product_info {
+	font-size: 18px;
+    padding: 50px 0px 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+.product_info_sub {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product_cont {
+	border: 1px solid rgb(238, 238, 238);
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.product_cont > img {
+	width: 193px;
+}
+
+.product_info_cont {
+	padding: 10px 10px;
+	border-bottom: 1px solid rgb(238, 238, 238);
+}
+.product_title {
+    font-size: 15px;
+    padding-bottom: 20px;
+    white-space: nowrap;
+}
+
+.product_pt {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.price {
+	font-weight: 600;
+	font-size: 17px;
+}
+.time {
+	font-size: 12px;
+    color: gray;
+}
+.loc {
+	padding: 10px 10px 10px 30px;
+    font-size: 13px;
+}
+.loc > img {
+	width: 15px;
+    position: absolute;
+    margin-top: 2px;
+    margin-left: -20px;
+}
+
+
+
+/* ============== product_question ============== */
+
+.product_question {
+	font-size: 18px;
+    padding: 50px 0px 20px;
+}
+.product_ctnt {
+	border: 1px solid rgb(238,238,238);
+}
+
+.product_ctnt_input {
+	white-space: pre-wrap;
+    width: 100%;
+    padding: 20px;
+    height: 80px;
+    border: none;
+    border-bottom: 1px solid rgb(238,238,238);
+    outline: 0px;
+}
+
+.product_bottom_div {
+	display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+.product_bottom_div > div {
+	margin-left: 10px;
+    font-size: 12px;
+    color: rgb(136, 136, 136);
+}
+
+.product_bottom_div > input {
+	border: 1px solid rgb(238, 238, 238);
+    height: 32px;
+    padding: 0px 20px;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    background-color: white;
+}
+
+
+
+/* ============== store review =============== */
+
+
+.store_review {
+	font-size: 18px;
+    padding: 50px 0px 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.review_cont {
+	padding: 20px;
+    display: flex;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.review_profile {
+	width: 60px;
+    margin-right: 20px;
+}
+.review_profile img {
+	width: 60px;
+	border-radius: 50%;
+}
+
+.review_right_div {
+	width: 100%;
+}
+
+.review_nm_time {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.review_nm  a {
+	font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.review_time {
+	font-size: 13px;
+	color: gray;
+}
+
+.review_star img {
+	width: 13px;
+	margin-bottom: 10px;
+}
+
+.review_product_nm {
+	width: 100px;
+    border: 1px solid rgb(238,238,2383);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.review_ctnt {
+	white-space: pre-wrap;
+}
+
+
+
+/* ============== following =================== */
+
+
+
+.following {
+	font-size: 18px;
+    padding: 50px 0px 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+
+.following_user_cont {
+	height: 260px;
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.following_user_left {
+	width: 250px;
+	text-align: center;
+    align-items: center;
+    margin: 40px 40px 0 0;
+}
+
+.following_user_left > a {
+	display: block;
+}
+.following_user_left > a:first-child {
+	width: 60px;
+    margin: auto;
+}
+
+
+.following_user_left a {
+	text-decoration: none;
+	color: black;
+}
+
+.following_user_left > a > img {
+	width: 60px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+
+.following_user_nm {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.following_user_pf {
+	font-size: 13px;
+    margin: 10px 0px;
+}
+
+.following_user_pf > a:first-child::after {
+	content: " |";
+	font-size: 14px;
+} 
+	
+.following_user_btn {
+	background-color: white;
+    border: 1px solid rgb(238,238,238);
+    color: gray;
+    padding: 10px 40px;
+    font-size: 12px;
+    outline: 0px;
+    cursor: pointer;
+}
+.following_user_btn > img {
+	width: 20px;
+}
+
+
+
+.following_user_right {
+	width: 734px;
+	display: flex;
+	align-items: center;
+}
+
+.following_user_right > div {
+	margin-right: 20px;
+}
+
+.following_user_right img {
+	width: 200px;
+}
+
+
+
+
+
+/* ============ follower =============== */ 
+
+
+.follower {
+	font-size: 18px;
+    padding: 50px 0px 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.follower_info_div {
+	display: flex;
+    flex-wrap: wrap;
+}
+
+
+.follower_info {
+	width: 33.333%;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding: 60px 0px;
+    text-align: center;
+}
+
+.follower_user_nm {
+	color: black;
+	margin-bottom: 5px;
+}
+
+.follower_info > a > img {
+	border-radius: 50%;
+    width: 140px;
+    margin-bottom: 15px;
+}
+
+.follower_review_star > img {
+	width: 13px;
+}
+
+
+
