@@ -53,7 +53,11 @@
 	</select>
 	
 	<select id="selCmtcmt" resultType="CmtCmtDomain">
+<<<<<<< HEAD
 	select *from t_cmt_cmt where i_cmt=#{i_cmt}
+=======
+	select *from t_cmt_cmt
+>>>>>>> refs/remotes/origin/master
 	</select>
 	
 	<!-- 상품등록유저 정보 -->

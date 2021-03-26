@@ -190,10 +190,15 @@ public class UserController {
 	
 	@GetMapping("/user/my/findInfo")
 	public void findInfo() {}
+<<<<<<< HEAD
 	
 	// =================== 판매자 센터 ===================//
 	@GetMapping("/user/my/salePage")
 	public void salePage() {}
+=======
+
+	
+>>>>>>> refs/remotes/origin/master
 }
 
 
