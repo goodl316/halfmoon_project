@@ -92,7 +92,6 @@ public class SaleController {
         dto.setI_user(SecurityUtils.getUserPk(hs));
        
         // 댓글 뿌려주기
-<<<<<<< HEAD
 //        CmtDTO cmtDTO = new CmtDTO();
 //        cmtDTO.setI_product(i_product);
 //        List<CmtDomain> cmtVo =  service.selCmt(cmtDTO);
@@ -141,47 +140,6 @@ public class SaleController {
     public List<CmtCmtDomain> selCmt(CmtCmtDTO dto){
     	return service.selCmtCmt(dto);
     }
-    
-    
-=======
-        CmtDTO cmtDTO = new CmtDTO();
-        cmtDTO.setI_product(i_product);
-        List<CmtDomain> cmtVo =  service.selCmt(cmtDTO);
-        model.addAttribute("cmtData",cmtVo);
-        CmtCmtDTO cmtCmtDTO = new CmtCmtDTO();
-        cmtCmtDTO.setI_cmt(cmtDTO.getI_cmt());
-        List<CmtCmtDomain> cmtcmtVo= service.selCmtCmt(cmtCmtDTO);
-        model.addAttribute("cmtcmtData",cmtcmtVo);
-        // 상품 데이터 추가
-        ProductSaleDomain vo = service.selProduct(dto);
-        vo.setShow_time(Utils.timeFormatter(vo.getShow_time()));
-        model.addAttribute(Const.KEY_DATA, vo);
-        
-    }
-    
-    
-    
-    
-    @PostMapping("/sale/favoriteAjax")
-    @ResponseBody
-    public Map<String,Object> favorite(@RequestBody ProductSaleDTO dto) {
-    	
-    	dto.setI_user(SecurityUtils.getUserPk(hs));
-    	System.out.println(dto.getI_user());
-    	System.out.println("favorite :"+dto.getI_product());
-    	System.out.println(dto.getToggle());
-    	
-    	Map<String, Object> val = new HashMap<String,Object>();
-    	if(dto.getToggle()==0) {
-    		val.put(Const.KEY_RESULT, service.delFavorite(dto));
-    	}
-    	else{
-    		val.put(Const.KEY_RESULT, service.insFavorite(dto));
-    	}
-    	
-    	return val;
-    }
->>>>>>> refs/remotes/origin/master
     
     @PostMapping("/sale/insCmt")
     @ResponseBody

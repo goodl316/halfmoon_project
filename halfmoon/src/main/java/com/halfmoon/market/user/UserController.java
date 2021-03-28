@@ -33,9 +33,7 @@ public class UserController {
 	HttpSession hs;
 	
 	@GetMapping("/login")
-	public void login() {
-		
-	}
+	public void login() {}
 	
 	@GetMapping("/logout")
 	public String logout() {
@@ -44,14 +42,10 @@ public class UserController {
 	}
 	
 	@GetMapping("/join")
-	public void join() {
-		
-	}
+	public void join() {}
 	
 	@GetMapping("/test")
-	public void test() {
-		
-	}
+	public void test() {}
 	
 	@ResponseBody
 	@PostMapping("/loginProc")
@@ -118,7 +112,8 @@ public class UserController {
 //				return "/user/my/profile";
 		}
 		return null;
-	}	
+	}
+	
 	@GetMapping("/user/my/changePw")
 	public void changePw() {}
 	
@@ -182,7 +177,6 @@ public class UserController {
 	@ResponseBody
 	@PutMapping("/user/delImg")
 	public int delProfileImg(UserDTO p) {
-		
 		return service.delProfileImg(p);
 	}
 	
@@ -190,22 +184,13 @@ public class UserController {
 	
 	@GetMapping("/user/my/findInfo")
 	public void findInfo() {}
-<<<<<<< HEAD
 	
 	// =================== 판매자 센터 ===================//
 	@GetMapping("/user/my/salePage")
 	public void salePage() {}
-=======
 
-	
->>>>>>> refs/remotes/origin/master
+
 }
-
-
-
-
-
-
 
 
 
