@@ -641,7 +641,23 @@ body{
 	margin-left: 94px;
 }
 
+.cmt_cmt_more {
+	margin-left: -69px;
+    margin-top: 20px;
+}
 
+.cmt_cmt_main {
+	display: flex;
+}
+
+.cmt_cmt_main_ctnt {
+	margin-left: 10px;
+    margin-top: 4px;
+}
+
+.cmt_cmt_main_arrow {
+	width: 25px;
+}
 
 
 

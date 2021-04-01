@@ -4,7 +4,7 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="/res/css/sale/detail.css?ver=4">
+<link rel="stylesheet" href="/res/css/sale/detail.css?ver=7">
 
 <div id="detail_cont">
 
@@ -181,7 +181,6 @@
 				<input type="hidden" id="loginI_user" value = "${loginUser.i_user}">
 				<input type="hidden" id="productI_user" value = "${data.i_user}">
 				<input type="hidden" id="i_product2" value = "${data.i_product}">
-				<input type="hidden" id="i_cmt" value="${cmtData.i_cmt}">
 				<span id="i_product" data-id="${data.i_product}"></span>
 				<div id="cmtList">
 				</div>

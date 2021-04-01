@@ -1,6 +1,5 @@
 var loginI_user = document.querySelector('#loginI_user').value
 var productI_user = document.querySelector('#productI_user').value
-//var i_cmt = document.querySelector('#i_cmt').value
 
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -191,6 +190,7 @@ function clkCmt_cmt(i_cmt, i_product) {
 	}).then(res => res.json())
 		.then(function(res) {
 			if (res.result == 1) {
+				cmt_cmt_inputElem.value = ''
 				alert('답글이 작성되었습니다.')
 			} else {
 				alert('답글 작성에 실패했습니다.')
@@ -301,7 +301,7 @@ var cmtObj = {
 								${cmt_cmt_input_btn}
 					</div>
 					<div class="cmt_cmt_more_${item.i_cmt} cmt_cmt_more">
-								<div class="cmt_cmt_ctnt cmt_cmt_ctnt_${item.i_cmt}">...</div>
+								<div class="cmt_cmt_ctnt cmt_cmt_ctnt_${item.i_cmt}"></div>
 					</div>
 				<div>
 			</div>
@@ -373,9 +373,13 @@ function cmtproc(list,i_cmt) {
 }
 
 function createRecode1(item) {
+	var imgSrc = `<img class="cmt_cmt_main_arrow" src="/res/img/arrow.png">`
 	var div1 = document.createElement('div')
 	div1.innerHTML = `
-		<div>${item.ctnt}</div>
+	<div class="cmt_cmt_main">
+		<div>${imgSrc}</div>
+		<div class="cmt_cmt_main_ctnt">${item.ctnt}</div>
+	</div>
 	`
 	return div1
 }
