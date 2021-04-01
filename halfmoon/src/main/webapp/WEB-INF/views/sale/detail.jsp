@@ -185,7 +185,6 @@
 				<span id="i_product" data-id="${data.i_product}"></span>
 				<div id="cmtList">
 				</div>
-				<div id="cmtcmtList">대댓글 확인</div>
 			</div>
 		</div>
 

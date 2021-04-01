@@ -1,6 +1,6 @@
 var loginI_user = document.querySelector('#loginI_user').value
 var productI_user = document.querySelector('#productI_user').value
-var i_cmt = document.querySelector('#i_cmt').value
+//var i_cmt = document.querySelector('#i_cmt').value
 
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -118,7 +118,6 @@ function clkCtnt(i_product, i_user) {
 
 	var ctntElem = document.querySelector('.product_ctnt_input')
 	var ctntValue = ctntElem.value
-	console.log("i_user:" + loginI_user)
 	if (loginI_user == '') {
 		alert("로그인후 등록하여 주세요")
 		location.href = "/login"
@@ -165,7 +164,6 @@ function delCmt(i_user, i_cmt) {
 		body: JSON.stringify(param)
 	}).then(res => res.json())
 		.then(function(res) {
-			console.log(res.result)
 			if (res.result == 1) {
 				cmtObj.getCmtList()
 			} else {
@@ -184,7 +182,6 @@ function clkCmt_cmt(i_cmt, i_product) {
 		i_cmt: i_cmt,
 		i_product: i_product
 	}
-	console.log(param)
 	fetch(`/sale/insCmt_cmt`, {
 		method: 'post',
 		headers: {
@@ -193,7 +190,6 @@ function clkCmt_cmt(i_cmt, i_product) {
 		body: JSON.stringify(param)
 	}).then(res => res.json())
 		.then(function(res) {
-			console.log(res.result)
 			if (res.result == 1) {
 				alert('답글이 작성되었습니다.')
 			} else {
@@ -235,14 +231,12 @@ var cmtObj = {
 
 		let a = document.querySelectorAll('.cmt_cmt')
 		for (var i = 0; i < a.length; i++) {
-			a[i].style.display = "none"
+			a[i].style.display = "none"	
 		}
 		let b = document.querySelectorAll('.cmt_cmt_more')
 		for (var i = 0; i < b.length; i++) {
 			b[i].style.display = "none"
 		}
-		
-		//var cmtcmtList = document.querySelectorAll('.cmt_cmt_ctnt_'+i_cmt)
 		
 		
 	},
@@ -308,7 +302,6 @@ var cmtObj = {
 					</div>
 					<div class="cmt_cmt_more_${item.i_cmt} cmt_cmt_more">
 								<div class="cmt_cmt_ctnt cmt_cmt_ctnt_${item.i_cmt}">...</div>
-								${cmt_cmt_del_btn}
 					</div>
 				<div>
 			</div>
@@ -350,23 +343,23 @@ var cmtObj = {
 		`
 		return div3
 */
-var cmtcmtListElem = document.querySelector('#cmtcmtList')
+
 function getCmtCmtList(i_cmt) {
+	let cmtcmtListElem = document.querySelector('.cmt_cmt_ctnt_'+i_cmt)
 	
-	console.log(cmtcmtListElem)
 	fetch(`/sale/cmtcmtList?i_cmt=${i_cmt}`)
 		.then(function(res) {
 			return res.json()
 		})
 		.then((list) => {
 			cmtcmtListElem.innerHTML = ''
-			cmtcmtList.innerHTML = ''
-			cmtproc(list)
+			cmtproc(list,i_cmt)
 			console.log(list)
 		})
 }
 
-function cmtproc(list) {
+function cmtproc(list,i_cmt) {
+	let cmtcmtListElem = document.querySelector('.cmt_cmt_ctnt_'+i_cmt)
 	if (list.length == 0) {
 		console.log("222222")
 		return
@@ -377,12 +370,9 @@ function cmtproc(list) {
 		div.append(recode)
 	}
 	cmtcmtListElem.append(div)
-	cmtcmtList.append(div)
 }
 
 function createRecode1(item) {
-	console.log("asdasd")
-	console.log(item.ctnt)
 	var div1 = document.createElement('div')
 	div1.innerHTML = `
 		<div>${item.ctnt}</div>
@@ -395,7 +385,6 @@ function instoggle(i_cmt) {
 
 	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)
 	let cmt_cmtIndex3 = document.querySelector('.cmt_cmt_more_' + i_cmt)
-	console.log(cmt_cmtIndex2)
 	if (cmt_cmtIndex2.style.display == 'none') {
 		cmt_cmtIndex2.style.display = 'block'
 		cmt_cmtIndex3.style.display = 'none'
@@ -431,7 +420,6 @@ for (var i = 0; i < cmt_cmtIndex2.length; i++) {
 function showtoggle(i_cmt) {
 	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)
 	let cmt_cmtIndex3 = document.querySelector('.cmt_cmt_more_' + i_cmt)
-	console.log(cmt_cmtIndex3)
 	if (cmt_cmtIndex3.style.display == 'none') {
 		cmt_cmtIndex3.style.display = 'block'
 		cmt_cmtIndex2.style.display = 'none'

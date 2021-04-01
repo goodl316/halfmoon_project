@@ -90,12 +90,7 @@ public class SaleController {
         model.addAttribute("user_basic", service.selProUser(dto));
         dto.setI_user(SecurityUtils.getUserPk(hs));
        
-        // 댓글 뿌려주기
-       CmtDTO cmtDTO = new CmtDTO();
-       cmtDTO.setI_product(i_product);
-       List<CmtDomain> cmtVo =  service.selCmt(cmtDTO);
-       model.addAttribute("cmtData",cmtVo);
-
+      
         // 상품 데이터 추가
         ProductSaleDomain vo = service.selProduct(dto);
         vo.setShow_time(Utils.timeFormatter(vo.getShow_time()));
@@ -128,7 +123,8 @@ public class SaleController {
     
     @GetMapping("/sale/cmtList")
     @ResponseBody
-    public List<CmtDomain> selCmt(CmtDTO dto){
+    public List<CmtDomain> selCmt(Model model,CmtDTO dto){
+    	model.addAttribute("cmtData",service.selCmt(dto));
     	return service.selCmt(dto);
     }
     @GetMapping("/sale/cmtcmtList")
