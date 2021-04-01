@@ -4,7 +4,7 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="/res/css/sale/detail.css?ver=3">
+<link rel="stylesheet" href="/res/css/sale/detail.css?ver=4">
 
 <div id="detail_cont">
 
@@ -180,66 +180,12 @@
 				</div>
 				<input type="hidden" id="loginI_user" value = "${loginUser.i_user}">
 				<input type="hidden" id="productI_user" value = "${data.i_user}">
+				<input type="hidden" id="i_product2" value = "${data.i_product}">
+				<input type="hidden" id="i_cmt" value="${cmtData.i_cmt}">
 				<span id="i_product" data-id="${data.i_product}"></span>
 				<div id="cmtList">
-<%-- 					<c:forEach items="${cmtData}" var="cmtItem">
-						<input type="hidden" class="i_cmt" value="${cmtItem.i_cmt}">
-						<div class="cmt_main_div">
-							<div class="cmt_main_img">
-								<c:if test="${cmtItem.profile_img != null}">
-									<img
-										src="/res/img/user/${cmtItem.i_user}/${cmtItem.profile_img}">
-								</c:if>
-								<c:if test="${cmtItem.profile_img == null}">
-									<img src="/res/img/1234.png">
-								</c:if>
-								${cmtItem.profile_img}
-							</div>
-							<div>
-								<div class="cmt_user_time">
-									<div>${cmtItem.user_nm}</div>
-									<div>1초전</div>
-								</div>
-								<div class="cmt_ctnt">${cmtItem.ctnt}</div>
-								<div class="input_btn">
-									<c:if test="${loginUser.i_user == data.i_user}">
-										<div class="cmt_btn">
-											<div class="cmt_cmt_div">
-												<input type="button" value="답글달기">
-											</div>
-											<div>
-												<input type="button" class="cmt_cmt_btn" value="답변보기">
-											</div>
-											
-
-											<div>
-												<c:if test="${loginUser.i_user == cmtItem.i_user }">
-													<div>
-														<input type="button" value="문의글 삭제"
-															onclick="delCmt(${cmtItem.i_user},${cmtItem.i_cmt })">
-													</div>
-												</c:if>
-											</div>
-										</div>
-										<div class="cmt_cmt">
-											<input type="text" class="cmt_cmt_input"> <input
-												type="button" value="등록"
-												onclick="clkCmt_cmt(${cmtItem.i_cmt})">
-										</div>
-										
-										<div class="cmt_cmt_more">
-												<c:forEach items="${cmtcmtData}" var="cmtcmtItem">
-													<c:if test="${cmtcmtItem.i_cmt == cmtItem.i_cmt}">
-														<div>${cmtcmtItem.ctnt}</div>
-													</c:if>
-												</c:forEach>
-										</div>
-									</c:if>
-								</div>
-							</div>
-						</div>
-					</c:forEach> --%>
 				</div>
+				<div id="cmtcmtList">대댓글 확인</div>
 			</div>
 		</div>
 
@@ -317,7 +263,7 @@
 	</div>
 </div>
 
-<script defer src="/res/js/sale/detail.js?ver=2"></script>
+<script defer src="/res/js/sale/detail.js?ver=4"></script>
 
 
 

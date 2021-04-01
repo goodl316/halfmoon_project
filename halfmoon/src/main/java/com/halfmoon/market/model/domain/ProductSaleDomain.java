@@ -8,6 +8,7 @@ public class ProductSaleDomain extends ProductSaleEntity{
     private String show_time;
     private String user_nm;
     private int is_favorite;
+    private int i_cmt;
     
     public String getShow_time() {
         return show_time;
@@ -39,6 +40,13 @@ public class ProductSaleDomain extends ProductSaleEntity{
 	public void setUser_nm(String user_nm) {
 		this.user_nm = user_nm;
 	}
+	public int getI_cmt() {
+		return i_cmt;
+	}
+	public void setI_cmt(int i_cmt) {
+		this.i_cmt = i_cmt;
+	}
+	
     
     
 }

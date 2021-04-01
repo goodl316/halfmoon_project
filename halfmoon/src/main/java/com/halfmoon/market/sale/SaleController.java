@@ -77,8 +77,7 @@ public class SaleController {
         val.put("i_product", dto.getI_product());
         return val;
     }
-
-    // 상품 디테일 페이지
+    //상품 디테일 페이지
     @GetMapping("/sale/detail")
     public void saleDetail(Model model, int i_product, int i_user) {
         ProductSaleDTO dto = new ProductSaleDTO();
@@ -92,14 +91,11 @@ public class SaleController {
         dto.setI_user(SecurityUtils.getUserPk(hs));
        
         // 댓글 뿌려주기
-//        CmtDTO cmtDTO = new CmtDTO();
-//        cmtDTO.setI_product(i_product);
-//        List<CmtDomain> cmtVo =  service.selCmt(cmtDTO);
-//        model.addAttribute("cmtData",cmtVo);
-//        CmtCmtDTO cmtCmtDTO = new CmtCmtDTO();
-//        cmtCmtDTO.setI_cmt(cmtDTO.getI_cmt());
-//        List<CmtCmtDomain> cmtcmtVo= service.selCmtCmt(cmtCmtDTO);
-//        model.addAttribute("cmtcmtData",cmtcmtVo);
+       CmtDTO cmtDTO = new CmtDTO();
+       cmtDTO.setI_product(i_product);
+       List<CmtDomain> cmtVo =  service.selCmt(cmtDTO);
+       model.addAttribute("cmtData",cmtVo);
+
         // 상품 데이터 추가
         ProductSaleDomain vo = service.selProduct(dto);
         vo.setShow_time(Utils.timeFormatter(vo.getShow_time()));
@@ -137,7 +133,8 @@ public class SaleController {
     }
     @GetMapping("/sale/cmtcmtList")
     @ResponseBody
-    public List<CmtCmtDomain> selCmt(CmtCmtDTO dto){
+    public List<CmtCmtDomain> selCmtCmt(Model model, CmtCmtDTO dto){
+    	System.out.println(dto.getI_cmt());
     	return service.selCmtCmt(dto);
     }
     

@@ -1,0 +1,298 @@
+@charset "UTF-8";
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+button {
+	outline: 0px;
+	cursor: pointer;
+}
+
+#findCont {
+	width: 100%;
+    margin: auto;
+    background-color: #36cc36;
+    border-bottom: 1px solid gray;
+}
+
+#find_div {
+	width: 500px;
+    margin: auto;
+}
+
+#find_div > button {
+	padding: 20px 40px;
+    background-color: transparent;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+    outline: 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.span {
+	color: white;
+}
+
+#findId:hover {
+	color: yellow;
+}
+#findPw:hover {
+	color: yellow;
+}
+.find_main_cont {
+	width: 690px;
+    padding: 40 0px;
+    margin: auto;
+}
+
+.findId_main {
+    border-bottom: 1px solid rgb(210,210,210);
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+    position: relative;
+}
+.findId_main span {
+	font-size: 12px;
+	line-height: 30px;
+}
+.info_input {
+	position: absolute;
+	right: 86px;
+	color: green;
+}
+.next {
+	padding: 0px 2px;
+	position: absolute;
+	right: 72px;
+}
+.info_check {
+	position: absolute;
+	right: 0px;
+}
+
+.findId_div {
+	border: 1px solid rgb(238,238,238);
+    padding: 30px;
+}
+.findId_info1 {
+	font-weight: bold;
+    margin-bottom: 12px;
+}
+.findId_info2 {
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+.findId_user_nm {
+	font-size: 13px;
+    font-weight: bold;
+}
+.findId_user_nm > input {
+	width: 217px;
+    height: 23px;
+    border: 1px solid #ccc;
+    margin-left: 54px;
+    margin-bottom: 5px;
+}
+
+.findId_user_ph {
+	font-size: 13px;
+    font-weight: bold;	
+}
+
+.findId_user_ph > input{
+	width: 217px;
+    height: 23px;
+    border: 1px solid #ccc;
+    margin-left: 28px;
+}
+
+.findId_next {
+	width: 70px;
+    margin: 20px auto;
+}
+.findId_next > button {
+	border: 1px solid #ccc;
+    padding: 10px 20px;
+    background-color: #fbfafa;
+}
+
+
+.findId_cont {
+	
+}
+
+.findId_info3 {
+	margin-bottom: 12px;
+}
+.findId_main_info {
+	text-align: center;
+}
+.id_info {
+	font-weight: bold;
+	margin-right: 100px;
+}
+.join_date {
+	font-size: 13px;
+}
+
+.findId_next_btn {
+	width: 266px;
+    margin: 20px auto;
+}
+
+.login_btn {
+	width: 120px;
+    height: 40px;
+    background-color: #f0ba5e;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
+    margin-right: 20px;
+}
+
+.findPw_btn {
+	width: 120px;
+    height: 40px;
+    background-color: #fbfafa;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    color: black;
+}
+
+
+
+/* ============비밀번호 찾기 =================*/
+
+.findPw_main {
+	border-bottom: 1px solid rgb(210,210,210);
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+    position: relative;
+}
+.findPw_main span {
+	font-size: 12px;
+	line-height: 30px;
+}
+
+.id_input {
+	position: absolute;
+	right: 242px;
+	color: green;
+}
+.pw_next1 {
+	position: absolute;
+	right: 231px;
+}
+.email_check {
+	position: absolute;
+	right: 119px;
+}
+.pw_next2 {
+	position: absolute;
+	right: 107px;
+}
+.pw_reset1 {
+	position: absolute;
+	right: 0px;
+}
+
+.findPw_div {
+	border: 1px solid rgb(238,238,238);
+    padding: 30px;
+}
+
+.findPw_info1 {
+	margin-bottom: 20px;
+}
+
+.findPw_input {
+	width: 250px;
+    height: 25px;
+    border: 1px solid #ccc;
+}
+
+.findPw_next {
+	width: 70px;
+	margin: 20px auto;
+}
+.findPw_next button {
+	border: 1px solid #ccc;
+    padding: 10px 20px;
+    background-color: #fbfafa;
+}
+
+.findPw_info2 {
+	font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.findPw_info3 {
+	font-size: 12px;
+    margin-bottom: 20px;
+}
+
+
+
+.findPw_user_nm {
+	font-size: 13px;
+    font-weight: bold;
+}
+.findPw_user_nm > input {
+	width: 217px;
+    height: 23px;
+    border: 1px solid #ccc;
+    margin-left: 50px;
+    margin-bottom: 5px;
+}
+
+.findPw_user_email {
+	font-size: 13px;
+    font-weight: bold;	
+}
+
+.findPw_email{
+	width: 217px;
+    height: 23px;
+    border: 1px solid #ccc;
+    margin: 0px 0px 5px 41px;
+}
+
+.findPw_user_email button {
+	border: 1px solid #ccc;
+    background-color: white;
+    line-height: 19px;
+}
+
+.check_code {
+	width: 217px;
+    height: 23px;
+    border: 1px solid #ccc;
+    margin-left: 84px;
+}
+
+
+.pw_reSet {
+	font-weight: bold;
+    margin-bottom: 12px;
+}
+.user_id {
+	margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.new_pw {
+	display: grid;
+}
+.new_pw input {
+	width: 300px;
+    height: 25px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+}
+

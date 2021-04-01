@@ -27,9 +27,9 @@
 	
 	<insert id="insCmtcmt">
 	insert into t_cmt_cmt
-	(i_cmt,ctnt)
+	(i_cmt,ctnt,i_product)
 	values
-	(#{i_cmt},#{ctnt})
+	(#{i_cmt},#{ctnt},#{i_product})
 	</insert>
 
 	<!-- 기본 상품 정보 -->

@@ -6,6 +6,7 @@ public class CmtCmtEntity {
 	private int i_cmt;
 	private String ctnt;
 	private String r_dt;
+	private String i_product;
 	
 	public int getI_cmt_cmt() {
 		return i_cmt_cmt;
@@ -30,5 +31,11 @@ public class CmtCmtEntity {
 	}
 	public void setR_dt(String r_dt) {
 		this.r_dt = r_dt;
+	}
+	public String getI_product() {
+		return i_product;
+	}
+	public void setI_product(String i_product) {
+		this.i_product = i_product;
 	}
 }

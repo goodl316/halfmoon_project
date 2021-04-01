@@ -610,7 +610,7 @@ body{
     justify-content: space-between;
 }
 
-.input_btn input,button {
+.input_btn button {
 	background-color: white;
     border: none;
     outline: 0px;
@@ -621,9 +621,11 @@ body{
 	margin-right: 380px;
 }
 
-<<<<<<< HEAD
 .cmt_cmt_input {
-	border-bottom: 1px solid darkgray;
+	border-bottom: 1px solid #ccc;
+	border-top: none;
+	border-right: none;
+	border-left: none;
     margin-top: 10px;
     width: 540px;
     height: 25px;
@@ -632,9 +634,12 @@ body{
     margin-left: 15px;
     color: gray;
 }
-=======
->>>>>>> refs/remotes/origin/master
-
+.cmt_cmt_div2 {
+	display: flex;
+}
+.cmt_cmt_ctnt {
+	margin-left: 94px;
+}
 
 
 
