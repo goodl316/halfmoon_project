@@ -1,6 +1,6 @@
 package com.halfmoon.market.model.dto;
 
-import com.halfmoon.market.model.CmtEntity;
+import com.halfmoon.market.model.CmtCmtEntity;
 
-public class CmtCmtDTO extends CmtEntity {
+public class CmtCmtDTO extends CmtCmtEntity {
 }

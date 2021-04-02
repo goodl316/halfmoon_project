@@ -94,7 +94,6 @@ public class SaleService {
     }
     
     public int updHits(ProductSaleDTO p) {
-    	System.out.println("pppppp");
     	return mapper.updHits(p);
     }
     
@@ -110,12 +109,6 @@ public class SaleService {
     	return result;
     }
     
-    public int updCmt(CmtDTO dto) {
-    	dto.setI_user(SecurityUtils.getUserPk(hs));
-    	int result= mapper.updCmt(dto);
-    	return result;
-    }
-    
     public int delCmt(CmtDTO dto) {
     	dto.setI_user(SecurityUtils.getUserPk(hs));
     	int result = mapper.delCmt(dto);
@@ -128,6 +121,11 @@ public class SaleService {
     
     public int insCmtcmt(CmtCmtDTO dto) {
     	int result = mapper.insCmtcmt(dto);
+    	return result;
+    }
+    
+    public int delCmtCmt(CmtCmtDTO dto) {
+    	int result = mapper.delCmtCmt(dto);
     	return result;
     }
 }

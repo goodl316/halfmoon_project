@@ -198,6 +198,33 @@ function clkCmt_cmt(i_cmt, i_product) {
 		})
 }
 
+//대댓글 삭제
+function delCmtCmt(i_cmt,i_cmt_cmt){
+	param ={
+		i_cmt:i_cmt,
+		i_cmt_cmt:i_cmt_cmt
+	}
+	fetch(`/sale/delCmtCmt?i_cmt_cmt=${i_cmt_cmt}`,{
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(param)
+	}).then(res =>res.json())
+	.then(function(res){
+		console.log(res.result)
+		if(res.result==1){
+			getCmtCmtList(i_cmt)
+			alert('답변이 삭제되었습니다.')	
+		} else{
+			alert('답변 삭제에 실패했습니다.')
+		}
+		
+	})
+	
+}
+
+
 
 var cmtObj = {
 	i_product: 0,
@@ -256,7 +283,6 @@ var cmtObj = {
 			cmt_cmt_show_btn = `<button class="cmt_cmt_btn" onclick="showtoggle(${item.i_cmt}),getCmtCmtList(${item.i_cmt})">답변보기</button>`
 			cmt_cmt_input = `<input type="text" class="cmt_cmt_input_${item.i_cmt} cmt_cmt_input">`
 			cmt_cmt_input_btn = `<button class="cmt_cmt_input_btn" onclick="clkCmt_cmt(${item.i_cmt},${item.i_product})">등록</button>`
-			cmt_cmt_del_btn = `<button class="cmt_cmt_del_btn" onclick="delCmtCmt()"답변 삭제</button>`
 
 			if (loginI_user == item.i_user) {
 				delCmtBtn = `<button onclick="delCmt(${item.i_user},${item.i_cmt})">문의글 삭제</button>`
@@ -311,39 +337,9 @@ var cmtObj = {
 	}
 
 }
-/*
-	getCmtCmtList: function() {
-		fetch(`/sale/cmtcmtList?i_cmt=${this.i_cmt}`)
-			.then(function(res) {
-				return res.json()
-			})
-			.then((list) => {
-				cmtcmtListElem.innerHTML = ''
-				this.cmtprodc(list)
-			})
-	},
-	cmtproc: function(list) {
-		if (list.length == 0) {
-			return
-		}
-		var div2 = document.createElement('div')
-		for (var i = 0; i < list.length; i++) {
-			var recode = this.createRecode1(list[i])
-			div2.append(recode)
-		}
-		
-		cmtcmtListElem.append(div2)
-		
-}
-	},
-	createRecode1: function(item) {
-		var div3 = document.createElement('div')
-		div3.innerHTML = `
-		<div>${item.ctnt}<div>
-		`
-		return div3
-*/
+//=======================================대댓글 뿌리기 Start====================================================
 
+//대댓글 뿌리기
 function getCmtCmtList(i_cmt) {
 	let cmtcmtListElem = document.querySelector('.cmt_cmt_ctnt_'+i_cmt)
 	
@@ -373,17 +369,22 @@ function cmtproc(list,i_cmt) {
 }
 
 function createRecode1(item) {
+	var cmt_cmt_del_btn = ''
+	if (productI_user == loginI_user) {
+		cmt_cmt_del_btn = `<button class="cmt_cmt_del_btn" onclick="delCmtCmt(${item.i_cmt_cmt},${item.i_cmt})">답변 삭제</button>`
+	}
 	var imgSrc = `<img class="cmt_cmt_main_arrow" src="/res/img/arrow.png">`
 	var div1 = document.createElement('div')
 	div1.innerHTML = `
 	<div class="cmt_cmt_main">
 		<div>${imgSrc}</div>
 		<div class="cmt_cmt_main_ctnt">${item.ctnt}</div>
+		${cmt_cmt_del_btn}
 	</div>
 	`
 	return div1
 }
-
+//=======================================대댓글 뿌리기end====================================================
 
 function instoggle(i_cmt) {
 

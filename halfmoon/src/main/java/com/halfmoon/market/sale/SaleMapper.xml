@@ -84,11 +84,6 @@
 	 WHERE i_product = #{i_product}
 	</update>
 	
-	<update id="updCmt">
-	UPDATE t_ctm 
-	set ctnt = #{ctnt}
-	where i_product = #{i_product} and i_user= #{i_user}
-	</update>
 	
 	<delete id="delFavorite">
 	delete from t_favorite
@@ -99,6 +94,13 @@
 	delete from t_cmt
 	where i_cmt=#{i_cmt} and i_user= #{i_user}
 	</delete>
+	
+	<delete id="delCmtCmt">
+	delete from t_cmt_cmt
+	where i_cmt=#{i_cmt} and i_cmt_cmt=#{i_cmt_cmt}
+	</delete>
+	
+	
 	
 	
 </mapper>

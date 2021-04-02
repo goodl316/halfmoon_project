@@ -31,12 +31,10 @@ public interface SaleMapper {
     //댓글
    List<CmtDomain> selCmt(CmtDTO dto);
     int insCmt(CmtDTO dto);
-    int updCmt(CmtDTO dto);
     int delCmt(CmtDTO dto);
     //대댓글
     List<CmtCmtDomain> selCmtcmt(CmtCmtDTO dto);
     int insCmtcmt(CmtCmtDTO dto);
-    int updCmtcmt(CmtCmtDTO dto);
-    int delCmtcmt(CmtCmtDTO dto);
+    int delCmtCmt(CmtCmtDTO dto);
 
 }

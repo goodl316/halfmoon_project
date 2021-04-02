@@ -121,19 +121,15 @@ public class SaleController {
     	return val;
     }
     
+    //====================댓글 작업==============================
+    
     @GetMapping("/sale/cmtList")
     @ResponseBody
     public List<CmtDomain> selCmt(Model model,CmtDTO dto){
     	model.addAttribute("cmtData",service.selCmt(dto));
     	return service.selCmt(dto);
     }
-    @GetMapping("/sale/cmtcmtList")
-    @ResponseBody
-    public List<CmtCmtDomain> selCmtCmt(Model model, CmtCmtDTO dto){
-    	System.out.println(dto.getI_cmt());
-    	return service.selCmtCmt(dto);
-    }
-    
+  
     @PostMapping("/sale/insCmt")
     @ResponseBody
     public Map<String, Object> insCmt(@RequestBody CmtDTO dto) {
@@ -151,6 +147,15 @@ public class SaleController {
     	return val;
     }
     
+  //====================대댓글 작업==============================
+    @GetMapping("/sale/cmtcmtList")
+    @ResponseBody
+    public List<CmtCmtDomain> selCmtCmt(Model model, CmtCmtDTO dto){
+    	System.out.println(dto.getI_cmt());
+    	return service.selCmtCmt(dto);
+    }
+    
+    
     @PostMapping("/sale/insCmt_cmt")
     @ResponseBody
     public Map<String,Object> insCmtcmt(@RequestBody CmtCmtDTO dto){
@@ -159,5 +164,14 @@ public class SaleController {
     	return val;
     }
     
+    @PostMapping("/sale/delCmtCmt")
+    @ResponseBody
+    public Map<String,Object> delCmtCmt(@RequestBody CmtCmtDTO dto){
+    	System.out.println(dto.getI_cmt());
+    	System.out.println(dto.getI_cmt_cmt());
+    	Map<String,Object> val = new HashMap<String, Object>();
+    	val.put(Const.KEY_RESULT, service.delCmtCmt(dto));
+    	return val;
+    }
     
 }
