@@ -2,6 +2,8 @@ package com.halfmoon.market.common;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -81,6 +83,36 @@ public class FileUtils {
 		}
 		return false;
 	}
+	
+	// 해당 경로 파일명 리스트 가져오기
+		public List<String> getFileNameList(String path) {
+			List<String> list = new ArrayList<>();
+			File files = new File(path);
+			File[] listOfFiles = files.listFiles();
+			for (int i = 0; i < listOfFiles.length; i++) {
+				if (listOfFiles[i].isFile()) {
+					list.add(listOfFiles[i].getName());
+				} else if (listOfFiles[i].isDirectory()) {
+					// 디렉토리 파일명은 제외.
+				}
+			}
+			return list;
+		}
+
+		// 해당 경로 객체 리스트 가져오기 (미사용)
+		public List<File> getFileObjectList(String path) {
+			List<File> list = new ArrayList<>();
+			File files = new File(path);
+			File[] listOfFiles = files.listFiles();
+			for (int i = 0; i < listOfFiles.length; i++) {
+				if (listOfFiles[i].isDirectory()) {
+					// 디렉토리 파일은 제외
+					continue;
+				}
+				list.add(listOfFiles[i]);
+			}
+			return list;
+		}
 
 
 }

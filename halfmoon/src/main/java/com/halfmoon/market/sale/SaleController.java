@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.halfmoon.market.common.Const;
+import com.halfmoon.market.common.FileUtils;
 import com.halfmoon.market.common.SecurityUtils;
 import com.halfmoon.market.common.Utils;
 import com.halfmoon.market.model.domain.CmtCmtDomain;
@@ -34,6 +35,9 @@ public class SaleController {
 
     @Autowired
     SaleService service;
+    
+    @Autowired
+    FileUtils fUtils;
 
     @GetMapping("/sale/regProduct")
     public void regProduct(Model model) {
@@ -98,7 +102,95 @@ public class SaleController {
         
     }
     
-    
+    // 상품삭제 및 수정 (마이프로필페이지에서 이루어짐)
+    // 상품삭제
+    @ResponseBody
+    @GetMapping("/sale/delSale")
+    public Map<String, Object> delSaleProduct(int i_product) {
+        Map<String, Object> val = new HashMap<>();
+        if (!SecurityUtils.isLogin(hs)) {
+            val.put(Const.KEY_RESULT, 0);
+            return val;
+        }
+        ProductSaleDTO dto = new ProductSaleDTO();
+        dto.setI_user(SecurityUtils.getUserPk(hs));
+        dto.setI_product(i_product);
+        // 폴더삭제
+        String path = "/img/sale/p_" + i_product;
+        if (fUtils.delFolder(path)) {
+            System.out.println("삭제성공.");
+        } else {
+            System.out.println("삭제실패 : 에러처리 Todo");
+            val.put(Const.KEY_RESULT, 0);
+            return val;
+        }
+        val.put(Const.KEY_RESULT, service.delSaleProduct(dto));
+        return val;
+    }
+
+    // 상품수정
+    @GetMapping("/sale/modProduct")
+    public void modSaleProduct(Model model, int i_product) {
+        UserDomain loginUser = (UserDomain) hs.getAttribute(Const.KEY_LOGINUSER);
+        // 비로그인 접근 제어
+        if (loginUser == null) {
+            // 접근 제어 처리.
+        }
+
+        // 상품등록 위치선택 데이터 추가.
+        model.addAttribute("loc", service.selLoc());
+
+        // 상품 이미지 리스트 가져오기.
+        model.addAttribute("mod_img_list", service.selDetailImgList(i_product));
+        //System.out.println(service.selDetailImgList(i_product).toString());
+
+        ProductSaleDTO dto = new ProductSaleDTO();
+        dto.setI_user(SecurityUtils.getUserPk(hs));
+        dto.setI_product(i_product);
+
+
+        ProductSaleDomain vo = service.selModProduct(dto);
+        System.out.println("product img : " + vo.getP_img_main());
+        // tag '#' replace " "
+        if (vo.getTag() != null) {
+            vo.setTag(vo.getTag().replaceAll("#", " "));
+        }
+        model.addAttribute(Const.KEY_DATA, vo);
+    }
+
+    // 상품수정 proc
+    @ResponseBody
+    @PostMapping("/modProductProc")
+    public Map<String, Object> modProductProc(@RequestBody ProductSaleDTO dto) {
+        Map<String, Object> val = new HashMap<>();
+
+        System.out.println("mod i_user : " + dto.getI_user());
+        System.out.println("mod i_product : " + dto.getI_product());
+
+        val.put(Const.KEY_RESULT, service.modProduct(dto));
+        return val;
+    }
+
+
+    // 임시 이미지 등록 ajax
+    @ResponseBody
+    @PostMapping("/imgTempUpload")
+    public Map<String, Object> imgTempUpload(MultipartFile[] imgs) {
+        Map<String, Object> val = new HashMap<>();
+        val.put("imgs", service.tempImgUpload(imgs));
+        return val;
+    }
+
+    // 수정 이미지 삭제
+    @ResponseBody
+    @GetMapping("/imgModDelete")
+    public Map<String, Object> imgModDelete(Integer i_product, String imgNm) {
+        Map<String, Object> val = new HashMap<>();
+        String path = "/img/sale/p_" + i_product + "/" + imgNm;
+        val.put(Const.KEY_RESULT, service.delSaleModImg(path));
+        return val;
+    }
+
     
     
     @PostMapping("/sale/favoriteAjax")
@@ -126,13 +218,17 @@ public class SaleController {
     @GetMapping("/sale/cmtList")
     @ResponseBody
     public List<CmtDomain> selCmt(Model model,CmtDTO dto){
-    	model.addAttribute("cmtData",service.selCmt(dto));
-    	return service.selCmt(dto);
+    	List<CmtDomain> list = service.selCmt(dto);
+    	for(CmtDomain vo : list) {
+    		System.out.println("isSecret : " + vo.getIsSecret());
+    	}
+    	return list;
     }
   
     @PostMapping("/sale/insCmt")
     @ResponseBody
     public Map<String, Object> insCmt(@RequestBody CmtDTO dto) {
+    	System.out.println("isSecret : " + dto.getIsSecret());
     	System.out.println(dto.getI_product());
     	Map<String, Object> val  = new HashMap<String, Object>();
     	val.put(Const.KEY_RESULT, service.insCmt(dto));

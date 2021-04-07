@@ -1,5 +1,6 @@
 package com.halfmoon.market.sale;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -82,7 +83,63 @@ public class SaleService {
         }
         return 1;
     }
+    
 
+    // 임시 상품 이미지 업로드 (return img name map)
+    public List<String> tempImgUpload(MultipartFile[] imgs) {
+        List<String> list = new ArrayList<>();
+        if(imgs.length > 5 || imgs.length == 0) {
+            return null;
+        }
+        UserDomain vo = (UserDomain) hs.getAttribute(Const.KEY_LOGINUSER);
+        String folder = "/resources/img/sale/temp_" + vo.getI_user();
+        try {
+            for(int i=0; i<imgs.length; i++) {
+                MultipartFile file = imgs[i];
+                String fileNm = fUtils.saveFile(file, folder);
+                if(fileNm == null) {
+                    return null;
+                }
+                System.out.println("img nm : " + fileNm);
+                list.add(fileNm);
+            }
+        } catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+        return list;
+    }
+
+    // 상품 디테일 이미지 리스트 가져오기
+    public List<String> selDetailImgList(int i_product) {
+        String folder = "/resources/img/sale/p_" + i_product;
+        String path = fUtils.getBasePath(folder);
+        return fUtils.getFileNameList(path);
+    }
+
+    // 수정 이미지 삭제
+    public int delSaleModImg(String path) {
+        if(fUtils.delFile(path)) {
+            return 1;
+        }
+        return 0;
+    }
+
+
+    //상품삭제
+    int delSaleProduct(ProductSaleDTO dto) {
+        return mapper.delSaleProduct(dto);
+    }
+
+    //상품수정뿌리기
+    ProductSaleDomain selModProduct(ProductSaleDTO dto) {
+        return mapper.selModProduct(dto);
+    }
+
+    // 상품수
+    int modProduct(ProductSaleDTO dto) {
+        return mapper.modProduct(dto);
+    }
     
     
     public int insFavorite(ProductSaleDTO p) {
@@ -125,6 +182,8 @@ public class SaleService {
     }
     
     public int delCmtCmt(CmtCmtDTO dto) {
+    	System.out.println("!!!" + dto.getI_cmt_cmt());
+    	System.out.println("!!!" + dto.getI_cmt());
     	int result = mapper.delCmtCmt(dto);
     	return result;
     }

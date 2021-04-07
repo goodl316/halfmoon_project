@@ -7,8 +7,8 @@
 	</select>
 
 	<insert id="regProduct" useGeneratedKeys="true" keyProperty="i_product">
-		insert into t_product_sale (p_img_main, i_user, p_nm, p_price, i_product_type, type_sub_title, title, ctnt, i_loc, state, tag)
-		values ('test.jsp', #{i_user}, #{p_nm}, #{p_price}, #{i_product_type}, #{type_sub_title}, #{title}, #{ctnt}, #{i_loc}, #{state}, #{tag})
+		insert into t_product_sale (p_img_main, i_user, p_nm, p_price, i_product_type,i_product_type_sub, type_sub_title, title, ctnt, i_loc, state, tag)
+		values ('test.jsp', #{i_user}, #{p_nm}, #{p_price}, #{i_product_type},#{i_product_type_sub}, #{type_sub_title}, #{title}, #{ctnt}, #{i_loc}, #{state}, #{tag})
 	</insert>
 	<!-- 좋아요 -->
 	<insert id="insFavorite">
@@ -20,9 +20,9 @@
 	
 	<insert id="insCmt">
 	insert into t_cmt
-	(i_user,i_product,ctnt)
+	(i_user,i_product,ctnt,isSecret)
 	values
-	(#{i_user},#{i_product},#{ctnt})
+	(#{i_user},#{i_product},#{ctnt},#{isSecret})
 	</insert>
 	
 	<insert id="insCmtcmt">
@@ -45,8 +45,14 @@
 		where a.i_product =#{i_product};
 	</select>
 	
+	<!-- 상품수정정보 -->
+	<select id="selModProduct" resultType="ProductSaleDomain">
+		select * from t_product_sale
+		where i_product = #{i_product} and i_user = #{i_user};
+	</select>
+	
 	<select id="selCmt" resultType="CmtDomain">
-		select a.i_cmt,a.i_user,a.i_product,a.ctnt,b.user_nm ,b.profile_img from t_cmt a
+		select a.i_cmt,a.i_user,a.i_product,a.ctnt,b.user_nm ,b.profile_img,a.isSecret from t_cmt a
 		left join t_user b
 		on a.i_user = b.i_user
 		where i_product= #{i_product}
@@ -71,19 +77,30 @@
 	FROM t_product_sale
 	WHERE i_user=#{i_user}
 	</select>
-
-	<update id="upsMainImg">
-		update t_product_sale
-		set p_img_main = #{p_img_main}
-		where i_product = #{i_product};
-	</update>
-	
 	
 	<update id="updHits">
 	 UPDATE t_product_sale SET hit = hit + 1
 	 WHERE i_product = #{i_product}
 	</update>
 	
+	<!-- 상품 수정 -->
+	<update id="modProduct">
+		update t_product_sale
+		set p_nm = #{p_nm}, p_price = #{p_price}, i_product_type = #{i_product_type}, type_sub_title = #{type_sub_title}, title = #{title}, ctnt = #{ctnt}, tag = #{tag},
+		    m_dt = now()
+		where i_product = #{i_product} and i_user = #{i_user}
+	</update>
+	
+	<update id="upsMainImg">
+		update t_product_sale
+		set p_img_main = #{p_img_main}
+		where i_product = #{i_product}
+	</update>
+	
+	<delete id="delSaleProduct">
+		delete from t_product_sale
+		where i_user = #{i_user} and i_product = #{i_product}
+	</delete>
 	
 	<delete id="delFavorite">
 	delete from t_favorite
@@ -97,7 +114,7 @@
 	
 	<delete id="delCmtCmt">
 	delete from t_cmt_cmt
-	where i_cmt=#{i_cmt} and i_cmt_cmt=#{i_cmt_cmt}
+	where i_cmt_cmt=#{i_cmt_cmt} and i_cmt=#{i_cmt}
 	</delete>
 	
 	

@@ -8,7 +8,7 @@ public class CmtEntity {
 	private String ctnt;
 	private String r_dt;
 	private int isSecret;
-	
+
 	
 	public int getI_cmt() {
 		return i_cmt;
@@ -43,7 +43,10 @@ public class CmtEntity {
 	public int getIsSecret() {
 		return isSecret;
 	}
+
 	public void setIsSecret(int isSecret) {
 		this.isSecret = isSecret;
 	}
+	
+	
 }

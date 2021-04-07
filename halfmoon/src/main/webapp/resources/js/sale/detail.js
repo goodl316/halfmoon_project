@@ -114,6 +114,17 @@ function toggleFavorite(i_product) {
 //댓글 기능
 //댓글 등록
 function clkCtnt(i_product, i_user) {
+	var isSecret = document.querySelector('#isSecret')
+	var isSecretVal;
+	
+	// 비밀글 체
+	if (isSecret.checked) {
+		console.log('checked')
+		isSecretVal = 1
+	} else {
+		console.log('Unchecked')
+		isSecretVal = 0
+	}
 
 	var ctntElem = document.querySelector('.product_ctnt_input')
 	var ctntValue = ctntElem.value
@@ -129,7 +140,8 @@ function clkCtnt(i_product, i_user) {
 	var param = {
 		ctnt: ctntValue,
 		i_product: i_product,
-		i_user: i_user
+		i_user: i_user,
+		isSecret: isSecretVal
 	}
 	fetch(`/sale/insCmt`, {
 		method: 'post',
@@ -199,12 +211,13 @@ function clkCmt_cmt(i_cmt, i_product) {
 }
 
 //대댓글 삭제
-function delCmtCmt(i_cmt,i_cmt_cmt){
+function delCmtCmt(i_cmt_cmt, i_cmt){
 	param ={
 		i_cmt:i_cmt,
 		i_cmt_cmt:i_cmt_cmt
 	}
-	fetch(`/sale/delCmtCmt?i_cmt_cmt=${i_cmt_cmt}`,{
+	console.log(param)
+	fetch('/sale/delCmtCmt',{
 		method: 'post',
 		headers: {
 			'Content-Type': 'application/json'
@@ -268,7 +281,7 @@ var cmtObj = {
 		
 	},
 	createRecode: function(item) {
-
+		var cmt_ctnt = `<div class="cmt_ctnt">${item.ctnt}</div>`
 		var imgSrc = `<img src="/res/img/1234.png">`
 		var cmt_cmt_show = ''
 		var cmt_cmt_show_btn = ''
@@ -278,16 +291,24 @@ var cmtObj = {
 		if (item.profile_img != null) {
 			imgSrc = `<img src="/res/img/user/${item.i_user}/${item.profile_img}">`
 		}
-		if (productI_user == loginI_user) {
+		if (productI_user == loginI_user || loginI_user == item.i_user) {
 			cmt_cmt_show = `<button onclick="instoggle(${item.i_cmt})">답글달기</button>`
-			cmt_cmt_show_btn = `<button class="cmt_cmt_btn" onclick="showtoggle(${item.i_cmt}),getCmtCmtList(${item.i_cmt})">답변보기</button>`
+			cmt_cmt_show_btn = `<button class="cmt_cmt_btn" onclick="showtoggle(${item.i_cmt})">답변보기</button>`
 			cmt_cmt_input = `<input type="text" class="cmt_cmt_input_${item.i_cmt} cmt_cmt_input">`
 			cmt_cmt_input_btn = `<button class="cmt_cmt_input_btn" onclick="clkCmt_cmt(${item.i_cmt},${item.i_product})">등록</button>`
-
+			cmt_ctnt = `<div class="cmt_ctnt">${item.ctnt}</div>`
+			
 			if (loginI_user == item.i_user) {
 				delCmtBtn = `<button onclick="delCmt(${item.i_user},${item.i_cmt})">문의글 삭제</button>`
 			}
+			
+		}else{
+			if(item.isSecret ==1){
+				var cmt_ctnt = `<div class="cmt_ctnt">비밀글 입니다.</div>`
+			}
 		}
+		
+		console.log(item.isSecret)
 
 
 		var div2 = document.createElement('div')
@@ -302,7 +323,7 @@ var cmtObj = {
 							<div>${item.user_nm}</div>
 							<div>1초전</div>
 						</div>
-						<div class="cmt_ctnt">${item.ctnt}</div>
+						${cmt_ctnt}
 						<div class="input_btn">
 							<div class="cmt_btn">
 								<div class="cmt_cmt_div">
@@ -320,13 +341,13 @@ var cmtObj = {
 							
 						</div>
 					</div>
-					<div class="cmt_cmt_${item.i_cmt} cmt_cmt">
+					<div class="cmt_cmt_${item.i_cmt} cmt_cmt" value="${item.i_cmt}">
 					<input type="hidden" id="pI_cmt" value=${item.i_cmt}>
 					<span id="i_cmt" data-id="${item.i_cmt}"></span>
 								${cmt_cmt_input}
 								${cmt_cmt_input_btn}
 					</div>
-					<div class="cmt_cmt_more_${item.i_cmt} cmt_cmt_more">
+					<div class="cmt_cmt_more_${item.i_cmt} cmt_cmt_more" value="${item.i_cmt}">
 								<div class="cmt_cmt_ctnt cmt_cmt_ctnt_${item.i_cmt}"></div>
 					</div>
 				<div>
@@ -388,14 +409,43 @@ function createRecode1(item) {
 
 function instoggle(i_cmt) {
 
-	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)
-	let cmt_cmtIndex3 = document.querySelector('.cmt_cmt_more_' + i_cmt)
+	console.log('i_cmt : ' + i_cmt)
+//	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)
+//	let cmt_cmtIndex3 = document.querySelector('.cmt_cmt_more_' + i_cmt)
+	
+	let cmt_cmtIndex2 = document.querySelectorAll('.cmt_cmt')
+	for (let i = 0; i < cmt_cmtIndex2.length; i++){
+		console.log('value : ' + cmt_cmtIndex2[i].value)
+		if(cmt_cmtIndex2[i].value == i_cmt){
+			if(cmt_cmtIndex2[i].style.display== 'none'){
+			cmt_cmtIndex2[i].style.display = 'block'
+			cmt_cmtIndex3[i].style.display = 'none'
+			}
+		}else{
+			cmt_cmtIndex2[i].style.display = 'none'
+		}
+	}
+	
+	/*
+	let cmt_cmtIndex3 = document.querySelectorAll('.cmt_cmt_more')
+		for (let i = 0; i < cmt_cmtIndex3.length; i++){
+		if(cmt_cmtIndex3[i].value == i_cmt){
+			cmt_cmtIndex3[i].style.display = 'block'
+			cmt_cmtIndex2[i].style.display = 'none'
+		}else{
+			cmt_cmtIndex3[i].style.display = 'none'
+		}
+	}
+	*/
+	
+	/*
 	if (cmt_cmtIndex2.style.display == 'none') {
 		cmt_cmtIndex2.style.display = 'block'
 		cmt_cmtIndex3.style.display = 'none'
 	} else {
 		cmt_cmtIndex2.style.display = 'none'
 	}
+	*/
 }
 /*
 function instoggle(){
@@ -422,7 +472,7 @@ for (var i = 0; i < cmt_cmtIndex2.length; i++) {
 }
 }*/
 
-function showtoggle(i_cmt) {
+function showtoggle(i_cmt) {	
 	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)
 	let cmt_cmtIndex3 = document.querySelector('.cmt_cmt_more_' + i_cmt)
 	if (cmt_cmtIndex3.style.display == 'none') {
@@ -430,6 +480,9 @@ function showtoggle(i_cmt) {
 		cmt_cmtIndex2.style.display = 'none'
 	} else {
 		cmt_cmtIndex3.style.display = 'none'
+	}
+	if (cmt_cmtIndex3.style.display == 'block' && cmt_cmtIndex2.style.display == 'none') {
+		getCmtCmtList(i_cmt);	
 	}
 }
 
@@ -441,4 +494,13 @@ if (cmtListElem) {
 	cmtObj.i_product = i_product
 	cmtObj.getCmtList()
 }
+
+
+
+
+
+
+
+
+
 

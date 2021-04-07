@@ -23,6 +23,13 @@ public interface SaleMapper {
 
     // 상품메인이미지업데이트
     int upsMainImg(ProductSaleDTO dto);
+    // 상품삭제
+    int delSaleProduct(ProductSaleDTO dto);
+    // 상품수정뿌리기
+    ProductSaleDomain selModProduct(ProductSaleDTO dto);
+    // 상품수정
+    int modProduct(ProductSaleDTO dto);
+    
     // 좋아요
     int insFavorite(ProductSaleDTO dto);
     int delFavorite(ProductSaleDTO dto);

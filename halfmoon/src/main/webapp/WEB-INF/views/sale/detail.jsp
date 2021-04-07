@@ -174,6 +174,7 @@
 					</div>
 					<div class="product_div2">
 						<div>0 / 100</div>
+						<label id="secret_chk">비밀글 등록<input id="isSecret" type="checkbox" name="isSecret" value="1"></label>
 						<input type="button" class="product_btn" value="등록"
 							onclick="clkCtnt(${data.i_product},${loginUser.i_user})">
 					</div>

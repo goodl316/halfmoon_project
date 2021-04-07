@@ -10,13 +10,49 @@ var p_tag = document.querySelector('#p_tag')
 var btn_reg = document.querySelector('#btn_reg')
 var temp_img_cont = document.querySelector('#temp_img_cont')
 
+// 이미지 수정 버그 해결에 집중하자... 일단 대표이미지는 수정 불가.
+
+// 수정용 i_product
+var i_product = document.querySelector('#i_product')
+
 // 유저정보파싱
 var i_user = document.querySelector('#i_user')
 console.log('i_user : ' + i_user.value)
 
+// delete 등록된 이미지 수정용
+var mod_img_span_cont = document.querySelectorAll('.mod_img_span_cont')
+var delete_mod_img = document.querySelectorAll('.delete_mod_img')
+for (let i = 1; i < delete_mod_img.length; i++) {
+    delete_mod_img[i].onclick = () => {
+        let imgNm = delete_mod_img[i].getAttribute('value')
+        console.log('delete_mod_img... : ' + imgNm)
+        delete_mod_img_ajax(imgNm, i)
+    }
+}
+
+// delete img ajax
+function delete_mod_img_ajax(imgNm, i) {
+    fetch(`/imgModDelete?i_product=${i_product.value}&imgNm=${imgNm}`,{
+        method: 'GET'
+    }).then(function(res) {
+        return res.json()
+    }).then(function(data) {
+        // display none (do you know why + 1??)
+        mod_img_span_cont[i].style.display = 'none'
+        formDataSize = formDataSize - 1
+        console.log('delete result : ' + data.result)
+    })
+}
+
+// 사진 수정시 formSize 버그 해결해보자.......
+
+
 // form_data
 var formData = new FormData()
-var formDataSize = 0
+var formDataSize = mod_img_span_cont.length
+
+// this is spaghetti code..
+var modIndex = 0
 
 // 상품이미지 임시 등록
 input_img.onchange = function () {
@@ -25,9 +61,13 @@ input_img.onchange = function () {
         // 임시
         formData_temp.append('imgs', input_img.files[i])
 
+        // test code
+        //console.log(formData_temp.getAll('imgs'))
+
         // 진짜 저장용
         formData.append('imgs', input_img.files[i])
         formDataSize = formDataSize + 1
+        modIndex = modIndex + 1
         if (formDataSize > 4) {
             alert('이미지를 4장 이상 등록 할 수 없습니다.')
             return;
@@ -41,25 +81,9 @@ input_img.onchange = function () {
     }).then(function(data) {
         console.log(data.imgs)
         insertImg(data.imgs)
-        // 대표이미지 설정
-        setRepreImg()
     })
     console.log('formDataSize : ' + formDataSize)
 }
-
-// 대표이미지 설정 함수
-function setRepreImg() {
-    // 대표이미지 설정 view
-    let repreImg = document.querySelectorAll('.temp_img_span_cont')
-    let isRepre = false
-    for (let i = 0; i < repreImg.length; i++) {
-        if (repreImg[i].style.display != 'none' && !isRepre) {
-            repreImg[i].style.color = 'red'
-            isRepre = true
-        }
-    }
-}
-
 
 // 임시 상품 이미지 삽입
 function insertImg(imgs) {
@@ -76,7 +100,7 @@ function insertImg(imgs) {
         div.classList.add('delete_temp_img')
         div.classList.add('span_sub')
         // 내가 추가한 속성
-        div.setAttribute('index', String(formDataSize - 1))
+        div.setAttribute('index', String(modIndex - 1))
         div.innerText = '×'
         div.onclick = function () {
             // 매우매우 무식 한 방법이지만 일단 해봄..
@@ -87,7 +111,7 @@ function insertImg(imgs) {
             tempArr.splice(parseInt(this.getAttribute('index')), 1)
             // 다시 추가..
             for (let j = 0; j < tempArr.length; j++) {
-             formData.append('imgs', tempArr[j])
+                formData.append('imgs', tempArr[j])
             }
             console.log('after : ' + formData.getAll('imgs'))
             // div index 속성 재 설정.
@@ -108,9 +132,8 @@ function insertImg(imgs) {
             }
             // 사이즈 줄이기
             formDataSize = formDataSize - 1
-
-            // 대표이미지 설정
-            setRepreImg()
+            modIndex = modIndex - 1
+            console.log('formDataSize : ' + formDataSize)
         }
         span.append(img)
         span.append(div)
@@ -122,14 +145,28 @@ function insertImg(imgs) {
 
 // 상품이미지 날리기
 function product_img_upload (i_product) {
-    var formData = new FormData()
-    for(var i=0; i<input_img.files.length; i++) {
-        formData.append('imgs', input_img.files[i])
-    }
+    console.log('final : ' + formData.getAll('imgs'))
     formData.append('i_product', i_product) // 추가
+    formData.append('i_user', i_user.value) // 추가
+    formData.append('isMod', 1) // 추가
     fetch('/productImgUpload',{
         method: 'post',
         body: formData
+    }).then(function(res) {
+        return res.json()
+    }).then(function(data) {
+        console.log(data)
+        switch(data) {
+            case 1:
+                // 상품 등록 성공
+                alert('상품이 성공적으로 수되었습니다.')
+                location.href = `/sale/detail?i_product=${i_product}&i_user=${i_user.value}`
+                break;
+            case 2:
+                // 이미지 등록 실패
+                alert('에러:상품이미지등록실패')
+                break;
+        }
     })
 }
 
@@ -139,13 +176,12 @@ btn_reg.onclick = function () {
     var p_nmVal = p_nm.value
     var p_priceVal = p_price.value
     var i_product_typeVal = product_type.value
-	var i_product_type_subVal = proeuct_type_sub.value
     var type_sub_titleVal = product_sub_type.value
     var titleVal = p_title.value
     var ctntVal = p_ctnt.value
     var i_locVal = loc.value
     var tagVal = p_tag.value
-	
+
 
     // 필수입력 로직 처리 하기.
     // 제품
@@ -174,19 +210,11 @@ btn_reg.onclick = function () {
     if (ctntVal == '' || ctntVal.length < 10) {
         alert('내용을 작성해주새요 (최소 10글자 이상)')
         p_ctnt.focus()
+        return;
     }
     if (i_locVal == '') {
         alert('지역을 선택해주세요')
         loc.focus()
-        return
-    }
-    // 이미지 체크
-    if(input_img.files.length === 0) {
-        alert('이미지를 선택해 주세요')
-        return
-    }
-    if(input_img.files.length > 5) {
-        alert('이미지는 최대 5개 까지 등록 가능합니다.')
         return
     }
     // tag 저장 : #으로 구분
@@ -194,31 +222,27 @@ btn_reg.onclick = function () {
     console.log(tagVal)
 
     var param = {
-       i_user: i_user.value,
-       p_nm: p_nmVal,
-       p_price: p_priceVal,
-       i_product_type: i_product_typeVal,
-	   i_product_type_sub : i_product_type_subVal,
-       type_sub_title: type_sub_titleVal,
-       title: titleVal,
-       ctnt: ctntVal,
-       i_loc: i_locVal,
-       state: 1, // 기본설정 : 1
-       tag: tagVal
+        i_product: i_product.value,
+        i_user: i_user.value,
+        p_nm: p_nmVal,
+        p_price: p_priceVal,
+        i_product_type: i_product_typeVal,
+        type_sub_title: type_sub_titleVal,
+        title: titleVal,
+        ctnt: ctntVal,
+        i_loc: i_locVal,
+        state: 1, // 기본설정 : 1
+        tag: tagVal
     }
     console.log(param)
 
-    // ajax 실행
-    reg_ajax(param)
+    // ajax 실행 (test 중)
+    mod_ajax(param)
 }
 
-
-
-
-
-// 상품등록 ajax
-function reg_ajax (param) {
-    fetch(`/regProductProc`, {
+// 상품수정 ajax
+function mod_ajax (param) {
+    fetch(`/modProductProc`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -231,11 +255,11 @@ function reg_ajax (param) {
         switch(data.result) {
             case 1:
                 // 등록 성공
-                console.log('i_product : ' + data.i_product)
-                product_img_upload(data.i_product)
+                product_img_upload(i_product.value)
                 break;
-            case 2:
+            case 0:
                 // 등록 실패
+                alert('에러:상품등록실패')
                 break;
         }
     })
@@ -260,7 +284,7 @@ function typeChange(e) {
     var target = []
     switch (e.value) {
         case '0':
-           target = ['소분류']
+            target = ['소분류']
         case '1':
             target = type_1
             break
