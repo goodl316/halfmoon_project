@@ -139,7 +139,6 @@ btn_reg.onclick = function () {
     var p_nmVal = p_nm.value
     var p_priceVal = p_price.value
     var i_product_typeVal = product_type.value
-	var i_product_type_subVal = proeuct_type_sub.value
     var type_sub_titleVal = product_sub_type.value
     var titleVal = p_title.value
     var ctntVal = p_ctnt.value
@@ -198,7 +197,6 @@ btn_reg.onclick = function () {
        p_nm: p_nmVal,
        p_price: p_priceVal,
        i_product_type: i_product_typeVal,
-	   i_product_type_sub : i_product_type_subVal,
        type_sub_title: type_sub_titleVal,
        title: titleVal,
        ctnt: ctntVal,
@@ -233,6 +231,8 @@ function reg_ajax (param) {
                 // 등록 성공
                 console.log('i_product : ' + data.i_product)
                 product_img_upload(data.i_product)
+				alert('상품이 등록되었습니다.')
+				location.href = "/main/home"
                 break;
             case 2:
                 // 등록 실패

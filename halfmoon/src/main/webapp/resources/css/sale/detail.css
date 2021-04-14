@@ -653,6 +653,7 @@ body{
 .cmt_cmt_main_ctnt {
 	margin-left: 10px;
     margin-top: 4px;
+    width: 472px;
 }
 
 .cmt_cmt_main_arrow {
@@ -660,7 +661,7 @@ body{
 }
 
 .cmt_cmt_del_btn {
-	margin-left: 290px;
+	margin-left: 5px;
 }
 
 #secret_chk {

@@ -1,6 +1,5 @@
 package com.halfmoon.market.user;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +9,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -104,12 +102,14 @@ public class UserController {
 			case 2:
 				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/modAccount.jsp");
 				return "/user/my/profile";
-//			case 3:
-//				//model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/default.jsp");
-//				return "/user/my/profile";
-//			case 4:
-//				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/default.jsp");
-//				return "/user/my/profile";
+			case 3:
+				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/purchaseInfo.jsp");
+				model.addAttribute(Const.KEY_LIST, service.selMySaleList(dto));
+				return "/user/my/profile";
+			case 4:
+				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/saleInfo.jsp");
+				model.addAttribute(Const.KEY_LIST, service.selMySaleList(dto));
+				return "/user/my/profile";
 		}
 		return null;
 	}

@@ -7,8 +7,8 @@
 	</select>
 
 	<insert id="regProduct" useGeneratedKeys="true" keyProperty="i_product">
-		insert into t_product_sale (p_img_main, i_user, p_nm, p_price, i_product_type,i_product_type_sub, type_sub_title, title, ctnt, i_loc, state, tag)
-		values ('test.jsp', #{i_user}, #{p_nm}, #{p_price}, #{i_product_type},#{i_product_type_sub}, #{type_sub_title}, #{title}, #{ctnt}, #{i_loc}, #{state}, #{tag})
+		insert into t_product_sale (p_img_main, i_user, p_nm, p_price, i_product_type, type_sub_title, title, ctnt, i_loc, state, tag)
+		values ('test.jsp', #{i_user}, #{p_nm}, #{p_price}, #{i_product_type}, #{type_sub_title}, #{title}, #{ctnt}, #{i_loc}, #{state}, #{tag})
 	</insert>
 	<!-- 좋아요 -->
 	<insert id="insFavorite">

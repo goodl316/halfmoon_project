@@ -1,4 +1,4 @@
-var loginI_user = document.querySelector('#loginI_user').value
+wvar loginI_user = document.querySelector('#loginI_user').value
 var productI_user = document.querySelector('#productI_user').value
 
 var slideIndex = 1;
@@ -407,70 +407,21 @@ function createRecode1(item) {
 }
 //=======================================대댓글 뿌리기end====================================================
 
-function instoggle(i_cmt) {
 
-	console.log('i_cmt : ' + i_cmt)
-//	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)
-//	let cmt_cmtIndex3 = document.querySelector('.cmt_cmt_more_' + i_cmt)
-	
-	let cmt_cmtIndex2 = document.querySelectorAll('.cmt_cmt')
-	for (let i = 0; i < cmt_cmtIndex2.length; i++){
-		console.log('value : ' + cmt_cmtIndex2[i].value)
-		if(cmt_cmtIndex2[i].value == i_cmt){
-			if(cmt_cmtIndex2[i].style.display== 'none'){
-			cmt_cmtIndex2[i].style.display = 'block'
-			cmt_cmtIndex3[i].style.display = 'none'
-			}
-		}else{
-			cmt_cmtIndex2[i].style.display = 'none'
-		}
-	}
-	
-	/*
-	let cmt_cmtIndex3 = document.querySelectorAll('.cmt_cmt_more')
-		for (let i = 0; i < cmt_cmtIndex3.length; i++){
-		if(cmt_cmtIndex3[i].value == i_cmt){
-			cmt_cmtIndex3[i].style.display = 'block'
-			cmt_cmtIndex2[i].style.display = 'none'
-		}else{
-			cmt_cmtIndex3[i].style.display = 'none'
-		}
-	}
-	*/
-	
-	/*
+function instoggle(i_cmt) {	
+	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)
+	let cmt_cmtIndex3 = document.querySelector('.cmt_cmt_more_' + i_cmt)
 	if (cmt_cmtIndex2.style.display == 'none') {
 		cmt_cmtIndex2.style.display = 'block'
 		cmt_cmtIndex3.style.display = 'none'
 	} else {
 		cmt_cmtIndex2.style.display = 'none'
 	}
-	*/
-}
-/*
-function instoggle(){
-let cmt_cmtIndex2 = document.querySelectorAll('.cmt_cmt')
-let cmt_cmtIndex3 = document.querySelectorAll('.cmt_cmt_more')
-console.log(cmt_cmtIndex2[0])
-
-for (var i = 0; i < cmt_cmtIndex2.length; i++) {
-	if (cmt_cmtIndex2[i]) {
-		console.log(cmt_cmtIndex2[i].value)
-		if (cmt_cmtIndex2[i].style.display == 'none') {
-			cmt_cmtIndex2[i].style.display = 'block'
-			cmt_cmtIndex3[i].style.display = 'none'
-		} else {
-			cmt_cmtIndex2[i].style.display = 'none'
-		}
-
+	if (cmt_cmtIndex2.style.display == 'block' && cmt_cmtIndex3.style.display == 'none') {
+		getCmtCmtList(i_cmt);	
 	}
-	else if(!cmt_cmtIndex2[i]){
-		cmt_cmtIndex2[i].style.display = 'none'
-		cmt_cmtIndex3[i].style.display = 'none'
-		
-	}
+	
 }
-}*/
 
 function showtoggle(i_cmt) {	
 	let cmt_cmtIndex2 = document.querySelector('.cmt_cmt_' + i_cmt)

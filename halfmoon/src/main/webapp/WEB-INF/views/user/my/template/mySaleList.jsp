@@ -7,7 +7,6 @@
     <div id="profile_right_div2">
         <table>
             <tr>
-                <th>등록번호</th>
                 <th>제목</th>
                 <th>제품명</th>
                 <th>가격</th>
@@ -19,7 +18,6 @@
             </tr>
             <c:forEach var="item" items="${list}">
             <tr>
-                <td>${item.i_product}</td>
                 <td>${item.title}</td>
                 <td>${item.p_nm}</td>
                 <td>${item.p_price}</td>
@@ -27,9 +25,10 @@
                 <td>${item.hit}</td>
                 <td>${item.state}</td>
                 <td>${item.show_time}</td>
-                <td>
+                <td class="delModBtn">
                     <button id="btn_delSaleList" onclick="delSaleProduct(${item.i_product})">
                         삭제</button>
+                    <span>|</span>
                     <button id="btn_modSaleList" onclick="modSaleProduct(${item.i_product})">
                         수정</button>
                 </td>

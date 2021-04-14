@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <tiles:importAttribute name="menuList"/>
-<script defer src="/res/js/sale/regProduct.js"></script>
+<script defer src="/res/js/sale/regProduct.js?ver=1"></script>
 <link rel="stylesheet" href="/res/css/sale/regProduct.css">
 <input id="i_user" type="hidden" value="${loginUser.i_user}" />
 <div id="regProduct">

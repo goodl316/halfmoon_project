@@ -13,9 +13,6 @@ public class ProductSaleDTO extends ProductSaleEntity {
 	public void setToggle(int toggle) {
 		this.toggle = toggle;
 	}
-	
-	
-	
-	
+
 
 }
