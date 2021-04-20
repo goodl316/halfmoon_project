@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+body{
+	background-color: white;
+}
+ul,li {
+	margin: 0px;
+	padding: 0px;
+}
+
+#whole_div {
+	width: 1200px;
+    margin: auto;
+    display: flex;
+    margin-top: 100px;
+    height: 2000px;
+}
+
+#left_div {
+	width: 240px;
+	position: fixed;
+}
+#right_div {
+	width: 960px;
+	margin-left: 240px;
+}
+
+#filter_li button {
+	width: 200px;
+    padding: 10px 0px;
+    background-color: white;
+    border: none;
+    outline: 0px;
+    cursor: pointer;
+}
+
+#filter_li div {
+	font-size: 20px;
+    font-weight: bold;
+}
+
+#filter_li div:hover {
+	color: skyblue;
+}
+
+
+
+/* =========== right_div ============*/
+
+#right_title_info {
+	display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: 1px solid skyblue;
+    margin-bottom: 20px;
+}
+
+#title {
+	margin-left: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #424242;
+}
+
+#kinds {
+	margin-right: 20px;
+}
+
+#item_cont {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.item_box {
+	width: 220px;
+    background-color: white;
+    padding: 0 10px 30px;
+    cursor: pointer;
+}
+.item_img {
+	overflow: hidden;
+}
+
+.item_img > img {
+	width: 220px;
+	height: 250px;
+    transform:scale(1);
+    transition:.3s;
+}
+
+.item_img > img:hover {
+    transform:scale(1.2);
+}
+
+
+.item_info_cont {
+	padding: 0 10px;
+}
+.item_name {
+	word-break: break-all;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: monospace;
+}
+
+.item_price_date {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.item_price {
+	font-size: 19px;
+    font-weight: bold;
+    color: #403f3f;
+}
+
+.item_date {
+	font-size: 14px;
+    color: #504e4e;
+}
+
+.item_star_review {
+	display: flex;
+}
+.item_star_img {
+	font-size: 14px;
+    font-weight: bold;
+}
+
+.item_star_img > img {
+	width: 13px;
+	margin-right: 5px;
+}
+
+.item_review {
+	font-size: 13px;
+    margin-left: 10px;
+    color: gray;
+    font-weight: bold;
+}
+.item_loc {
+	font-size: 13px;
+}
+
+.item_loc > img{
+	width: 15px;
+	vertical-align: bottom;
+}
+
+.item_info_cont > div {
+	margin-bottom: 3px;
+}
+

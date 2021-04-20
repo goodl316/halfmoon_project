@@ -4,7 +4,7 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="/res/css/sale/detail.css?ver=7">
+<link rel="stylesheet" href="/res/css/sale/detail.css?ver=9">
 
 <div id="detail_cont">
 
@@ -38,10 +38,9 @@
 			<div id="detail_title">${data.title}</div>
 			<div id="detail_price">${data.p_price}원</div>
 			<div id="detail_mid">
-				<div class="after">
-					하트 :
+				<div class="after">하트
 					<c:if test="${loginUser != null}">
-						<div id="favoriteContainer" is_favorite="${data.is_favorite}"
+						<span id="favoriteContainer" is_favorite="${data.is_favorite}"
 							onclick="toggleFavorite(${data.i_product});">
 							<c:choose>
 								<c:when test="${data.is_favorite == 1}">
@@ -51,7 +50,7 @@
 									<i class="far fa-heart"></i>
 								</c:otherwise>
 							</c:choose>
-						</div>
+						</span>
 					</c:if>
 				</div>
 				<div class="after">뷰 : ${data.hit}</div>

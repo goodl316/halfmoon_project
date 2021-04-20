@@ -101,6 +101,9 @@ body{
     margin-left: 20px;
     margin-right: 20px;
 }
+#favoriteContainer {
+	margin-left: 10px;
+}
 
 #detail_loc_div {
 	display: flex;
@@ -653,7 +656,6 @@ body{
 .cmt_cmt_main_ctnt {
 	margin-left: 10px;
     margin-top: 4px;
-    width: 472px;
 }
 
 .cmt_cmt_main_arrow {
@@ -661,7 +663,7 @@ body{
 }
 
 .cmt_cmt_del_btn {
-	margin-left: 5px;
+	margin-left: 290px;
 }
 
 #secret_chk {

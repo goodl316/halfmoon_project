@@ -220,7 +220,7 @@ function execDaumPostcode() {
                 document.getElementById("extraAddress").value = '';
             }
 
-            var guideTextBox = document.getElementById("guide");
+           	var guideTextBox = document.getElementById("guide");
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
                 var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
@@ -232,7 +232,7 @@ function execDaumPostcode() {
                 guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
                 guideTextBox.style.display = 'block';
             } else {
-                guideTextBox.innerHTML = '';
+                guideTextBox.innerHTML = "";
                 guideTextBox.style.display = 'none';
             }
         }

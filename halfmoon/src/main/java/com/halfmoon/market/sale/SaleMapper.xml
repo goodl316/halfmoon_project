@@ -45,6 +45,10 @@
 		where a.i_product =#{i_product};
 	</select>
 	
+	<select id="selTypeList" resultType="ProductSaleDomain">
+		select * from t_product_sale where i_product_type=#{i_product_type}
+	</select>
+	
 	<!-- 상품수정정보 -->
 	<select id="selModProduct" resultType="ProductSaleDomain">
 		select * from t_product_sale

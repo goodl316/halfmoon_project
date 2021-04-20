@@ -198,15 +198,17 @@ public class SaleController {
     public Map<String,Object> favorite(@RequestBody ProductSaleDTO dto) {
     	
     	dto.setI_user(SecurityUtils.getUserPk(hs));
-    	System.out.println(dto.getI_user());
+    	System.out.println("loginUser:"+dto.getI_user());
     	System.out.println("favorite :"+dto.getI_product());
-    	System.out.println(dto.getToggle());
+    	System.out.println("toggle:"+dto.getToggle());
     	
     	Map<String, Object> val = new HashMap<String,Object>();
     	if(dto.getToggle()==0) {
+    		System.out.println("00000");
     		val.put(Const.KEY_RESULT, service.delFavorite(dto));
     	}
     	else{
+    		System.out.println("11111");
     		val.put(Const.KEY_RESULT, service.insFavorite(dto));
     	}
     	
@@ -268,6 +270,16 @@ public class SaleController {
     	Map<String,Object> val = new HashMap<String, Object>();
     	val.put(Const.KEY_RESULT, service.delCmtCmt(dto));
     	return val;
+    }
+    
+    //==================항목별 리스트 작업=========================
+    @GetMapping("/sale/typeList")
+    public void ProductTypeList(Model model, int i_product_type){
+    	ProductSaleDTO dto = new ProductSaleDTO();
+    	dto.setI_product_type(i_product_type);
+    	System.out.println("i_product_type:"+dto.getI_product_type());
+    	
+    	model.addAttribute(Const.KEY_LIST,service.selTypeList(dto));
     }
     
 }

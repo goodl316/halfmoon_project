@@ -1,4 +1,4 @@
-wvar loginI_user = document.querySelector('#loginI_user').value
+var loginI_user = document.querySelector('#loginI_user').value
 var productI_user = document.querySelector('#productI_user').value
 
 var slideIndex = 1;

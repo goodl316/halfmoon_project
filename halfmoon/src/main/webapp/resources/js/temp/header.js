@@ -70,3 +70,8 @@ function btn_my_sell_ajax() {
         }
     })
 }
+
+//================= 카테고리 별 리스트 뿌리기 =======================
+function TypeList(i_product_type){
+	location.href = `/sale/typeList?i_product_type=`+i_product_type
+}

@@ -187,4 +187,8 @@ public class SaleService {
     	int result = mapper.delCmtCmt(dto);
     	return result;
     }
+    
+    public List<ProductSaleDomain> selTypeList(ProductSaleDTO dto){
+    	return mapper.selTypeList(dto);
+    }
 }

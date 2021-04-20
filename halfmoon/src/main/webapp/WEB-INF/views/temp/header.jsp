@@ -68,7 +68,7 @@
 			<ul id="menuListUl">
 				<c:forEach var="item" items="${menuList}">
 					<li class="menuList">
-						<img class="btn_menu_img" alt="" src="/res/img/menuImg/${item.i_product_type}.png">
+						<img class="btn_menu_img" alt="" src="/res/img/menuImg/${item.i_product_type}.png" onclick="TypeList(${item.i_product_type})">
 					</li>
 				</c:forEach>
 			</ul>
@@ -81,7 +81,7 @@
 	
 	<div class="sub_div">
 		<ul class="sub_ul">
-			<li><a href="">생활가전</a></li>
+			<li	><a href="">생활가전</a></li>
 			<li><a href="">주방가전</a></li>
 			<li><a href="">모바일/태블릿</a></li>
 			<li><a href="">PC</a></li>
