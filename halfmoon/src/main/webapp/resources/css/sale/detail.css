@@ -630,11 +630,10 @@ body{
 	border-right: none;
 	border-left: none;
     margin-top: 10px;
-    width: 540px;
+    width: 539px;
     height: 25px;
 }
 .cmt_cmt_input_btn{
-    margin-left: 15px;
     color: gray;
 }
 .cmt_cmt_div2 {
@@ -656,6 +655,7 @@ body{
 .cmt_cmt_main_ctnt {
 	margin-left: 10px;
     margin-top: 4px;
+    width: 188px;
 }
 
 .cmt_cmt_main_arrow {
@@ -667,7 +667,7 @@ body{
 }
 
 #secret_chk {
-	margin-left: 64%;
+	margin-left: 63%;
 }
 
 

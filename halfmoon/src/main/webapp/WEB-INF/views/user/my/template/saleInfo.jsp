@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div id="profile_right">
 	<div id="profile_right_div1">
 		<h3>판매 내역</h3>
@@ -14,11 +15,17 @@
 			<div class="product_info_cont">
 				<div class="product_title">${item.title}</div>
 				<div class="product_pt">
-					<div class="price">${item.p_price}</div>
-					<div class="time">${item.show_time}</div>
+					
+					<div class="price">
+					<fmt:formatNumber value="${item.p_price}" pattern="#,###,###"/>원
+					</div>
+					
 				</div>
 			</div>
+			<div>
 			<div class="loc"><img alt="" src="/res/img/i_loc.png">달서구</div>
+			<div class="time">${item.show_time}</div>
+			</div>
 		</div>
 		</c:forEach>
 	</div>
@@ -31,11 +38,14 @@
 			<div class="product_info_cont">
 				<div class="product_title">${item.title}</div>
 				<div class="product_pt">
-					<div class="price">${item.p_price}</div>
-					<div class="time">${item.show_time}</div>
+				<c:if test="${item.p_price>=10000}"></c:if>
+					<div class="price"><fmt:formatNumber value="${item.p_price}" pattern="#,###,###"/>원</div>
 				</div>
 			</div>
+			<div class="abcd">
 			<div class="loc"><img alt="" src="/res/img/i_loc.png">달서구</div>
+			<div class="time">${item.show_time}</div>
+			</div>
 		</div>
 		</c:forEach>
 	</div>

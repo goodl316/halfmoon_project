@@ -318,6 +318,9 @@ input{
     font-size: 15px;
     padding-bottom: 20px;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 144px;
 }
 
 .product_pt {
@@ -332,6 +335,8 @@ input{
 .time {
 	font-size: 12px;
     color: gray;
+    margin-top:12px;
+	margin-left:22px;
 }
 .loc {
 	padding: 10px 10px 10px 30px;
@@ -340,7 +345,7 @@ input{
 .loc > img {
 	width: 15px;
     position: absolute;
-    margin-top: 2px;
+    margin-top: -2px;
     margin-left: -20px;
 }
 
@@ -350,4 +355,8 @@ input{
 .sold_product {
 	font-weight: bold;
 	margin-top: 70px;
+}
+
+.abcd{
+	display: flex;
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/res/css/user/salePage.css?ver=11">
+<link rel="stylesheet" href="/res/css/user/salePage.css?ver=13">
 <script defer src="/res/js/user/salePage.js?ver=1"></script>
 
 <input type="hidden" id="selectMenu" value="${param.menu}">

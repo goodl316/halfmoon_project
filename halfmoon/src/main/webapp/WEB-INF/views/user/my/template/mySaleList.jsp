@@ -20,7 +20,7 @@
             <tr>
                 <td>${item.title}</td>
                 <td>${item.p_nm}</td>
-                <td>${item.p_price}</td>
+                <td>${item.p_price}원</td>
                 <td>${item.type_sub_title}</td>
                 <td>${item.hit}</td>
                 <td>${item.state}</td>
