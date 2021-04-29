@@ -49,6 +49,10 @@
 		select * from t_product_sale where i_product_type=#{i_product_type}
 	</select>
 	
+	<select id="selTypeSubList" resultType="ProductSaleDomain">
+		select * from t_product_sale where type_sub_title= #{type_sub_title}
+	</select>
+	
 	<!-- 상품수정정보 -->
 	<select id="selModProduct" resultType="ProductSaleDomain">
 		select * from t_product_sale

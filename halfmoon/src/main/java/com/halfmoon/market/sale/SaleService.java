@@ -191,4 +191,7 @@ public class SaleService {
     public List<ProductSaleDomain> selTypeList(ProductSaleDTO dto){
     	return mapper.selTypeList(dto);
     }
+    List<ProductSaleDomain> selTypeSubList(ProductSaleDTO dto){
+    	return mapper.selTypeSubList(dto);
+    }
 }

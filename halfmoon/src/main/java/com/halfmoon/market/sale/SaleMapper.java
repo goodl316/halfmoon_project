@@ -21,6 +21,7 @@ public interface SaleMapper {
     ProductSaleDomain selProduct(ProductSaleDTO dto);
     UserDomain selProUser(ProductSaleDTO dto);
     List<ProductSaleDomain> selTypeList(ProductSaleDTO dto);
+    List<ProductSaleDomain> selTypeSubList(ProductSaleDTO dto);
 
     // 상품메인이미지업데이트
     int upsMainImg(ProductSaleDTO dto);

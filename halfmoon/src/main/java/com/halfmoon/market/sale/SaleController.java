@@ -281,5 +281,13 @@ public class SaleController {
     	
     	model.addAttribute(Const.KEY_LIST,service.selTypeList(dto));
     }
+    @GetMapping("/sale/typeSubList")
+    public void ProductTypeSubList(Model model, String type_sub_title){
+    	ProductSaleDTO dto = new ProductSaleDTO();
+    	dto.setType_sub_title(type_sub_title);
+    	System.out.println("type_sub_title:" + dto.getType_sub_title());
+    	
+    	model.addAttribute(Const.KEY_LIST,service.selTypeSubList(dto));
+    }
     
 }

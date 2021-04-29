@@ -75,3 +75,7 @@ function btn_my_sell_ajax() {
 function TypeList(i_product_type){
 	location.href = `/sale/typeList?i_product_type=`+i_product_type
 }
+function TypeSubList(type_sub_title){
+	location.href =`/sale/typeSubList?type_sub_title=`+type_sub_title
+	
+}

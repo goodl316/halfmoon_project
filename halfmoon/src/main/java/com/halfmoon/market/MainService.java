@@ -21,9 +21,37 @@ public class MainService {
 		return mapper.selMenuList();
 	}
 	
-	List<ProductTypeSubDomain> subSelMenuList() {
-		return mapper.subSelMenuList();
+	List<ProductTypeSubDomain> subSelMenuList1() {
+		return mapper.subSelMenuList1();
 	}
+	List<ProductTypeSubDomain> subSelMenuList2() {
+		return mapper.subSelMenuList2();
+	}
+	List<ProductTypeSubDomain> subSelMenuList3() {
+		return mapper.subSelMenuList3();
+	}
+	List<ProductTypeSubDomain> subSelMenuList4() {
+		return mapper.subSelMenuList4();
+	}
+	List<ProductTypeSubDomain> subSelMenuList5() {
+		return mapper.subSelMenuList5();
+	}
+	List<ProductTypeSubDomain> subSelMenuList6() {
+		return mapper.subSelMenuList6();
+	}
+	List<ProductTypeSubDomain> subSelMenuList7() {
+		return mapper.subSelMenuList7();
+	}
+	List<ProductTypeSubDomain> subSelMenuList8() {
+		return mapper.subSelMenuList8();
+	}
+	List<ProductTypeSubDomain> subSelMenuList9() {
+		return mapper.subSelMenuList9();
+	}
+	List<ProductTypeSubDomain> subSelMenuList10() {
+		return mapper.subSelMenuList10();
+	}
+	
 	
 	List<ProductSaleDomain> selTotalList() {
 
