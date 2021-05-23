@@ -26,7 +26,7 @@
 	
 	<!-- 마이페이지 등록 상품 목록 list -->
 	<select id="selMySaleList" resultType="ProductSaleDomain">
-		select i_product, i_user, title, p_nm, p_price, type_sub_title, hit, state, DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time
+		select i_product, i_user, title, p_nm, p_price, type_sub_title, hit, state,p_img_main, DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time
 		from t_product_sale
 		where i_user = #{i_user}
 		order by i_product desc
@@ -45,23 +45,28 @@
 	</update>
 	
 	<update id="updUser">
-	UPDATE t_user
-	<choose>
-	<when test="state ==1">
-	SET user_pw = #{user_pw}
-	</when>
-	<when test="state ==2">
-	SET postcode = #{postcode},
-	roadAddr =#{roadAddr},
-	jibunAddr = #{jibunAddr},
-	extraAddr = #{extraAddr},
-	detailAddr = #{detailAddr}
-	</when>
-	<when test="state ==3">
-	SET ph= #{ph}
-	</when>
-	</choose>
-	WHERE i_user = #{i_user}
+		UPDATE 
+			t_user
+		<choose>
+		<when test="state ==1">
+		SET 
+			user_pw = #{user_pw}
+		</when>
+		<when test="state ==2">
+		SET 
+			postcode = #{postcode},
+			roadAddr =#{roadAddr},
+			jibunAddr = #{jibunAddr},
+			extraAddr = #{extraAddr},
+			detailAddr = #{detailAddr}
+		</when>
+		<when test="state ==3">
+		SET 
+			ph= #{ph}
+		</when>
+		</choose>
+		WHERE 
+			i_user = #{i_user}
 	</update>
 	
 	<update id="updCode">

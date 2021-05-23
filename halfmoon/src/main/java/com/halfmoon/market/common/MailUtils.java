@@ -24,7 +24,7 @@ public class MailUtils {
 	public int sendJoinEmail(final String toEmail, final UserDTO dto) {
 		String subject = "[반월마켓] 회원가입 인증 이메일 입니다.";
 		// 나중에 본인이 구동하는 서버 ip로 고칠것.
-		String body = String.format("<div><a href=\"http://192.168.219.105:8090/joinSucess?i_user=%d\">회원가입 인증하기</a></div>", dto.getI_user());		
+		String body = String.format("<div><a href=\"http://222.103.31.203:8090/joinSucess?i_user=%d\">회원가입 인증하기</a></div>", dto.getI_user());		
 		return sendMail(toEmail, subject, body);
 	}
 	

@@ -273,6 +273,7 @@ public class SaleController {
     }
     
     //==================항목별 리스트 작업=========================
+   
     @GetMapping("/sale/typeList")
     public void ProductTypeList(Model model, int i_product_type){
     	ProductSaleDTO dto = new ProductSaleDTO();
@@ -282,7 +283,7 @@ public class SaleController {
     	model.addAttribute(Const.KEY_LIST,service.selTypeList(dto));
     }
     @GetMapping("/sale/typeSubList")
-    public void ProductTypeSubList(Model model, String type_sub_title){
+    public void ProductTypeSubList(Model model,String type_sub_title){
     	ProductSaleDTO dto = new ProductSaleDTO();
     	dto.setType_sub_title(type_sub_title);
     	System.out.println("type_sub_title:" + dto.getType_sub_title());

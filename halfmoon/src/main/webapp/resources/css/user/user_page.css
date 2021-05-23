@@ -123,7 +123,9 @@ input{
     margin-bottom: 30px;
 }
 
-
+.delModBtn {
+	width: 100px;
+}
 /*
 #user_pw{
 	border: 0.5px solid;
@@ -305,9 +307,18 @@ input{
 	cursor: pointer;
 	margin-right: 8px;
 }
+.product_img_div {
+	overflow: hidden;
+}
 
-.product_cont > img {
+.product_img_div > img {
 	width: 170px;
+	transform: scale(1);
+    transition: .3s;
+}
+
+.product_img_div > img:hover {
+	transform: scale(1.2);
 }
 
 .product_info_cont {
@@ -316,7 +327,7 @@ input{
 }
 .product_title {
     font-size: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 7px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -331,6 +342,9 @@ input{
 .price {
 	font-weight: 600;
 	font-size: 17px;
+}
+.loc_time_div{
+	display: flex;
 }
 .time {
 	font-size: 12px;
@@ -357,6 +371,4 @@ input{
 	margin-top: 70px;
 }
 
-.abcd{
-	display: flex;
-}
+

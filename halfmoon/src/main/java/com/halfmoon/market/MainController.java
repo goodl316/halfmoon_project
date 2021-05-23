@@ -31,28 +31,12 @@ public class MainController implements ViewPreparer  {
 		if (Const.menuList == null) {
 			System.out.println("------- server start --------");
 			Const.menuList = service.selMenuList();
-			Const.subMenuList1 = service.subSelMenuList1();
-			Const.subMenuList2 = service.subSelMenuList2();
-			Const.subMenuList3 = service.subSelMenuList3();
-			Const.subMenuList4 = service.subSelMenuList4();
-			Const.subMenuList5 = service.subSelMenuList5();
-			Const.subMenuList6 = service.subSelMenuList6();
-			Const.subMenuList7 = service.subSelMenuList7();
-			Const.subMenuList8 = service.subSelMenuList8();
-			Const.subMenuList9 = service.subSelMenuList9();
-			Const.subMenuList10 = service.subSelMenuList10();
+			Const.subMenuList = service.selSubMenuList();
+			
 		}
 		attributeContext.putAttribute("menuList", new Attribute(Const.menuList), true);
-		attributeContext.putAttribute("subMenuList1", new Attribute(Const.subMenuList1), true);
-		attributeContext.putAttribute("subMenuList2", new Attribute(Const.subMenuList2), true);
-		attributeContext.putAttribute("subMenuList3", new Attribute(Const.subMenuList3), true);
-		attributeContext.putAttribute("subMenuList4", new Attribute(Const.subMenuList4), true);
-		attributeContext.putAttribute("subMenuList5", new Attribute(Const.subMenuList5), true);
-		attributeContext.putAttribute("subMenuList6", new Attribute(Const.subMenuList6), true);
-		attributeContext.putAttribute("subMenuList7", new Attribute(Const.subMenuList7), true);
-		attributeContext.putAttribute("subMenuList8", new Attribute(Const.subMenuList8), true);
-		attributeContext.putAttribute("subMenuList9", new Attribute(Const.subMenuList9), true);
-		attributeContext.putAttribute("subMenuList10", new Attribute(Const.subMenuList10), true);
+		attributeContext.putAttribute("subMenuList", new Attribute(Const.subMenuList), true);
+		
 		
 	}
 	

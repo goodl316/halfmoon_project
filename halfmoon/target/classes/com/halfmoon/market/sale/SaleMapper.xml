@@ -2,130 +2,153 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfmoon.market.sale.SaleMapper">
 	<select id="selLoc" resultType="LocDomain">
-		SELECT * 
+		SELECT *
 		FROM t_loc
 	</select>
 
-	<insert id="regProduct" useGeneratedKeys="true" keyProperty="i_product">
-		insert into t_product_sale (p_img_main, i_user, p_nm, p_price, i_product_type, type_sub_title, title, ctnt, i_loc, state, tag)
-		values ('test.jsp', #{i_user}, #{p_nm}, #{p_price}, #{i_product_type}, #{type_sub_title}, #{title}, #{ctnt}, #{i_loc}, #{state}, #{tag})
+	<insert id="regProduct" useGeneratedKeys="true"
+		keyProperty="i_product">
+		insert into t_product_sale (p_img_main, i_user, p_nm,
+		p_price, i_product_type, type_sub_title, title, ctnt, i_loc, state,
+		tag)
+		values ('test.jsp', #{i_user}, #{p_nm}, #{p_price},
+		#{i_product_type}, #{type_sub_title}, #{title}, #{ctnt}, #{i_loc},
+		#{state}, #{tag})
 	</insert>
 	<!-- 좋아요 -->
 	<insert id="insFavorite">
-		insert into t_favorite 
+		insert into t_favorite
 		(i_product,i_user)
 		values
 		(#{i_product},#{i_user})
 	</insert>
-	
+
 	<insert id="insCmt">
-	insert into t_cmt
-	(i_user,i_product,ctnt,isSecret)
-	values
-	(#{i_user},#{i_product},#{ctnt},#{isSecret})
+		insert into t_cmt
+		(i_user,i_product,ctnt,isSecret)
+		values
+		(#{i_user},#{i_product},#{ctnt},#{isSecret})
 	</insert>
-	
+
 	<insert id="insCmtcmt">
-	insert into t_cmt_cmt
-	(i_cmt,ctnt,i_product)
-	values
-	(#{i_cmt},#{ctnt},#{i_product})
+		insert into t_cmt_cmt
+		(i_cmt,ctnt,i_product)
+		values
+		(#{i_cmt},#{ctnt},#{i_product})
 	</insert>
 
 	<!-- 기본 상품 정보 -->
 	<select id="selProduct" resultType="ProductSaleDomain">
-		select a.i_product, a.p_nm, p_price, a.i_product_type, a.type_sub_title, a.p_img_main, a.title, a.ctnt, a.i_loc, a.ctnt, a.state, a.tag, a.r_dt, a.m_dt, a.hit,
-		a.i_user, b.user_nm, TIMESTAMPDIFF(SECOND, a.r_dt, now()) as show_time,case when c.i_product IS NULL THEN 0 ELSE 1 END AS is_favorite
+		SELECT a.i_product, a.p_nm,
+		p_price, a.i_product_type, a.type_sub_title, a.p_img_main, a.title,
+		a.ctnt, a.i_loc, a.ctnt, a.state, a.tag, a.r_dt, a.m_dt, a.hit,
+		a.i_user, b.user_nm, TIMESTAMPDIFF(SECOND, a.r_dt, now()) as
+		show_time, (select count(i_user) from t_favorite where i_user = #{i_user} and
+		i_product = #{i_product}) as is_favorite
 		from t_product_sale a
 		left join t_user b
 		on a.i_user = b.i_user
-		left join t_favorite c
-		on b.i_user = c.i_user
-		and c.i_user = #{i_user}
-		where a.i_product =#{i_product};
+		where a.i_product = #{i_product};
 	</select>
-	
+
 	<select id="selTypeList" resultType="ProductSaleDomain">
-		select * from t_product_sale where i_product_type=#{i_product_type}
+		select i_product, i_user,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,
+		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
+		"cmt_count"
+		from t_product_sale a where i_product_type=#{i_product_type}
 	</select>
-	
+
 	<select id="selTypeSubList" resultType="ProductSaleDomain">
-		select * from t_product_sale where type_sub_title= #{type_sub_title}
+		select i_product, i_user,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,
+		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
+		"cmt_count"
+		from t_product_sale a where type_sub_title= #{type_sub_title}
 	</select>
-	
+
 	<!-- 상품수정정보 -->
 	<select id="selModProduct" resultType="ProductSaleDomain">
-		select * from t_product_sale
+		select * from
+		t_product_sale
 		where i_product = #{i_product} and i_user = #{i_user};
 	</select>
-	
+
 	<select id="selCmt" resultType="CmtDomain">
-		select a.i_cmt,a.i_user,a.i_product,a.ctnt,b.user_nm ,b.profile_img,a.isSecret from t_cmt a
+		select
+		a.i_cmt,a.i_user,a.i_product,a.ctnt,b.user_nm
+		,b.profile_img,a.isSecret from t_cmt a
 		left join t_user b
-		on a.i_user = b.i_user
+		on a.i_user =
+		b.i_user
 		where i_product= #{i_product}
 	</select>
-	
+
 	<select id="selCmtcmt" resultType="CmtCmtDomain">
-	select *from t_cmt_cmt where i_cmt=#{i_cmt}
+		select *from t_cmt_cmt where i_cmt=#{i_cmt}
 	</select>
-	
+
 	<!-- 상품등록유저 정보 -->
 	<select id="selProUser" resultType="UserDomain">
-		select count(*) as p_total, b.user_nm
+		select count(*) as p_total,
+		b.user_nm
 		from t_product_sale a
 		inner join t_user b
-		on a.i_user = b.i_user
+		on a.i_user =
+		b.i_user
 		where a.i_user = #{i_user};
 	</select>
-	
+
 	<!-- 상품 리스트 뿌리기 -->
 	<select id="selProductList" resultType="ProductSaleDomain">
-	SELECT i_product,p_nm,p_price,p_img_main,title,r_dt,i_user
-	FROM t_product_sale
-	WHERE i_user=#{i_user}
+		SELECT i_product,p_nm,p_price,p_img_main,title,r_dt,i_user
+		FROM t_product_sale
+		WHERE i_user=#{i_user}
 	</select>
-	
+
 	<update id="updHits">
-	 UPDATE t_product_sale SET hit = hit + 1
-	 WHERE i_product = #{i_product}
+		UPDATE t_product_sale SET hit = hit + 1
+		WHERE i_product = #{i_product}
 	</update>
-	
+
 	<!-- 상품 수정 -->
 	<update id="modProduct">
 		update t_product_sale
-		set p_nm = #{p_nm}, p_price = #{p_price}, i_product_type = #{i_product_type}, type_sub_title = #{type_sub_title}, title = #{title}, ctnt = #{ctnt}, tag = #{tag},
-		    m_dt = now()
+		set p_nm = #{p_nm}, p_price =
+		#{p_price}, i_product_type = #{i_product_type}, type_sub_title =
+		#{type_sub_title}, title = #{title}, ctnt = #{ctnt}, tag = #{tag},
+		m_dt = now()
 		where i_product = #{i_product} and i_user = #{i_user}
 	</update>
-	
+
 	<update id="upsMainImg">
 		update t_product_sale
 		set p_img_main = #{p_img_main}
 		where i_product = #{i_product}
 	</update>
-	
+
 	<delete id="delSaleProduct">
 		delete from t_product_sale
-		where i_user = #{i_user} and i_product = #{i_product}
+		where i_user = #{i_user}
+		and i_product = #{i_product}
 	</delete>
-	
+
 	<delete id="delFavorite">
-	delete from t_favorite
-	where i_user = #{i_user} and i_product =#{i_product}
+		delete from t_favorite
+		where i_user = #{i_user} and i_product =#{i_product}
 	</delete>
-	
+
 	<delete id="delCmt">
-	delete from t_cmt
-	where i_cmt=#{i_cmt} and i_user= #{i_user}
+		delete from t_cmt
+		where i_cmt=#{i_cmt} and i_user= #{i_user}
 	</delete>
-	
+
 	<delete id="delCmtCmt">
-	delete from t_cmt_cmt
-	where i_cmt_cmt=#{i_cmt_cmt} and i_cmt=#{i_cmt}
+		delete from t_cmt_cmt
+		where i_cmt_cmt=#{i_cmt_cmt} and i_cmt=#{i_cmt}
 	</delete>
-	
-	
-	
-	
+
+
+
+
 </mapper>

@@ -1,82 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<link rel="stylesheet" href="/res/css/common.css?ver=4">
-<div id="main-section">
-	<div class="main-sectiondiv">
-		<img class="asd" alt="" src="/res/img/1.jpg">
-	</div>
-</div>
-<div id="main-section2">
-	<div class="main-sectiondiv">
-		<h3>전체상품(임시List)</h3>
-		<c:forEach items="${total_list}" var="item">
-			<div class="product_cont" onclick="moveDetail(${item.i_product}, ${item.i_user});">
-				<input type="hidden" id="i_product" value="${item.i_product}">
-				<div class="img">
-					<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
-				</div>
-				<div class="title">
-					${item.title}
-				</div>
-				<div class="mid_cont">
-					<div class="price">
-						${item.p_price}원
-					</div>
-					<div class="time">
-						${item.show_time}
-					</div>
-				</div>
-				<div class="loc">
-					${item.show_loc}
-				</div>
-			</div>
-		</c:forEach>
-	</div>
-</div>
-<div id="main-section3">
-	<div class="main-sectiondiv">
-		
-	</div>
-</div>
-<div id="main-section4">
-	<div class="main-sectiondiv">
-		
-	</div>
-</div>
-<div id="main-section5">
+<link rel="stylesheet" href="/res/css/home.css?ver=5">
+
+<div>
 	<div class="main-sectiondiv1">
-		<div class="famoush1">
-			<h1>중고거래 인기매물</h1>
+		<div class="main_img_div">
+			<img class="main_img" src="/res/img/main_img.png">
 		</div>
-		<div class="famous-cont">
-			<c:forEach items="${total_list}" var="item">
-			<div class="famous-box">
-					<div class="" onclick="moveDetail(${item.i_product}, ${item.i_user});">
-						<input type="hidden" id="i_product" value="${item.i_product}">
-						<div class="famous_img">
-							<img class="famous_img" src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
+		<div class="main_img_div">
+			<img class="main_img" src="/res/img/main_img2.png">
+		</div>
+	
+		<div class="famoush1">
+			<h1>이 달의 상품</h1>
+		</div>
+		<div class="product_info_sub">
+			<c:forEach var="item" items="${total_list}">
+				<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user})">
+					<input type="hidden" id=i_product value="${item.i_product}">
+					<div class="product_img_div">
+						<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
+					</div>
+					<div class="product_info_cont">
+						<div class="product_title">${item.title}</div>
+						<div class="product_pt">
+							<div class="price"><fmt:formatNumber value="${item.p_price}" pattern="#,###,###"/>원</div>
 						</div>
-						<div class="famous_tl">
-							<div class="famous_title">
-								${item.title}
+						<div class="item_star_review">
+							<div class="item_star_img">
+								<img alt="" src="/res/img/star.png">4.6
 							</div>
-							<div class="famous_time">
-								${item.show_time}
-							</div>
+							<div class="item_review">댓글 ${item.cmt_count}</div>
 						</div>
-						<div class="famous_pt">
-							<div class="famous_price">
-								${item.p_price}원
-							</div>
-							<div class="famous_loc">
-								${item.show_loc}
-							</div>
-						</div>
+					</div>
+					<div class="loc_time_div">
+						<div class="loc"><img alt="" src="/res/img/i_loc.png">달서구</div>
+						<div class="time">${item.show_time}</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
+
+		<div class="famoush1">
+			<h1>중고거래 인기매물</h1>
+		</div>
+		<div class="product_info_sub">
+				<c:forEach var="item" items="${total_list}">
+					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user})">
+						<input type="hidden" id=i_product value="${item.i_product}">
+						<div class="product_img_div">
+							<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
+						</div>
+						<div class="product_info_cont">
+							<div class="product_title">${item.title}</div>
+							<div class="product_pt">
+								<div class="price"><fmt:formatNumber value="${item.p_price}" pattern="#,###,###"/>원</div>
+							</div>
+							<div class="item_star_review">
+								<div class="item_star_img">
+									<img alt="" src="/res/img/star.png">4.6
+								</div>
+								<div class="item_review">댓글 1200</div>
+							</div>
+						</div>
+						<div class="loc_time_div">
+							<div class="loc"><img alt="" src="/res/img/i_loc.png">달서구</div>
+							<div class="time">${item.show_time}</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 	</div>
 </div>

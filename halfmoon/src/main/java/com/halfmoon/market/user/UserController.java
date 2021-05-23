@@ -145,7 +145,6 @@ public class UserController {
 		System.out.println(p.getState());
 		Map<String,Object> val = new HashMap<String, Object>();
 		if(p.getState()==1) {
-			
 			val.put(Const.KEY_RESULT, service.updPw(p));
 		}
 		else if(p.getState()==2) {
