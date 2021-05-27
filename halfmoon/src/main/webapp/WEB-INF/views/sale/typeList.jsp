@@ -9,20 +9,20 @@
 			<div>
 				<ul>
 					<li id="filter_li">
-						<button>
+						<button onclick="moveListSort(${param.i_product_type},1)">
 							<div>높은가격순</div>
 						</button>
-						<button>
+						<button onclick="moveListSort(${param.i_product_type},2)">
 							<div>낮은가격순</div>
 						</button>
-						<button>
+						<button onclick="moveListSort(${param.i_product_type},3)">
 							<div>많은리뷰순</div>
 						</button>
-						<button>
-							<div>최신순</div>
-						</button>
-						<button>
+						<button onclick="moveListSort(${param.i_product_type},4)">
 							<div>인기순</div>
+						</button>
+						<button onclick="moveListSort(${param.i_product_type},5)">
+							<div>최신순</div>
 						</button>
 						<button>
 							<div>판매순</div>
@@ -33,6 +33,7 @@
 		</div>
 		<div id="right_div">
 			<div id="right_title_info">
+			<button onclick="tt(${param.i_product_type})">확인</button>
 				<div id="title">${list[0].type_sub_title}</div> 
 				<div id="kinds">인기순</div>
 			</div>
@@ -57,7 +58,7 @@
 							</div>
 						</div>
 						<div class="loc_time_div">
-							<div class="loc"><img alt="" src="/res/img/i_loc.png">달서구</div>
+							<div class="loc"><img alt="" src="/res/img/i_loc.png">${item.show_loc}</div>
 							<div class="time">${item.show_time}</div>
 						</div>
 					</div>

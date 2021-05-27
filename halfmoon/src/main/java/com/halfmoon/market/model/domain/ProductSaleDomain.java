@@ -54,6 +54,7 @@ public class ProductSaleDomain extends ProductSaleEntity{
 		this.cmt_count = cmt_count;
 	}
 	
+	
     
     
 }

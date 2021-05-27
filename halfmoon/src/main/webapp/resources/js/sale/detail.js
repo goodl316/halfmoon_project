@@ -321,7 +321,7 @@ var cmtObj = {
 					<div>
 						<div class="cmt_user_time">
 							<div>${item.user_nm}</div>
-							<div>1초전</div>
+							<div>${item.show_time}</div>
 						</div>
 						${cmt_ctnt}
 						<div class="input_btn">

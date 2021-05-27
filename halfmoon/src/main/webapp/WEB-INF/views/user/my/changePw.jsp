@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       <link rel="stylesheet" href="/res/css/user/changeId_Pw.css?ver=1">
-<html>
+      <script defer src="/res/js/user/modAccount.js"></script>
 <body>
 <div id="findCont">
 	<div id="find_div">
@@ -48,8 +48,8 @@
 				고객님의 정보와 일치하는 아이디 목록입니다.
 			</div>
 			<div class="findId_main_info">
-				<span class="id_info">gjehdalshh</span>
-				<span class="join_date">가입일 : 2021.03.30</span>
+				<span class="id_info">${loginUser.id_email}</span>
+				<span class="join_date">가입일 : ${loginUser.r_dt}</span>
 			</div>
 		</div>
 		<div class="findId_next_btn">
@@ -107,15 +107,14 @@
 				비밀번호 재설정
 			</div>
 			<div class="user_id">
-				반월마켓 아이디 : gjehdalshh
 			</div>
 			<div class="new_pw">
-				<input type="text" placeholder="새 비밀번호">
-				<input type="text" placeholder="새 비밀번호 확인">
+				<input id="userPw" type="password" placeholder="새 비밀번호">
+				<input id="chkUserPw" type="password" placeholder="새 비밀번호 확인">
 			</div>
 		</div>
 		<div class="findPw_next">
-			<button>변경</button>
+			<button id="chPwbtn" onclick="chPw(${loginUser.i_user})">변경</button>
 		</div>
 	</div>
 </div>

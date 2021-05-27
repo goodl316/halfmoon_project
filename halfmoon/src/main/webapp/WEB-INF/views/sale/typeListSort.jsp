@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<link rel="stylesheet" href="/res/css/sale/typeList.css?ver=1">
+<link rel="stylesheet" href="/res/css/sale/typeList.css?ver=3">
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div>
 	<div id="whole_div">
@@ -9,19 +9,19 @@
 			<div>
 				<ul>
 					<li id="filter_li">
-						<button onclick="moveSubListSort('${param.type_sub_title}',1)">
+						<button onclick="moveListSort(${param.i_product_type},1)">
 							<div>높은가격순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',2)">
+						<button onclick="moveListSort(${param.i_product_type},2)">
 							<div>낮은가격순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',3)">
+						<button onclick="moveListSort(${param.i_product_type},3)">
 							<div>많은리뷰순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',4)">
+						<button onclick="moveListSort(${param.i_product_type},4)">
 							<div>인기순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',5)">
+						<button onclick="moveListSort(${param.i_product_type},5)">
 							<div>최신순</div>
 						</button>
 						<button>
@@ -36,6 +36,7 @@
 				<div id="title">${list[0].type_sub_title}</div> 
 				<div id="kinds">인기순</div>
 			</div>
+			
 			<div class="product_info_sub">
 				<c:forEach var="item" items="${list}">
 					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user})">
@@ -62,10 +63,13 @@
 					</div>
 				</c:forEach>
 			</div>
-
+			
 		</div>
 	</div>
 </div>
+
+
+
 
 <script defer src="/res/js/sale/typeList.js?ver=4"></script>
 

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.halfmoon.market.common.Const;
 import com.halfmoon.market.common.FileUtils;
 import com.halfmoon.market.common.SecurityUtils;
+import com.halfmoon.market.common.Utils;
 import com.halfmoon.market.model.domain.CmtCmtDomain;
 import com.halfmoon.market.model.domain.CmtDomain;
 import com.halfmoon.market.model.domain.LocDomain;
@@ -44,6 +45,8 @@ public class SaleService {
     int regProduct(ProductSaleDTO dto) {
         return mapper.regProduct(dto);
     }
+    
+   
 
     ProductSaleDomain selProduct(ProductSaleDTO dto) {
     	ProductSaleDomain vo = mapper.selProduct(dto);
@@ -155,7 +158,12 @@ public class SaleService {
     }
     
     List<CmtDomain> selCmt(CmtDTO dto) {
-    	return mapper.selCmt(dto);
+    	List<CmtDomain> list = mapper.selCmt(dto);
+    		for(int i = 0; i<list.size(); i++) {
+    			list.get(i).setShow_time(Utils.timeFormatter(list.get(i).getShow_time()));
+    		}
+    	
+    	return list;
     }
     
     public int insCmt(CmtDTO dto) {
@@ -189,9 +197,32 @@ public class SaleService {
     }
     
     public List<ProductSaleDomain> selTypeList(ProductSaleDTO dto){
-    	return mapper.selTypeList(dto);
+    	List<ProductSaleDomain> list = mapper.selTypeList(dto);
+    	for(int i=0; i<list.size(); i++) {
+    		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc() - 1]);
+    	}
+    	return list;
     }
     List<ProductSaleDomain> selTypeSubList(ProductSaleDTO dto){
-    	return mapper.selTypeSubList(dto);
+    	List<ProductSaleDomain> list = mapper.selTypeSubList(dto);
+    	for(int i=0; i<list.size(); i++) {
+    		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc() - 1]);
+    	}
+    	return list;
+    }
+    
+    List<ProductSaleDomain> selProductListSort(ProductSaleDTO dto){
+    	List<ProductSaleDomain> list = mapper.selProductListSort(dto);
+    	for(int i=0; i<list.size(); i++) {
+    		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc()-1]);
+    	}
+    	return list;
+    }
+    List<ProductSaleDomain> selProductSubListSort(ProductSaleDTO dto){
+    	List<ProductSaleDomain> list = mapper.selProductSubListSort(dto);
+    	for(int i=0; i<list.size(); i++) {
+    		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc()-1]);
+    	}
+    	return list;
     }
 }

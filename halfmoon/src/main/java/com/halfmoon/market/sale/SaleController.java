@@ -290,5 +290,26 @@ public class SaleController {
     	
     	model.addAttribute(Const.KEY_LIST,service.selTypeSubList(dto));
     }
+    @GetMapping("/sale/typeListSort")
+    public void ProductTypeListSort(Model model,int i_product_type, int sortState) {
+    	System.out.println("sortState:"+sortState);
+    	System.out.println("i_product_type:"+i_product_type);
+    	ProductSaleDTO dto = new ProductSaleDTO();
+    	dto.setI_product_type(i_product_type);
+    	dto.setSortState(sortState);
+    	System.out.println(dto.getSortState());
+    	
+    	model.addAttribute(Const.KEY_LIST, service.selProductListSort(dto));
+    }
     
+    @GetMapping("/sale/typeSubListSort")
+    public void ProductTypeSubListSort(Model model,String type_sub_title, int sortState) {
+    	System.out.println("sortState:"+sortState);
+    	ProductSaleDTO dto = new ProductSaleDTO();
+    	dto.setType_sub_title(type_sub_title);
+    	dto.setSortState(sortState);
+    	System.out.println(dto.getSortState());
+    	
+    	model.addAttribute(Const.KEY_LIST, service.selProductSubListSort(dto));
+    }
 }

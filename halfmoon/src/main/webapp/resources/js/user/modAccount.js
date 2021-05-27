@@ -23,8 +23,8 @@ function pwAjax(i_user){
     var userPwElem = document.querySelector('#userPw')
     var chkUserPwElem = document.querySelector('#chkUserPw')
 
-    if(!userPwElem.value==chkUserPwElem.value){
-        alter("변경할 비밀번호를 확인해 주세요")
+    if(userPwElem.value!==chkUserPwElem.value){
+        alert("변경할 비밀번호를 확인해 주세요")
         return
     }
 
@@ -238,4 +238,3 @@ function execDaumPostcode() {
         }
     }).open();
 }
-

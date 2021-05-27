@@ -261,7 +261,7 @@
 	</div>
 </div>
 
-<script defer src="/res/js/sale/detail.js?ver=4"></script>
+<script defer src="/res/js/sale/detail.js?ver=5"></script>
 
 
 

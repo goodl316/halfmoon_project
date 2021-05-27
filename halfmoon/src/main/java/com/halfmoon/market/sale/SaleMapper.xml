@@ -53,7 +53,7 @@
 
 	<select id="selTypeList" resultType="ProductSaleDomain">
 		select i_product, i_user,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
 		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
 		"cmt_count"
 		from t_product_sale a where i_product_type=#{i_product_type}
@@ -61,7 +61,7 @@
 
 	<select id="selTypeSubList" resultType="ProductSaleDomain">
 		select i_product, i_user,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
 		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
 		"cmt_count"
 		from t_product_sale a where type_sub_title= #{type_sub_title}
@@ -77,7 +77,8 @@
 	<select id="selCmt" resultType="CmtDomain">
 		select
 		a.i_cmt,a.i_user,a.i_product,a.ctnt,b.user_nm
-		,b.profile_img,a.isSecret from t_cmt a
+		,b.profile_img,a.isSecret,TIMESTAMPDIFF(SECOND, a.r_dt,
+		now()) as show_time from t_cmt a
 		left join t_user b
 		on a.i_user =
 		b.i_user
@@ -104,6 +105,58 @@
 		SELECT i_product,p_nm,p_price,p_img_main,title,r_dt,i_user
 		FROM t_product_sale
 		WHERE i_user=#{i_user}
+	</select>
+	
+	<select id="selProductListSort" resultType="ProductSaleDomain">
+		select distinct a.i_product, a.i_user,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
+		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
+		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
+		from t_product_sale a
+		where i_product_type=#{i_product_type}
+		<choose>
+		<when test="sortState==1"> 
+		order by p_price desc;
+		</when>
+		<when test="sortState==2"> 
+		order by p_price asc;
+		</when>
+		<when test="sortState==3"> 
+		order by cmt_count desc;
+		</when>
+		<when test="sortState==4"> 
+		order by is_favorite desc;
+		</when>
+		<when test="sortState==5">
+		order by i_product desc;
+		</when>
+		</choose>
+	</select>
+	
+	<select id="selProductSubListSort" resultType="ProductSaleDomain">
+		select distinct a.i_product, a.i_user,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
+		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
+		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
+		from t_product_sale a
+		where type_sub_title=#{type_sub_title}
+		<choose>
+		<when test="sortState==1"> 
+		order by p_price desc;
+		</when>
+		<when test="sortState==2"> 
+		order by p_price asc;
+		</when>
+		<when test="sortState==3"> 
+		order by cmt_count desc;
+		</when>
+		<when test="sortState==4"> 
+		order by is_favorite desc;
+		</when>
+		<when test="sortState==5">
+		order by i_product desc;
+		</when>
+		</choose>
 	</select>
 
 	<update id="updHits">
