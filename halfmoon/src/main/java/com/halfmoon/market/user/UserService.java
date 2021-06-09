@@ -35,6 +35,9 @@ public class UserService {
 	public UserDomain selUser(UserDTO p) {
 		return mapper.selUser(p);
 	}
+	UserDomain findUser(UserDTO dto) {
+		return mapper.findUser(dto);
+	}
 
 	public int login(UserDTO p) {
 		UserDomain vo = selUser(p);

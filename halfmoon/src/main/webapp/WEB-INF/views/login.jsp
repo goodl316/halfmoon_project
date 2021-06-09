@@ -11,7 +11,7 @@
 		<div><input class="login_password" type="password" onkeyup="enterkey()" name="clk_pw" placeholder="password" value="!qweasd234"></div>
 		<div><input class="login_button" type="button" id="btn_login"value="로그인"></div>
 		<div class="logindiv">
-			<a class="logindiv_a" href="/user/my/changePw">아이디찾기</a>
+			<a class="logindiv_a" href="/user/my/findUser">아이디찾기</a>
 			<a class="logindiv_a" href="/user/my/changePw">비밀번호찾기</a>
 			<a class="logindiv_a" href="/join">회원가입</a>
 

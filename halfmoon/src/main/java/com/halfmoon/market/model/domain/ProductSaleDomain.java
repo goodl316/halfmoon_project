@@ -6,6 +6,7 @@ public class ProductSaleDomain extends ProductSaleEntity{
     private String show_price;
     private String show_loc;
     private String show_time;
+    private String show_title;
     private String user_nm;
     private int is_favorite;
     private int i_cmt;
@@ -52,6 +53,12 @@ public class ProductSaleDomain extends ProductSaleEntity{
 	}
 	public void setCmt_count(int cmt_count) {
 		this.cmt_count = cmt_count;
+	}
+	public String getShow_title() {
+		return show_title;
+	}
+	public void setShow_title(String show_title) {
+		this.show_title = show_title;
 	}
 	
 	

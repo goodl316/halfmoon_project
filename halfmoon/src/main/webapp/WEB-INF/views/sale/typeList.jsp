@@ -33,13 +33,12 @@
 		</div>
 		<div id="right_div">
 			<div id="right_title_info">
-			<button onclick="tt(${param.i_product_type})">확인</button>
-				<div id="title">${list[0].type_sub_title}</div> 
+				<div id="title">${list[0].show_title}</div> 
 				<div id="kinds">인기순</div>
 			</div>
-			
 			<div class="product_info_sub">
 				<c:forEach var="item" items="${list}">
+					<c:if test="${item.state == 1}">
 					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user})">
 						<input type="hidden" id=i_product value="${item.i_product}">
 						<div class="product_img_div">
@@ -62,6 +61,7 @@
 							<div class="time">${item.show_time}</div>
 						</div>
 					</div>
+					</c:if>
 				</c:forEach>
 			</div>
 			
@@ -73,4 +73,3 @@
 
 
 <script defer src="/res/js/sale/typeList.js?ver=4"></script>
-

@@ -101,6 +101,17 @@ public class SaleController {
         model.addAttribute(Const.KEY_DATA, vo);
         
     }
+
+    //판매중, 판매완료
+    @PostMapping("/sale/updState")
+    @ResponseBody
+    public Map<String, Object> saleDetailUpdState(@RequestBody ProductSaleDTO dto) {
+    	System.out.println("asdsad"+dto.getI_product());
+    	Map<String, Object> val = new HashMap<>();
+    	service.updProductState(dto);
+    	val.put(Const.KEY_RESULT, 1);
+    	return val;
+    }
     
     // 상품삭제 및 수정 (마이프로필페이지에서 이루어짐)
     // 상품삭제

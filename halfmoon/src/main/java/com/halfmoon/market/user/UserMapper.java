@@ -16,6 +16,7 @@ public interface UserMapper {
 	// R
 	UserDomain selUser(UserDTO dto);
 	UserDomain selUserInfo(UserDTO dto);
+	UserDomain findUser(UserDTO dto);
 	List<ProductSaleDomain> selMySaleList(UserDTO dto);
 	// U
 	int updAuth(UserDTO dto);

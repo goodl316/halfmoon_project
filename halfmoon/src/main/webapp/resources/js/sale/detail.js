@@ -1,5 +1,35 @@
 var loginI_user = document.querySelector('#loginI_user').value
 var productI_user = document.querySelector('#productI_user').value
+var i_product = document.querySelector('#sold_i_product')
+
+function sold_out(state) {
+	param = {
+		i_product: i_product,
+		state: state
+	}
+	fetch(`/sale/updState?i_product=${i_product}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body:JSON.stringify(param)
+	}).then(function(res) {
+		return res.json()
+	}).then(function(res) {
+		if(res.result == 1) {
+			if(state == 1) {
+				alert('판매중 상태로 변경되었습니다.')
+			} else if(state == 2) {
+				alert('판매완료 상태로 변경되었습니다.')
+			}
+			window.location.reload()
+		} else {
+			alert('변경이 실패하였습니다')
+		}
+	})
+}
+	
+
 
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -54,10 +84,6 @@ function similarSlides(n) {
 	slides1[Index - 1].style.display = "block";
 	dots1[Index - 1].className += " active";
 }
-
-
-
-
 
 
 

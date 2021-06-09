@@ -315,6 +315,7 @@ input{
 	width: 170px;
 	transform: scale(1);
     transition: .3s;
+    height: 170px;
 }
 
 .product_img_div > img:hover {

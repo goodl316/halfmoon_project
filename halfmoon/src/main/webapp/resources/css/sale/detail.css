@@ -150,7 +150,7 @@ body{
     margin-right: 20px;
 }
 
-.like, .deal {
+.like, .deal, .sold_out, .selling{
 	border: 1px solid skyblue;
     background-color: white;
     color: skyblue;
@@ -159,7 +159,7 @@ body{
     margin-top: 9px;
     outline: 0px;
 }
-.like:hover, .deal:hover {
+.like:hover, .deal:hover, .sold_out:hover, .selling:hover {
 	background-color: skyblue;
 	color: white;
 	cursor: pointer;

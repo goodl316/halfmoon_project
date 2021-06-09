@@ -38,6 +38,7 @@
 			</div>
 			<div class="product_info_sub">
 				<c:forEach var="item" items="${list}">
+					<c:if test="${item.state == 1}">
 					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user})">
 						<input type="hidden" id=i_product value="${item.i_product}">
 						<div class="product_img_div">
@@ -60,6 +61,7 @@
 							<div class="time">${item.show_time}</div>
 						</div>
 					</div>
+					</c:if>
 				</c:forEach>
 			</div>
 

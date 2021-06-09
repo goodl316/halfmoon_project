@@ -46,6 +46,9 @@ public class SaleService {
         return mapper.regProduct(dto);
     }
     
+    int updProductState(ProductSaleDTO dto) {
+ 	   return mapper.updProductState(dto);
+    }
    
 
     ProductSaleDomain selProduct(ProductSaleDTO dto) {
@@ -199,6 +202,8 @@ public class SaleService {
     public List<ProductSaleDomain> selTypeList(ProductSaleDTO dto){
     	List<ProductSaleDomain> list = mapper.selTypeList(dto);
     	for(int i=0; i<list.size(); i++) {
+    		System.out.println(list.get(i).getI_product_type()-1);
+    		list.get(i).setShow_title(Const.titleArr[list.get(i).getI_product_type()-1]);
     		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc() - 1]);
     	}
     	return list;
@@ -214,6 +219,8 @@ public class SaleService {
     List<ProductSaleDomain> selProductListSort(ProductSaleDTO dto){
     	List<ProductSaleDomain> list = mapper.selProductListSort(dto);
     	for(int i=0; i<list.size(); i++) {
+    		System.out.println("i_product_type:"+list.get(i).getI_product_type());
+    		list.get(i).setShow_title(Const.titleArr[list.get(i).getI_product_type()-1]);
     		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc()-1]);
     	}
     	return list;

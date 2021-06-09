@@ -4,7 +4,7 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="/res/css/sale/detail.css?ver=9">
+<link rel="stylesheet" href="/res/css/sale/detail.css?ver=12">
 
 <div id="detail_cont">
 
@@ -53,7 +53,7 @@
 						</span>
 					</c:if>
 				</div>
-				<div class="after">뷰 : ${data.hit}</div>
+				<div class="after">뷰  ${data.hit}</div>
 				<div>${data.show_time}</div>
 			</div>
 			<div id="detail_loc_div">
@@ -62,7 +62,14 @@
 			</div>
 			<div id="detail_state_div">
 				<div id="detail_state">상품상태</div>
-				<div>${data.state}</div>
+				<c:choose>
+					<c:when test="${data.state == 1}">
+					<div>판매중</div>
+					</c:when>
+					<c:when test="${data.state == 2}">
+					<div>판매완료</div>
+					</c:when>
+				</c:choose>
 			</div>
 			<div id="detail_seller_div">
 				<div id="detail_seller">판매자명</div>
@@ -71,6 +78,17 @@
 			<div>
 				<button class="like">찜하기</button>
 				<button class="deal">거래신청</button>
+				<c:if test="${loginUser.i_user == data.i_user}">
+					<input type="hidden" id="sold_i_product" value = "${data.i_product}">
+					<c:choose>
+						<c:when test="${data.state == 1}">
+							<button class='sold_out' onclick="sold_out(2)">판매완료</button>
+						</c:when>
+						<c:when test="${data.state == 2}">
+							<button class="sold_out" onclick="sold_out(1)">판매중</button>
+						</c:when>
+					</c:choose>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -228,7 +246,7 @@
 			<div class="user_product_more">
 				<a href="/user/my/salePage?menu=1">${data.i_user} 상품 더보기 ></a>
 			</div>
-			<div class="product_review">
+			<div class="product_review ">
 				상품후기 <span>${data.i_user}</span>
 			</div>
 			<div class="product_review_div">
@@ -251,7 +269,7 @@
 				</div>
 			</div>
 			<div class="store_review_more">
-				<a href="">상점후기 더보기 ></a>
+				상점후기 더보기 >
 			</div>
 			<div class="btn_div">
 				<button class="like_btn">찜하기</button>

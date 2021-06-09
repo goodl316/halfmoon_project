@@ -18,6 +18,7 @@ public interface SaleMapper {
     List<LocDomain> selLoc();
     List<ProductSaleDomain> selProductList(ProductSaleDTO p);
     int regProduct(ProductSaleDTO dto);
+    int updProductState(ProductSaleDTO dto);
     ProductSaleDomain selProduct(ProductSaleDTO dto);
     UserDomain selProUser(ProductSaleDTO dto);
     List<ProductSaleDomain> selTypeList(ProductSaleDTO dto);
@@ -39,7 +40,7 @@ public interface SaleMapper {
     // 조회수
     int updHits(ProductSaleDTO dto);
     //댓글
-   List<CmtDomain> selCmt(CmtDTO dto);
+    List<CmtDomain> selCmt(CmtDTO dto);
     int insCmt(CmtDTO dto);
     int delCmt(CmtDTO dto);
     //대댓글
