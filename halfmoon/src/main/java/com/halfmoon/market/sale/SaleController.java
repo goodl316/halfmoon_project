@@ -21,10 +21,12 @@ import com.halfmoon.market.common.SecurityUtils;
 import com.halfmoon.market.common.Utils;
 import com.halfmoon.market.model.domain.CmtCmtDomain;
 import com.halfmoon.market.model.domain.CmtDomain;
+import com.halfmoon.market.model.domain.FavoriteDomain;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.CmtCmtDTO;
 import com.halfmoon.market.model.dto.CmtDTO;
+import com.halfmoon.market.model.dto.FavoriteDTO;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
 
 @Controller
@@ -83,11 +85,12 @@ public class SaleController {
     }
     //상품 디테일 페이지
     @GetMapping("/sale/detail")
-    public void saleDetail(Model model, int i_product, int i_user) {
+    public void saleDetail(Model model, int i_product, int i_user, int i_product_type) {
+    	System.out.println("dddd"+i_product_type);
         ProductSaleDTO dto = new ProductSaleDTO();
         dto.setI_product(i_product);
         dto.setI_user(i_user);
-       
+        dto.setI_product_type(i_product_type);
         service.updHits(dto);
 
         // 상품 기본 유저 정보 추가
@@ -99,6 +102,14 @@ public class SaleController {
         ProductSaleDomain vo = service.selProduct(dto);
         vo.setShow_time(Utils.timeFormatter(vo.getShow_time()));
         model.addAttribute(Const.KEY_DATA, vo);
+        
+        //상품 좋아요 갯수
+        FavoriteDTO dto2 = new FavoriteDTO();
+        dto2.setI_product(i_product);
+        model.addAttribute("favorite", service.selFavorite(dto2));
+        
+        //관련 이미지 
+        model.addAttribute("img",service.selImgProduct(dto));
         
     }
 

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.halfmoon.market.model.UserEntity;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
@@ -18,6 +17,7 @@ public interface UserMapper {
 	UserDomain selUserInfo(UserDTO dto);
 	UserDomain findUser(UserDTO dto);
 	List<ProductSaleDomain> selMySaleList(UserDTO dto);
+	List<ProductSaleDomain> selFavoriteMyList(UserDTO dto);
 	// U
 	int updAuth(UserDTO dto);
 	int updUser(UserDTO p);

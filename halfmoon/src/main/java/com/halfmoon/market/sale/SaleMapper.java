@@ -6,11 +6,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.halfmoon.market.model.domain.CmtCmtDomain;
 import com.halfmoon.market.model.domain.CmtDomain;
+import com.halfmoon.market.model.domain.FavoriteDomain;
 import com.halfmoon.market.model.domain.LocDomain;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.CmtCmtDTO;
 import com.halfmoon.market.model.dto.CmtDTO;
+import com.halfmoon.market.model.dto.FavoriteDTO;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
 
 @Mapper
@@ -20,11 +22,13 @@ public interface SaleMapper {
     int regProduct(ProductSaleDTO dto);
     int updProductState(ProductSaleDTO dto);
     ProductSaleDomain selProduct(ProductSaleDTO dto);
+    List<ProductSaleDomain> selImgProduct(ProductSaleDTO dto);
     UserDomain selProUser(ProductSaleDTO dto);
     List<ProductSaleDomain> selTypeList(ProductSaleDTO dto);
     List<ProductSaleDomain> selTypeSubList(ProductSaleDTO dto);
     List<ProductSaleDomain> selProductListSort(ProductSaleDTO dto);
     List<ProductSaleDomain> selProductSubListSort(ProductSaleDTO dto);
+    FavoriteDomain selFavorite(FavoriteDTO dto);
     // 상품메인이미지업데이트
     int upsMainImg(ProductSaleDTO dto);
     // 상품삭제

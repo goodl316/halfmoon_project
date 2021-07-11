@@ -531,7 +531,9 @@ body{
 	width: 153px;
     height: 153px;
 }
-
+.imgFlex{
+	display: flex;
+}
 .product_title {
 	display: flex;
 }

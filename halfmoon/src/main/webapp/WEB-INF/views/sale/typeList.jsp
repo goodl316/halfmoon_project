@@ -39,7 +39,7 @@
 			<div class="product_info_sub">
 				<c:forEach var="item" items="${list}">
 					<c:if test="${item.state == 1}">
-					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user})">
+					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user},${item.i_product_type})">
 						<input type="hidden" id=i_product value="${item.i_product}">
 						<div class="product_img_div">
 							<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">

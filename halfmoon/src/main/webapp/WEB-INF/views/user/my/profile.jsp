@@ -18,6 +18,7 @@
 		<div id="btn_myAccount">내 계정</div>
 		<div id="btn_buyHistory">구매 내역</div>
 		<div id="btn_saleHistory">판매 내역</div>
+		<div id="btn_favorite"> 찜 내역</div>
 	</div>
 </div>
 	<div id="profile_main_cont">
@@ -26,7 +27,7 @@
 </div>
 </div>
 <script src="/res/js/user/profile.js"></script>
-
+<script src="/res/js/sale/typeList.js"></script>
 
 
 

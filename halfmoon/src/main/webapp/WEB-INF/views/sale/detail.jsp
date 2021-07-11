@@ -4,7 +4,7 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="/res/css/sale/detail.css?ver=12">
+<link rel="stylesheet" href="/res/css/sale/detail.css?ver=13">
 
 <div id="detail_cont">
 
@@ -38,22 +38,8 @@
 			<div id="detail_title">${data.title}</div>
 			<div id="detail_price">${data.p_price}원</div>
 			<div id="detail_mid">
-				<div class="after">하트
-					<c:if test="${loginUser != null}">
-						<span id="favoriteContainer" is_favorite="${data.is_favorite}"
-							onclick="toggleFavorite(${data.i_product});">
-							<c:choose>
-								<c:when test="${data.is_favorite == 1}">
-									<i class="fas fa-heart"></i>
-								</c:when>
-								<c:otherwise>
-									<i class="far fa-heart"></i>
-								</c:otherwise>
-							</c:choose>
-						</span>
-					</c:if>
-				</div>
-				<div class="after">뷰  ${data.hit}</div>
+				<div class="after">찜 ${favorite.user_count}</div>
+				<div class="after">뷰 ${data.hit}</div>
 				<div>${data.show_time}</div>
 			</div>
 			<div id="detail_loc_div">
@@ -64,10 +50,10 @@
 				<div id="detail_state">상품상태</div>
 				<c:choose>
 					<c:when test="${data.state == 1}">
-					<div>판매중</div>
+						<div>판매중</div>
 					</c:when>
 					<c:when test="${data.state == 2}">
-					<div>판매완료</div>
+						<div>판매완료</div>
 					</c:when>
 				</c:choose>
 			</div>
@@ -76,10 +62,24 @@
 				<div>${data.user_nm}</div>
 			</div>
 			<div>
-				<button class="like">찜하기</button>
+				<button class="like" onclick="toggleFavorite(${data.i_product});">
+					찜하기
+					<c:if test="${loginUser != null}">
+						<span id="favoriteContainer" is_favorite="${data.is_favorite}">
+							<c:choose>
+								<c:when test="${data.is_favorite == 1}">
+									<i class="fas fa-heart"></i>
+								</c:when>
+								<c:otherwise>
+									<i class="far fa-heart"></i>
+								</c:otherwise>
+							</c:choose>
+						</span>
+					</c:if>
+				</button>
 				<button class="deal">거래신청</button>
 				<c:if test="${loginUser.i_user == data.i_user}">
-					<input type="hidden" id="sold_i_product" value = "${data.i_product}">
+					<input type="hidden" id="sold_i_product" value="${data.i_product}">
 					<c:choose>
 						<c:when test="${data.state == 1}">
 							<button class='sold_out' onclick="sold_out(2)">판매완료</button>
@@ -97,52 +97,19 @@
 	</div>
 	<div class="similar_product">
 		<div class="similarSlide">
+		<div class="imgFlex">
 			<div class="page">1/3</div>
-			<img class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImgLast"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}">
-			<div class="product_title">
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_titleLast">${data.title}</div>
+			<c:forEach var="item" items="${img}">
+			<div>
+				<img class="similarSlideImg"
+					onclick="moveDetail(${item.i_product},${item.i_user},${item.i_product_type })"
+					src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
+				<div class="product_title">
+					<div class="product_data_title">${item.title}</div>
+				</div>
 			</div>
+			</c:forEach>
 		</div>
-		<div class="similarSlide">
-			<div class="page">2/3</div>
-			<img class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}">
-			<div class="product_title">
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_titleLast">${data.title}</div>
-			</div>
-		</div>
-		<div class="similarSlide">
-			<div class="page">3/3</div>
-			<img class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}"> <img
-				class="similarSlideImg"
-				src="/res/img/sale/p_${data.i_product}/${data.p_img_main}">
-			<div class="product_title">
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_data_title">${data.title}</div>
-				<div class="product_titleLast">${data.title}</div>
-			</div>
 		</div>
 
 		<a class="prev1" onclick="plusSlides1(-1)">&#10094;</a> <a
@@ -191,17 +158,17 @@
 					</div>
 					<div class="product_div2">
 						<div>0 / 100</div>
-						<label id="secret_chk">비밀글 등록<input id="isSecret" type="checkbox" name="isSecret" value="1"></label>
-						<input type="button" class="product_btn" value="등록"
+						<label id="secret_chk">비밀글 등록<input id="isSecret"
+							type="checkbox" name="isSecret" value="1"></label> <input
+							type="button" class="product_btn" value="등록"
 							onclick="clkCtnt(${data.i_product},${loginUser.i_user})">
 					</div>
 				</div>
-				<input type="hidden" id="loginI_user" value = "${loginUser.i_user}">
-				<input type="hidden" id="productI_user" value = "${data.i_user}">
-				<input type="hidden" id="i_product2" value = "${data.i_product}">
+				<input type="hidden" id="loginI_user" value="${loginUser.i_user}">
+				<input type="hidden" id="productI_user" value="${data.i_user}">
+				<input type="hidden" id="i_product2" value="${data.i_product}">
 				<span id="i_product" data-id="${data.i_product}"></span>
-				<div id="cmtList">
-				</div>
+				<div id="cmtList"></div>
 			</div>
 		</div>
 
@@ -268,9 +235,7 @@
 					<div class="review_ctnt">${data.ctnt}</div>
 				</div>
 			</div>
-			<div class="store_review_more">
-				상점후기 더보기 >
-			</div>
+			<div class="store_review_more">상점후기 더보기 ></div>
 			<div class="btn_div">
 				<button class="like_btn">찜하기</button>
 				<button class="deal_btn">거래신청</button>

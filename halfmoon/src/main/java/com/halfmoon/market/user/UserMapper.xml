@@ -5,10 +5,12 @@
 	<insert id="insUser" useGeneratedKeys="true"
 		keyProperty="i_user">
 		INSERT INTO t_user
-		(id_email, user_nm, user_pw, gender, ph, postcode, roadAddr, jibunAddr,
+		(id_email, user_nm, user_pw, gender, ph,
+		postcode, roadAddr, jibunAddr,
 		detailAddr, extraAddr,code)
 		VALUES
-		(#{id_email}, #{user_nm}, #{user_pw}, #{gender} ,#{ph}, #{postcode}, #{roadAddr},
+		(#{id_email}, #{user_nm}, #{user_pw}, #{gender} ,#{ph}, #{postcode},
+		#{roadAddr},
 		#{jibunAddr}, #{detailAddr}, #{extraAddr}, #{code} )
 	</insert>
 
@@ -17,7 +19,7 @@
 		from t_user
 		<where>
 			<if test="i_user > 0">
-				i_user = ${i_user}
+				i_user = #{i_user}
 				AND isAuth = 1	<!-- 인증 검사 -->
 			</if>
 			<if test="id_email != null and id_email !=''">
@@ -38,6 +40,15 @@
 		order by i_product desc
 	</select>
 
+	<select id="selFavoriteMyList" resultType="ProductSaleDomain">
+		select
+		a.i_product,a.p_price,a.i_product_type,a.type_sub_title,a.p_img_main,a.title,a.i_loc,a.state,a.r_dt
+		from t_product_sale a
+		inner join t_favorite b
+		on a.i_product = b.i_product
+		where b.i_user = #{i_user};
+	</select>
+
 	<select id="findUser" resultType="UserDomain">
 		select id_email from t_user
 		where
@@ -56,7 +67,8 @@
 	<update id="updProfileImg">
 		UPDATE t_user
 		SET profile_img = #{profile_img}
-		where i_user = #{i_user};
+		where
+		i_user = #{i_user};
 	</update>
 
 	<update id="updUser">
@@ -73,7 +85,8 @@
 				roadAddr =#{roadAddr},
 				jibunAddr = #{jibunAddr},
 				extraAddr = #{extraAddr},
-				detailAddr = #{detailAddr}
+				detailAddr =
+				#{detailAddr}
 			</when>
 			<when test="state ==3">
 				SET
@@ -87,13 +100,15 @@
 	<update id="updCode">
 		UPDATE t_user
 		SET code = #{code}
-		where i_user = #{i_user}
+		where i_user =
+		#{i_user}
 	</update>
 
 	<update id="delUserImg">
 		UPDATE t_user
 		SET profile_img = NULL
-		WHERE i_user = #{i_user}
+		WHERE i_user =
+		#{i_user}
 	</update>
 
 </mapper>

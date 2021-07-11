@@ -15,11 +15,13 @@ import com.halfmoon.market.common.SecurityUtils;
 import com.halfmoon.market.common.Utils;
 import com.halfmoon.market.model.domain.CmtCmtDomain;
 import com.halfmoon.market.model.domain.CmtDomain;
+import com.halfmoon.market.model.domain.FavoriteDomain;
 import com.halfmoon.market.model.domain.LocDomain;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.CmtCmtDTO;
 import com.halfmoon.market.model.dto.CmtDTO;
+import com.halfmoon.market.model.dto.FavoriteDTO;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
 
 @Service
@@ -57,11 +59,18 @@ public class SaleService {
     	vo.setShow_loc(Const.locArr[vo.getI_loc() - 1]);
         return vo;
     }
+    
+    public List<ProductSaleDomain> selImgProduct(ProductSaleDTO dto) {
+    	return mapper.selImgProduct(dto);
+    }
 
     UserDomain selProUser(ProductSaleDTO dto) {
         return mapper.selProUser(dto);
     }
-
+    
+    FavoriteDomain selFavorite(FavoriteDTO dto) {
+    	return mapper.selFavorite(dto);
+    }
 
     //이미지 업로드
     public int profileUpload(MultipartFile[] imgs, int i_product) {

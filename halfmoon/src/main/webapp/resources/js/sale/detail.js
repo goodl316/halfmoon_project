@@ -1,6 +1,13 @@
 var loginI_user = document.querySelector('#loginI_user').value
 var productI_user = document.querySelector('#productI_user').value
 var i_product = document.querySelector('#sold_i_product')
+var similarSlideImg =document.querySelector('similarSlideImg')
+
+function moveDetail(i_product,i_user,i_product_type){
+	location.href = '/sale/detail?i_product=' + i_product + '&i_user=' + i_user+'&i_product_type='+i_product_type;
+}
+
+
 
 function sold_out(state) {
 	param = {

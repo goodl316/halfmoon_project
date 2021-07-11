@@ -13,7 +13,6 @@ import com.halfmoon.market.common.Const;
 import com.halfmoon.market.common.FileUtils;
 import com.halfmoon.market.common.MailUtils;
 import com.halfmoon.market.common.SecurityUtils;
-import com.halfmoon.market.model.UserEntity;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
@@ -32,20 +31,21 @@ public class UserService {
 	@Autowired
 	private FileUtils fUtils;
 
-	public UserDomain selUser(UserDTO p) {
-		return mapper.selUser(p);
+	public UserDomain selUser(UserDTO dto) {
+		return mapper.selUser(dto);
 	}
 	UserDomain findUser(UserDTO dto) {
 		return mapper.findUser(dto);
 	}
 
-	public int login(UserDTO p) {
-		UserDomain vo = selUser(p);
+	public int login(UserDTO dto) {
+		UserDomain vo = selUser(dto);
+		
 		if (vo == null) {
 			return 2;
 		}
-		p.setUser_pw(vo.getUser_pw());
-		if (!BCrypt.checkpw(p.getClk_pw(), vo.getUser_pw())) {
+		dto.setUser_pw(vo.getUser_pw());
+		if (!BCrypt.checkpw(dto.getClk_pw(), vo.getUser_pw())) {
 			return 3;
 		}
 
@@ -163,4 +163,10 @@ public class UserService {
 		return mapper.selMySaleList(dto);
 	}
 	
+	//내 찜목록 
+	List<ProductSaleDomain> selFavoriteMyList(UserDTO dto) {
+		dto.setI_user(SecurityUtils.getUserPk(hs));
+		System.out.println("favorite"+dto.getI_user());
+		return mapper.selFavoriteMyList(dto);
+	}
 }

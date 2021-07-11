@@ -110,6 +110,10 @@ public class UserController {
 				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/saleInfo.jsp");
 				model.addAttribute(Const.KEY_LIST, service.selMySaleList(dto));
 				return "/user/my/profile";
+			case 5:
+				model.addAttribute(Const.KEY_PAGE, "/WEB-INF/views/user/my/template/favorite.jsp");
+				model.addAttribute(Const.KEY_LIST, service.selFavoriteMyList(dto));
+				return "/user/my/profile";
 		}
 		return null;
 	}
