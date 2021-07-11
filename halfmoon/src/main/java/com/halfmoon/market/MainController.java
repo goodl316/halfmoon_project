@@ -36,7 +36,7 @@ public class MainController implements ViewPreparer  {
 		}
 		attributeContext.putAttribute("menuList", new Attribute(Const.menuList), true);
 		attributeContext.putAttribute("subMenuList", new Attribute(Const.subMenuList), true);
-		
+		System.out.println("aaaa");
 		
 	}
 	
