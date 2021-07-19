@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +20,6 @@ import com.halfmoon.market.common.SecurityUtils;
 import com.halfmoon.market.common.Utils;
 import com.halfmoon.market.model.domain.CmtCmtDomain;
 import com.halfmoon.market.model.domain.CmtDomain;
-import com.halfmoon.market.model.domain.FavoriteDomain;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.CmtCmtDTO;
@@ -297,23 +295,13 @@ public class SaleController {
     //==================항목별 리스트 작업=========================
    
     @GetMapping("/sale/typeList")
-    public void ProductTypeList(Model model, int i_product_type){
-    	ProductSaleDTO dto = new ProductSaleDTO();
-    	dto.setI_product_type(i_product_type);
-    	System.out.println("i_product_type:"+dto.getI_product_type());
+    public void ProductTypeList(Model model, int i_product_type, int sortState){
+//    	ProductSaleDTO dto = new ProductSaleDTO();
+//    	dto.setI_product_type(i_product_type);
+//    	System.out.println("i_product_type:"+dto.getI_product_type());
+//    	
+//    	model.addAttribute(Const.KEY_LIST,service.selTypeList(dto));
     	
-    	model.addAttribute(Const.KEY_LIST,service.selTypeList(dto));
-    }
-    @GetMapping("/sale/typeSubList")
-    public void ProductTypeSubList(Model model,String type_sub_title){
-    	ProductSaleDTO dto = new ProductSaleDTO();
-    	dto.setType_sub_title(type_sub_title);
-    	System.out.println("type_sub_title:" + dto.getType_sub_title());
-    	
-    	model.addAttribute(Const.KEY_LIST,service.selTypeSubList(dto));
-    }
-    @GetMapping("/sale/typeListSort")
-    public void ProductTypeListSort(Model model,int i_product_type, int sortState) {
     	System.out.println("sortState:"+sortState);
     	System.out.println("i_product_type:"+i_product_type);
     	ProductSaleDTO dto = new ProductSaleDTO();
@@ -321,17 +309,26 @@ public class SaleController {
     	dto.setSortState(sortState);
     	System.out.println(dto.getSortState());
     	
-    	model.addAttribute(Const.KEY_LIST, service.selProductListSort(dto));
+    	model.addAttribute(Const.KEY_LIST, service.selTypeList(dto));
+    	
     }
-    
-    @GetMapping("/sale/typeSubListSort")
-    public void ProductTypeSubListSort(Model model,String type_sub_title, int sortState) {
+    @GetMapping("/sale/typeSubList")
+    public void ProductTypeSubList(Model model,String type_sub_title,int sortState){
+//    	ProductSaleDTO dto = new ProductSaleDTO();
+//    	dto.setType_sub_title(type_sub_title);
+//    	System.out.println("type_sub_title:" + dto.getType_sub_title());
+//    	
+//    	model.addAttribute(Const.KEY_LIST,service.selTypeSubList(dto));
+    	
     	System.out.println("sortState:"+sortState);
     	ProductSaleDTO dto = new ProductSaleDTO();
     	dto.setType_sub_title(type_sub_title);
     	dto.setSortState(sortState);
     	System.out.println(dto.getSortState());
     	
-    	model.addAttribute(Const.KEY_LIST, service.selProductSubListSort(dto));
+    	model.addAttribute(Const.KEY_LIST, service.selTypeSubList(dto));
     }
+   
+    
+   
 }

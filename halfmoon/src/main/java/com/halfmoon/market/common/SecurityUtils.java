@@ -3,13 +3,12 @@ package com.halfmoon.market.common;
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.UserDTO;
 
-public class SecurityUtils {
 
+public class SecurityUtils {
 
 	// new code
 	public static UserDomain getUserDomain(HttpSession hs) {

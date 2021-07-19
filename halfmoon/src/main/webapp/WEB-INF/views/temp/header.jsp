@@ -69,7 +69,7 @@
 				<c:forEach var="item" items="${menuList}">
 					<li class="menuList"><img class="btn_menu_img" alt=""
 						src="/res/img/menuImg/${item.i_product_type}.png"
-						onclick="TypeList(${item.i_product_type})"></li>
+						onclick="TypeList(${item.i_product_type},0)"></li>
 				</c:forEach>
 			</ul>
 		</nav>
@@ -80,70 +80,70 @@
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="0" end="4">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="5" end="8" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="9" end="11" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="12" end="14" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="15" end="19" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="20" end="23" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="24" end="25" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="26" end="28" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="29" end="32" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="33" end="36" step="1">
-				<li onclick="TypeSubList('${item.type_sub_title}')">${item.type_sub_title}</li>
+				<li onclick="TypeSubList('${item.type_sub_title}',0)">${item.type_sub_title}</li>
 			</c:forEach>
 		</ul>
 	</div>

@@ -9,19 +9,19 @@
 			<div>
 				<ul>
 					<li id="filter_li">
-						<button onclick="moveListSort(${param.i_product_type},1)">
+						<button onclick="TypeList(${param.i_product_type},1)">
 							<div>높은가격순</div>
 						</button>
-						<button onclick="moveListSort(${param.i_product_type},2)">
+						<button onclick="TypeList(${param.i_product_type},2)">
 							<div>낮은가격순</div>
 						</button>
-						<button onclick="moveListSort(${param.i_product_type},3)">
+						<button onclick="TypeList(${param.i_product_type},3)">
 							<div>많은리뷰순</div>
 						</button>
-						<button onclick="moveListSort(${param.i_product_type},4)">
+						<button onclick="TypeList(${param.i_product_type},4)">
 							<div>인기순</div>
 						</button>
-						<button onclick="moveListSort(${param.i_product_type},5)">
+						<button onclick="TypeList(${param.i_product_type},5)">
 							<div>최신순</div>
 						</button>
 						<button>

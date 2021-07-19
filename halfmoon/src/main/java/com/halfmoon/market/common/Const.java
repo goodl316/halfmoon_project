@@ -5,9 +5,8 @@ import java.util.List;
 import com.halfmoon.market.model.domain.ProductTypeDomain;
 import com.halfmoon.market.model.domain.ProductTypeSubDomain;
 
-
 public class Const {
-	
+
 public static List<ProductTypeDomain> menuList = null;
 public static List<ProductTypeSubDomain> subMenuList = null;
 

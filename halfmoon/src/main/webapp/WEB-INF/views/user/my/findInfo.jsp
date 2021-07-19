@@ -39,7 +39,6 @@
         <div id="ph_msg"></div>
         <div><input type="button" id="modal_open_btn" value="입력완료"></div>
         </div>
-        </form>
     </div>
 
     <!--비밀번호 찾기 탭-->

@@ -9,19 +9,19 @@
 			<div>
 				<ul>
 					<li id="filter_li">
-						<button onclick="moveSubListSort('${param.type_sub_title}',1)">
+						<button onclick="TypeSubList('${param.type_sub_title}',1)">
 							<div>높은가격순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',2)">
+						<button onclick="TypeSubList('${param.type_sub_title}',2)">
 							<div>낮은가격순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',3)">
+						<button onclick="TypeSubList('${param.type_sub_title}',3)">
 							<div>많은리뷰순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',4)">
+						<button onclick="TypeSubList('${param.type_sub_title}',4)">
 							<div>인기순</div>
 						</button>
-						<button onclick="moveSubListSort('${param.type_sub_title}',5)">
+						<button onclick="TypeSubList('${param.type_sub_title}',5)">
 							<div>최신순</div>
 						</button>
 						<button>
@@ -39,7 +39,7 @@
 			<div class="product_info_sub">
 				<c:forEach var="item" items="${list}">
 					<c:if test="${item.state == 1}">
-					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user})">
+					<div class="product_cont" onclick="moveDetail2('${param.type_sub_title}',${item.i_product},${item.i_user},${item.i_product_type})">
 						<input type="hidden" id=i_product value="${item.i_product}">
 						<div class="product_img_div">
 							<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">

@@ -56,19 +56,61 @@
 	</select>
 
 	<select id="selTypeList" resultType="ProductSaleDomain">
-		select i_product, i_user,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,i_product_type,
+		select distinct a.i_product, a.i_user,i_product_type,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
 		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
-		"cmt_count"
-		from t_product_sale a where i_product_type=#{i_product_type}
+		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
+		from t_product_sale a
+		where i_product_type=#{i_product_type}
+		<choose>
+		<when test="sortState==0"> 
+		order by i_product desc;
+		</when>
+		<when test="sortState==1"> 
+		order by p_price desc;
+		</when>
+		<when test="sortState==2"> 
+		order by p_price asc;
+		</when>
+		<when test="sortState==3"> 
+		order by cmt_count desc;
+		</when>
+		<when test="sortState==4"> 
+		order by is_favorite desc;
+		</when>
+		<when test="sortState==5">
+		order by i_product desc;
+		</when>
+		</choose>
 	</select>
 
 	<select id="selTypeSubList" resultType="ProductSaleDomain">
-		select i_product, i_user,
+		select distinct a.i_product, a.i_user,
 		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
 		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
-		"cmt_count"
-		from t_product_sale a where type_sub_title= #{type_sub_title}
+		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
+		from t_product_sale a
+		where type_sub_title=#{type_sub_title}
+		<choose>
+		<when test="sortState==0"> 
+		order by i_product desc;
+		</when>
+		<when test="sortState==1"> 
+		order by p_price desc;
+		</when>
+		<when test="sortState==2"> 
+		order by p_price asc;
+		</when>
+		<when test="sortState==3"> 
+		order by cmt_count desc;
+		</when>
+		<when test="sortState==4"> 
+		order by is_favorite desc;
+		</when>
+		<when test="sortState==5">
+		order by i_product desc;
+		</when>
+		</choose>
 	</select>
 
 	<!-- 상품수정정보 -->
@@ -111,57 +153,7 @@
 		WHERE i_user=#{i_user}
 	</select>
 	
-	<select id="selProductListSort" resultType="ProductSaleDomain">
-		select distinct a.i_product, a.i_user,i_product_type,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
-		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
-		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
-		from t_product_sale a
-		where i_product_type=#{i_product_type}
-		<choose>
-		<when test="sortState==1"> 
-		order by p_price desc;
-		</when>
-		<when test="sortState==2"> 
-		order by p_price asc;
-		</when>
-		<when test="sortState==3"> 
-		order by cmt_count desc;
-		</when>
-		<when test="sortState==4"> 
-		order by is_favorite desc;
-		</when>
-		<when test="sortState==5">
-		order by i_product desc;
-		</when>
-		</choose>
-	</select>
 	
-	<select id="selProductSubListSort" resultType="ProductSaleDomain">
-		select distinct a.i_product, a.i_user,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
-		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
-		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
-		from t_product_sale a
-		where type_sub_title=#{type_sub_title}
-		<choose>
-		<when test="sortState==1"> 
-		order by p_price desc;
-		</when>
-		<when test="sortState==2"> 
-		order by p_price asc;
-		</when>
-		<when test="sortState==3"> 
-		order by cmt_count desc;
-		</when>
-		<when test="sortState==4"> 
-		order by is_favorite desc;
-		</when>
-		<when test="sortState==5">
-		order by i_product desc;
-		</when>
-		</choose>
-	</select>
 	<!-- 좋아요 갯수 카운터 -->
 	<select id="selFavorite" resultType="FavoriteDomain">
 		SELECT COUNT(i_user) as user_count
