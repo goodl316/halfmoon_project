@@ -6,6 +6,9 @@ public class ProductSaleDTO extends ProductSaleEntity {
 	
 	private int toggle;
 	private int sortState;
+	private int searchType;
+	private String searchText;
+	
 	
 	public int getToggle() {
 		return toggle;
@@ -23,5 +26,23 @@ public class ProductSaleDTO extends ProductSaleEntity {
 		this.sortState = sortState;
 	}
 
+	public int getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(int searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+	
+	
+	
 
 }

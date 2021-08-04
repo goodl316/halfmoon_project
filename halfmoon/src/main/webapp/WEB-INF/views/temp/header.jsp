@@ -20,8 +20,8 @@
 			<div class="main-form">
 				<div class="select">
 					<form class="form-select" action="" method="" id="form_search">
-						<input class="main-form-input" placeholder="상품명 검색" type="text"
-							name="" value=""> <img class="main-select" alt=""
+						<input class="main_form_input" placeholder="상품명 검색" type="text"
+							name="" value=""> <img class="main-select" onclick="search('')" alt=""
 							src="/res/img/search.png">
 						<div class="form-select-window">
 							<div class="window-div1">

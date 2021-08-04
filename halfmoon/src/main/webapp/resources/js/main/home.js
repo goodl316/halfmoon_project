@@ -15,8 +15,8 @@ var sub_div = document.querySelectorAll('.sub_div')
 
 
 // 디테일 이동 (여기서는 아작스 안씀)
-function moveDetail(i_product, i_user) {
-	location.href = '/sale/detail?i_product=' + i_product + '&i_user=' + i_user;
+function moveDetail(i_product, i_user,i_product_type) {
+	location.href = '/sale/detail?i_product=' + i_product + '&i_user=' + i_user + "&i_product_type="+i_product_type;
 
 }
 

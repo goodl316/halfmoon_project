@@ -5,66 +5,133 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div>
 	<div id="whole_div">
-		<div id="left_div">
-			<div>
-				<ul>
-					<li id="filter_li">
-						<button onclick="TypeList(${param.i_product_type},1)">
-							<div>높은가격순</div>
-						</button>
-						<button onclick="TypeList(${param.i_product_type},2)">
-							<div>낮은가격순</div>
-						</button>
-						<button onclick="TypeList(${param.i_product_type},3)">
-							<div>많은리뷰순</div>
-						</button>
-						<button onclick="TypeList(${param.i_product_type},4)">
-							<div>인기순</div>
-						</button>
-						<button onclick="TypeList(${param.i_product_type},5)">
-							<div>최신순</div>
-						</button>
-						<button>
-							<div>판매순</div>
-						</button>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<c:choose>
+			<c:when
+				test="${param.type_sub_title == null and param.i_product_type == null}">
+				<div id="left_div">
+					<div>
+						<ul>
+							<li id="filter_li">
+								<button onclick="SearchList('${param.searchText}',1)">
+									<div>높은가격순</div>
+								</button>
+								<button onclick="SearchList('${param.searchText}',2)">
+									<div>낮은가격순</div>
+								</button>
+								<button onclick="SearchList('${param.searchText}',3)">
+									<div>많은리뷰순</div>
+								</button>
+								<button onclick="SearchList('${param.searchText}',4)">
+									<div>인기순</div>
+								</button>
+								<button onclick="SearchList('${param.searchText}',5)">
+									<div>최신순</div>
+								</button>
+								<button>
+									<div>판매순</div>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</c:when>
+			<c:when test="${param.type_sub_title == null}">
+				<div id="left_div">
+					<div>
+						<ul>
+							<li id="filter_li">
+								<button onclick="TypeList(${param.i_product_type},1)">
+									<div>높은가격순</div>
+								</button>
+								<button onclick="TypeList(${param.i_product_type},2)">
+									<div>낮은가격순</div>
+								</button>
+								<button onclick="TypeList(${param.i_product_type},3)">
+									<div>많은리뷰순</div>
+								</button>
+								<button onclick="TypeList(${param.i_product_type},4)">
+									<div>인기순</div>
+								</button>
+								<button onclick="TypeList(${param.i_product_type},5)">
+									<div>최신순</div>
+								</button>
+								<button>
+									<div>판매순</div>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</c:when>
+			<c:when test="${param.i_product_type == null}">
+				<div id="left_div">
+					<div>
+						<ul>
+							<li id="filter_li">
+								<button onclick="TypeSubList('${param.type_sub_title}',1)">
+									<div>높은가격순</div>
+								</button>
+
+								<button onclick="TypeSubList('${param.type_sub_title}',2)">
+									<div>낮은가격순</div>
+								</button>
+								<button onclick="TypeSubList('${param.type_sub_title}',3)">
+									<div>많은리뷰순</div>
+								</button>
+								<button onclick="TypeSubList('${param.type_sub_title}',4)">
+									<div>인기순</div>
+								</button>
+								<button onclick="TypeSubList('${param.type_sub_title}',5)">
+									<div>최신순</div>
+								</button>
+								<button>
+									<div>판매순</div>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</c:when>
+		</c:choose>
 		<div id="right_div">
 			<div id="right_title_info">
-				<div id="title">${list[0].show_title}</div> 
+				<div id="title">${list[0].show_title}</div>
 				<div id="kinds">인기순</div>
 			</div>
 			<div class="product_info_sub">
 				<c:forEach var="item" items="${list}">
 					<c:if test="${item.state == 1}">
-					<div class="product_cont" onclick="moveDetail(${item.i_product},${item.i_user},${item.i_product_type})">
-						<input type="hidden" id=i_product value="${item.i_product}">
-						<div class="product_img_div">
-							<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
-						</div>
-						<div class="product_info_cont">
-							<div class="product_title">${item.title}</div>
-							<div class="product_pt">
-								<div class="price"><fmt:formatNumber value="${item.p_price}" pattern="#,###,###"/>원</div>
+						<div class="product_cont"
+							onclick="moveDetail(${item.i_product},${item.i_user},${item.i_product_type})">
+							<input type="hidden" id=i_product value="${item.i_product}">
+							<div class="product_img_div">
+								<img src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
 							</div>
-							<div class="item_star_review">
-								<div class="item_star_img">
-									<img alt="" src="/res/img/star.png">4.6
+							<div class="product_info_cont">
+								<div class="product_title">${item.title}</div>
+								<div class="product_pt">
+									<div class="price">
+										<fmt:formatNumber value="${item.p_price}" pattern="#,###,###" />
+										원
+									</div>
 								</div>
-								<div class="item_review">댓글 ${item.cmt_count}</div>
+								<div class="item_star_review">
+									<div class="item_star_img">
+										<img alt="" src="/res/img/star.png">4.6
+									</div>
+									<div class="item_review">댓글 ${item.cmt_count}</div>
+								</div>
+							</div>
+							<div class="loc_time_div">
+								<div class="loc">
+									<img alt="" src="/res/img/i_loc.png">${item.show_loc}</div>
+								<div class="time">${item.show_time}</div>
 							</div>
 						</div>
-						<div class="loc_time_div">
-							<div class="loc"><img alt="" src="/res/img/i_loc.png">${item.show_loc}</div>
-							<div class="time">${item.show_time}</div>
-						</div>
-					</div>
 					</c:if>
 				</c:forEach>
 			</div>
-			
+
 		</div>
 	</div>
 </div>
@@ -72,4 +139,4 @@
 
 
 
-<script defer src="/res/js/sale/typeList.js?ver=4"></script>
+<script defer src="/res/js/sale/typeList.js?ver=7"></script>

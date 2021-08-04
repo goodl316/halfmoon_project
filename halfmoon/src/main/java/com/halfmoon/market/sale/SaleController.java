@@ -295,39 +295,28 @@ public class SaleController {
     //==================항목별 리스트 작업=========================
    
     @GetMapping("/sale/typeList")
-    public void ProductTypeList(Model model, int i_product_type, int sortState){
+    public void ProductTypeList(Model model, ProductSaleDTO dto){
 //    	ProductSaleDTO dto = new ProductSaleDTO();
 //    	dto.setI_product_type(i_product_type);
 //    	System.out.println("i_product_type:"+dto.getI_product_type());
 //    	
 //    	model.addAttribute(Const.KEY_LIST,service.selTypeList(dto));
     	
-    	System.out.println("sortState:"+sortState);
-    	System.out.println("i_product_type:"+i_product_type);
-    	ProductSaleDTO dto = new ProductSaleDTO();
-    	dto.setI_product_type(i_product_type);
-    	dto.setSortState(sortState);
-    	System.out.println(dto.getSortState());
+//    	System.out.println("sortState:"+sortState);
+//    	System.out.println("i_product_type:"+i_product_type);
+//    	ProductSaleDTO dto = new ProductSaleDTO();
+//    	dto.setI_product_type(i_product_type);
+//    	dto.setSortState(sortState);
+//    	System.out.println(dto.getSortState());
+    	System.out.println("i_prodict_type:"+dto.getI_product_type());
+    	System.out.println("type_sub_title:"+dto.getType_sub_title());
+    	System.out.println("sort:"+dto.getSortState());
+    	System.out.println("searchText :" +dto.getSearchText());
     	
     	model.addAttribute(Const.KEY_LIST, service.selTypeList(dto));
     	
     }
-    @GetMapping("/sale/typeSubList")
-    public void ProductTypeSubList(Model model,String type_sub_title,int sortState){
-//    	ProductSaleDTO dto = new ProductSaleDTO();
-//    	dto.setType_sub_title(type_sub_title);
-//    	System.out.println("type_sub_title:" + dto.getType_sub_title());
-//    	
-//    	model.addAttribute(Const.KEY_LIST,service.selTypeSubList(dto));
-    	
-    	System.out.println("sortState:"+sortState);
-    	ProductSaleDTO dto = new ProductSaleDTO();
-    	dto.setType_sub_title(type_sub_title);
-    	dto.setSortState(sortState);
-    	System.out.println(dto.getSortState());
-    	
-    	model.addAttribute(Const.KEY_LIST, service.selTypeSubList(dto));
-    }
+ 
    
     
    

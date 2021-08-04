@@ -2,6 +2,7 @@ var btn_my_sell = document.querySelector('#btn_my_sell')
 var main_nav = document.querySelector('#main-nav')
 var sub_nav_cont = document.querySelector('#sub_nav_cont')
 var sub_nav = document.querySelector('#sub_nav')
+var main_form_input = document.querySelector('.main_form_input')
 // sub_nav의 자식객체
 //var reg_sub = document.querySelector('#reg_sub')
 var detail_sub = document.querySelector('#detail_sub')
@@ -76,6 +77,12 @@ function TypeList(i_product_type,sortState){
 	location.href = `/sale/typeList?i_product_type=`+i_product_type+"&sortState="+sortState
 }
 function TypeSubList(type_sub_title,sortState){
-	location.href =`/sale/typeSubList?type_sub_title=`+type_sub_title+"&sortState="+sortState
+	location.href =`/sale/typeList?type_sub_title=`+type_sub_title+"&sortState="+sortState
+}
+
+function search(searchText){
+	searchText= main_form_input.value
+	console.log("searchText :"+searchText)
+	location.href='/sale/typeList?searchText='+searchText
 	
 }

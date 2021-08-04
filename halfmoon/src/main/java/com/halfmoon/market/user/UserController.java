@@ -191,7 +191,13 @@ public class UserController {
 	// =================== 판매자 센터 ===================//
 	@GetMapping("/user/my/salePage")
 	public void salePage() {}
-
+	
+	// =================== 아이디 찾기 ===================
+	
+	@GetMapping("/user/my/findUser")
+	public void findUser() {
+		
+	}
 
 }
 

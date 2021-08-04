@@ -57,61 +57,42 @@
 
 	<select id="selTypeList" resultType="ProductSaleDomain">
 		select distinct a.i_product, a.i_user,i_product_type,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
+		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,(select user_nm from t_user where i_user = a.i_user) as user_nm,
 		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
 		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
 		from t_product_sale a
-		where i_product_type=#{i_product_type}
+		where 
 		<choose>
-		<when test="sortState==0"> 
-		order by i_product desc;
+		<when test="i_product_type ==0 and type_sub_title == null">
+		title LIKE '%${searchText}%'
 		</when>
-		<when test="sortState==1"> 
-		order by p_price desc;
+		<when test="i_product_type == 0">
+		type_sub_title=#{type_sub_title}
 		</when>
-		<when test="sortState==2"> 
-		order by p_price asc;
-		</when>
-		<when test="sortState==3"> 
-		order by cmt_count desc;
-		</when>
-		<when test="sortState==4"> 
-		order by is_favorite desc;
-		</when>
-		<when test="sortState==5">
-		order by i_product desc;
+		<when test="type_sub_title == null">
+		i_product_type=#{i_product_type}
 		</when>
 		</choose>
+		<if test="sortState==0"> 
+		order by i_product desc;
+		</if>
+		<if test="sortState==1"> 
+		order by p_price desc;
+		</if>
+		<if test="sortState==2"> 
+		order by p_price asc;
+		</if>
+		<if test="sortState==3"> 
+		order by cmt_count desc;
+		</if>
+		<if test="sortState==4"> 
+		order by is_favorite desc;
+		</if>
+		<if test="sortState==5"> 
+		order by i_product desc;
+		</if>
 	</select>
 
-	<select id="selTypeSubList" resultType="ProductSaleDomain">
-		select distinct a.i_product, a.i_user,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,
-		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
-		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
-		from t_product_sale a
-		where type_sub_title=#{type_sub_title}
-		<choose>
-		<when test="sortState==0"> 
-		order by i_product desc;
-		</when>
-		<when test="sortState==1"> 
-		order by p_price desc;
-		</when>
-		<when test="sortState==2"> 
-		order by p_price asc;
-		</when>
-		<when test="sortState==3"> 
-		order by cmt_count desc;
-		</when>
-		<when test="sortState==4"> 
-		order by is_favorite desc;
-		</when>
-		<when test="sortState==5">
-		order by i_product desc;
-		</when>
-		</choose>
-	</select>
 
 	<!-- 상품수정정보 -->
 	<select id="selModProduct" resultType="ProductSaleDomain">
