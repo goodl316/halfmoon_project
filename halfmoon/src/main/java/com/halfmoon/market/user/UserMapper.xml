@@ -29,6 +29,8 @@
 		</where>
 	</select>
 
+
+
 	<!-- 마이페이지 등록 상품 목록 list -->
 	<select id="selMySaleList" resultType="ProductSaleDomain">
 		select i_product, i_user,
@@ -45,18 +47,46 @@
 		a.i_product,a.p_price,a.i_product_type,a.type_sub_title,a.p_img_main,a.title,a.i_loc,a.state,a.r_dt
 		from t_product_sale a
 		inner join t_favorite b
-		on a.i_product = b.i_product
+		on a.i_product =
+		b.i_product
 		where b.i_user = #{i_user};
 	</select>
 
 	<select id="findUser" resultType="UserDomain">
+		select id_email,user_nm,ph,DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time
+		from t_user
+		<where>
+			user_nm = #{user_nm}
+			and
+			ph = #{ph}
+		</where>
+	</select>
+
+	<select id="findId" resultType="UserDomain">
+		select id_email,user_nm,ph,DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time
+		from t_user
+		<where>
+			user_nm = #{user_nm}
+			and
+			ph = #{ph}
+		</where>
+	</select>
+
+	<select id="chkMail" resultType="UserDomain">
+		select id_email,user_nm,code
+		from t_user
+		where
+		id_email =#{id_email}
+		and
+		user_nm =#{user_nm}
+	</select>
+
+	<select id="findPw" resultType="UserDomain">
 		select id_email from t_user
 		where
-		user_nm = #{user_nm}
-		and
-		ph = #{ph}
-
+		id_email = #{id_email}
 	</select>
+
 
 	<update id="updAuth">
 		UPDATE t_user
@@ -78,6 +108,8 @@
 			<when test="state ==1">
 				SET
 				user_pw = #{user_pw}
+				WHERE
+				i_user = #{i_user}
 			</when>
 			<when test="state ==2">
 				SET
@@ -87,14 +119,23 @@
 				extraAddr = #{extraAddr},
 				detailAddr =
 				#{detailAddr}
+				WHERE
+				i_user = #{i_user}
 			</when>
 			<when test="state ==3">
 				SET
 				ph= #{ph}
+				WHERE
+				i_user = #{i_user}
+			</when>
+			<when test="state ==4">
+				SET
+				user_pw = #{user_pw}
+				WHERE
+				code = #{code}
 			</when>
 		</choose>
-		WHERE
-		i_user = #{i_user}
+
 	</update>
 
 	<update id="updCode">

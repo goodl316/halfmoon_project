@@ -16,13 +16,16 @@ public interface UserMapper {
 	UserDomain selUser(UserDTO dto);
 	UserDomain selUserInfo(UserDTO dto);
 	UserDomain findUser(UserDTO dto);
+	UserDomain findId(UserDTO dto);
+	UserDomain findPw(UserDTO dto);
+	UserDomain chkMail(UserDTO dto);
 	List<ProductSaleDomain> selMySaleList(UserDTO dto);
 	List<ProductSaleDomain> selFavoriteMyList(UserDTO dto);
 	// U
 	int updAuth(UserDTO dto);
-	int updUser(UserDTO p);
-	int updAddr(UserDTO p);
-	int updCode(UserDTO p);
+	int updUser(UserDTO dto);
+	int updAddr(UserDTO dto);
+	int updCode(UserDTO dto);
 	
 	int updProfileImg(UserDTO p);
 	// D

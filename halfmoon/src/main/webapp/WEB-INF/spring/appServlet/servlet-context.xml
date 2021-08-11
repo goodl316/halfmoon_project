@@ -62,7 +62,7 @@
 	
 	<beans:bean class="com.halfmoon.market.common.MailUtils">
 		<beans:property name="userId" value="yh5330"/>
-		<beans:property name="userPw" value="!wnstn0231"/>
+		<beans:property name="userPw" value="!wnstn1674"/>
 		<beans:property name="host" value="smtp.naver.com"/>
 		<beans:property name="port" value="587"/>
 		<beans:property name="fromEmail" value="yh5330@naver.com"/>

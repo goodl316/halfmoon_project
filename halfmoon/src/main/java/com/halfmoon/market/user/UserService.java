@@ -37,25 +37,81 @@ public class UserService {
 	UserDomain findUser(UserDTO dto) {
 		return mapper.findUser(dto);
 	}
-
+	// ----로그인-----
 	public int login(UserDTO dto) {
-		UserDomain vo = selUser(dto);
+		UserDomain vo = mapper.selUser(dto);
 		
 		if (vo == null) {
 			return 2;
 		}
 		dto.setUser_pw(vo.getUser_pw());
 		if (!BCrypt.checkpw(dto.getClk_pw(), vo.getUser_pw())) {
+			System.out.println(vo.getUser_pw());
 			return 3;
 		}
-
+		
 		vo.setUser_pw(null);
 		hs.setAttribute(Const.KEY_LOGINUSER, vo);
 		return 1;
 	}
-
+	// ----아이디 찾기-----
+	public int findId(UserDTO dto) {
+		UserDomain vo = mapper.findId(dto);
+		
+		if(vo == null) {
+			return 2;
+		}
+		vo.setCode(null);
+		hs.setAttribute(Const.KEY_LOGINUSER, vo);
+		return 1;
+	}
+	// ----비밀번호 찾기-----
+	public int findPw(UserDTO dto) {
+		UserDomain vo = mapper.findPw(dto);
+		
+		if(vo==null) {
+			return 2;
+		}
+		
+		return 1;
+	}
+	
+	
 	public int chkJoinMail(UserDTO dto) {
 		return mUtils.sendJoinEmail(dto.getId_email(), dto);
+	}
+	
+	public int chkFindPwMail(UserDomain vo) {
+		System.out.println("asd:"+vo.getId_email());
+		System.out.println("aass:"+vo.getCode());
+		return mUtils.sendFindPwEmail(vo.getId_email(), vo.getCode());
+	}
+	
+	public int sendCode(UserDTO dto) {
+		int result = 0;
+		UserDomain vo = mapper.chkMail(dto);
+		
+		if(vo == null) {
+			return 2;
+		}
+		
+		result= chkFindPwMail(vo);
+		System.out.println("result : "+result);
+		return result;
+	}
+	
+	public int chkCode(UserDTO dto) {
+		UserDomain vo = mapper.chkMail(dto);
+		
+		if(vo==null) {
+			return 3;
+		}
+		
+		if(!dto.getCode().equals(vo.getCode())) {
+			return 2;
+		}
+		
+		return 1;
 	}
 
 	public int join(UserDTO dto) {
@@ -90,14 +146,22 @@ public class UserService {
 
 	/* profile 작업 */
 
-	public int updPw(UserDTO p) {
-		p.setI_user(SecurityUtils.getUserPk(hs));
-		String encryptPw = SecurityUtils.hashPassword(p.getUser_pw(), SecurityUtils.getsalt());
-		p.setUser_pw(encryptPw);
-		mapper.updUser(p);
+	public int updPw(UserDTO dto) {
+		if( SecurityUtils.getUserPk(hs) != 0) {
+			System.out.println("asdasdasd");
+			dto.setI_user(SecurityUtils.getUserPk(hs));
+		}
+		System.out.println(dto.getState());
+		System.out.println(dto.getUser_pw());
+		String encryptPw = SecurityUtils.hashPassword(dto.getUser_pw(), SecurityUtils.getsalt());
+		dto.setUser_pw(encryptPw);
+		mapper.updUser(dto);
+		System.out.println(dto.getUser_pw());
 		return 1;
 
 	}
+	
+	
 
 	public int profileUpload(UserDTO p, MultipartFile[] imgs) {
 		p.setI_user(SecurityUtils.getUserPk(hs));

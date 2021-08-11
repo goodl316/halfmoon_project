@@ -45,7 +45,7 @@
 		</div>
 	<div><input class="join_button" type="button" id="joinBtn" value="회원가입" onclick="join_chk()"></div>
 </div>
-<script defer src="/res/js/user/join.js"></script>
+<script defer src="/res/js/user/join.js?ver=1"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 

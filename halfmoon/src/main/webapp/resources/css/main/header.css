@@ -31,7 +31,7 @@ button {
 }
 
 .mainlogodiv2 {
-	width: 945px;
+	width: 890px;
 	margin: auto;
 	display: flex;
 }
@@ -59,7 +59,7 @@ button {
 	 margin: 15px 0 0 70px;
 }
 
-.main-form-input{
+.main_form_input{
 	border-radius: 5px;
     border: solid 1px gray;
     padding: 0 0.6rem;

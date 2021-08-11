@@ -5,6 +5,7 @@ import com.halfmoon.market.model.UserEntity;
 public class UserDTO extends UserEntity{
 	private String clk_pw;
 	private int state;
+	
 
 	public String getClk_pw() {
 		return clk_pw;
@@ -21,6 +22,5 @@ public class UserDTO extends UserEntity{
 	public void setState(int state) {
 		this.state = state;
 	}
-	
 	
 }
