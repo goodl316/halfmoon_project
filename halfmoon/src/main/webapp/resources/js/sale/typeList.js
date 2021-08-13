@@ -20,3 +20,20 @@ function TypeSubList(type_sub_title,sortState){
 function SearchList(searchText,sortState){
 	location.href=`/sale/typeList?searchText=`+searchText+"&$sortState="+sortState
 }
+
+function selChange(nowPage) {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="/sale/typeList?nowPage="+nowPage+"&cntPerPage="+sel+'&i_product_type='+i_product_type+"&sortState="+sortState;
+	}
+
+function movePage(startPage,cntPerPage,i_product_type,sortState){
+	location.href="/sale/typeList?nowPage="+(startPage - 1)+"&cntPerPage="+cntPerPage+'&i_product_type='+i_product_type+"&sortState="+sortState;
+}
+
+function movePage1(nowPage,cntPerPage,i_product_type,sortState){
+	location.href="/sale/typeList?nowPage="+nowPage+"&cntPerPage="+cntPerPage+'&i_product_type='+i_product_type+"&sortState="+sortState;
+}
+
+function movePage2(endPage,cntPerPage,i_product_type,sortState){
+	locaiont.href="/sale/typeList?="+(endPage+1)+"&cntPerPage="+cntPerPage+'&i_product_type='+i_product_type+"&sortState="+sortState;
+}

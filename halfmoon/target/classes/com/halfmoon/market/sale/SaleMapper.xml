@@ -43,55 +43,116 @@
 		p_price, a.i_product_type, a.type_sub_title, a.p_img_main, a.title,
 		a.ctnt, a.i_loc, a.ctnt, a.state, a.tag, a.r_dt, a.m_dt, a.hit,
 		a.i_user, b.user_nm, TIMESTAMPDIFF(SECOND, a.r_dt, now()) as
-		show_time, (select count(i_user) from t_favorite where i_user = #{i_user} and
+		show_time, (select count(i_user) from t_favorite where i_user =
+		#{i_user} and
 		i_product = #{i_product}) as is_favorite
-		from t_product_sale a
+		from
+		t_product_sale a
 		left join t_user b
 		on a.i_user = b.i_user
-		where a.i_product = #{i_product};
+		where
+		a.i_product = #{i_product};
 	</select>
-	
+
 	<select id="selImgProduct" resultType="ProductSaleDomain">
-		SELECT p_img_main,i_product,i_user,i_product_type,title from t_product_sale where i_product_type = #{i_product_type};
+		SELECT
+		p_img_main,i_product,i_user,i_product_type,title from t_product_sale
+		where i_product_type = #{i_product_type};
+	</select>
+
+	<!-- <select id="selTypeList" resultType="ProductSaleDomain">
+		select distinct
+		a.i_product, a.i_user,i_product_type, title, p_nm, p_price, type_sub_title,
+		hit, state,p_img_main,i_loc,(select user_nm from t_user where i_user =
+		a.i_user)
+		as user_nm, DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select
+		count(i_product)
+		from t_cmt where i_product = a.i_product) as "cmt_count",(select
+		count(i_user)
+		from t_favorite where i_product = a.i_product group by i_product)
+		is_favorite
+		from t_product_sale a where
+		<choose>
+			<when test="i_product_type ==0 and type_sub_title 
+		== null"> title LIKE '%${searchText}%' </when>
+			<when test="i_product_type 
+		== 0"> type_sub_title=#{type_sub_title} </when>
+			<when test="type_sub_title 
+		== null"> i_product_type=#{i_product_type} </when>
+		</choose>
+		<if test="sortState==0">
+			order by i_product desc
+		</if>
+		<if test="sortState==1"> order by p_price desc
+		</if>
+		<if test="sortState==2"> order by p_price asc </if>
+		<if test="sortState==3">
+			order by cmt_count desc
+		</if>
+		<if test="sortState==4"> order by is_favorite
+			desc
+		</if>
+		<if test="sortState==5"> order by i_product desc </if>
+	</select>
+	-->
+	<select id="countProduct" resultType="int">
+		select count(*) from
+		t_product_sale
 	</select>
 
 	<select id="selTypeList" resultType="ProductSaleDomain">
-		select distinct a.i_product, a.i_user,i_product_type,
-		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,i_loc,(select user_nm from t_user where i_user = a.i_user) as user_nm,
-		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select count(i_product) from t_cmt where i_product = a.i_product) as
-		"cmt_count",(select count(i_user) from t_favorite where i_product = a.i_product group by i_product) is_favorite
-		from t_product_sale a
-		where 
+		SELECT * FROM(SELECT distinct a.i_product, a.i_user,i_product_type,
+		title, p_nm, p_price, type_sub_title, hit,
+		state,p_img_main,i_loc,(select user_nm from t_user where i_user =
+		a.i_user) as user_nm,
+		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select
+		count(i_product) from t_cmt where i_product = a.i_product) as
+		"cmt_count",(select count(i_user) from t_favorite where i_product =
+		a.i_product group by i_product) is_favorite ,@ROWNUM:=@ROWNUM+1 as
+		rowNum
+
+		FROM t_product_sale a,(SELECT @ROWNUM:=0) AS R
+		) T
+		where rowNum
+		between
+		#{start} and #{end} and
 		<choose>
-		<when test="i_product_type ==0 and type_sub_title == null">
-		title LIKE '%${searchText}%'
-		</when>
-		<when test="i_product_type == 0">
-		type_sub_title=#{type_sub_title}
-		</when>
-		<when test="type_sub_title == null">
-		i_product_type=#{i_product_type}
-		</when>
+			<when test="i_product_type ==0 and type_sub_title == null">
+				title LIKE '%${searchText}%'
+			</when>
+			<when test="i_product_type == 0">
+				type_sub_title=#{type_sub_title}
+			</when>
+			<when test="type_sub_title == null">
+				i_product_type=#{i_product_type}
+			</when>
 		</choose>
-		<if test="sortState==0"> 
-		order by i_product desc;
+		<if test="sortState==0">
+			order by i_product desc
 		</if>
-		<if test="sortState==1"> 
-		order by p_price desc;
+		<if test="sortState==1">
+			order by p_price desc
 		</if>
-		<if test="sortState==2"> 
-		order by p_price asc;
+		<if test="sortState==2">
+			order by p_price asc
 		</if>
-		<if test="sortState==3"> 
-		order by cmt_count desc;
+		<if test="sortState==3">
+			order by cmt_count desc
 		</if>
-		<if test="sortState==4"> 
-		order by is_favorite desc;
+		<if test="sortState==4">
+			order by is_favorite desc
 		</if>
-		<if test="sortState==5"> 
-		order by i_product desc;
+		<if test="sortState==5">
+			order by i_product desc
 		</if>
 	</select>
+
+	<select id="countBoard" resultType="int">
+		select count(*) from
+		t_product_sale where i_product_type = #{i_product_type}
+	</select>
+
+
 
 
 	<!-- 상품수정정보 -->
@@ -105,15 +166,18 @@
 		select
 		a.i_cmt,a.i_user,a.i_product,a.ctnt,b.user_nm
 		,b.profile_img,a.isSecret,TIMESTAMPDIFF(SECOND, a.r_dt,
-		now()) as show_time from t_cmt a
+		now()) as
+		show_time from t_cmt a
 		left join t_user b
 		on a.i_user =
 		b.i_user
-		where i_product= #{i_product}
+		where
+		i_product= #{i_product}
 	</select>
 
 	<select id="selCmtcmt" resultType="CmtCmtDomain">
-		select *from t_cmt_cmt where i_cmt=#{i_cmt}
+		select *from t_cmt_cmt where
+		i_cmt=#{i_cmt}
 	</select>
 
 	<!-- 상품등록유저 정보 -->
@@ -129,23 +193,26 @@
 
 	<!-- 상품 리스트 뿌리기 -->
 	<select id="selProductList" resultType="ProductSaleDomain">
-		SELECT i_product,p_nm,p_price,p_img_main,title,r_dt,i_user
+		SELECT
+		i_product,p_nm,p_price,p_img_main,title,r_dt,i_user
 		FROM t_product_sale
 		WHERE i_user=#{i_user}
 	</select>
-	
-	
+
+
 	<!-- 좋아요 갯수 카운터 -->
 	<select id="selFavorite" resultType="FavoriteDomain">
-		SELECT COUNT(i_user) as user_count
+		SELECT COUNT(i_user) as
+		user_count
 		FROM t_favorite
 		WHERE i_product = #{i_product};
 	</select>
-	
-	
+
+
 	<update id="updHits">
 		UPDATE t_product_sale SET hit = hit + 1
-		WHERE i_product = #{i_product}
+		WHERE
+		i_product = #{i_product}
 	</update>
 
 	<!-- 상품 수정 -->
@@ -165,9 +232,10 @@
 	</update>
 	<!-- 상품 상태 수정(판매중,완료) -->
 	<update id="updProductState">
-		UPDATE t_product_sale 
+		UPDATE t_product_sale
 		SET state = #{state}
-		WHERE i_product = #{i_product}
+		WHERE
+		i_product = #{i_product}
 	</update>
 
 	<delete id="delSaleProduct">
@@ -178,17 +246,20 @@
 
 	<delete id="delFavorite">
 		delete from t_favorite
-		where i_user = #{i_user} and i_product =#{i_product}
+		where i_user = #{i_user} and
+		i_product =#{i_product}
 	</delete>
 
 	<delete id="delCmt">
 		delete from t_cmt
-		where i_cmt=#{i_cmt} and i_user= #{i_user}
+		where i_cmt=#{i_cmt} and i_user=
+		#{i_user}
 	</delete>
 
 	<delete id="delCmtCmt">
 		delete from t_cmt_cmt
-		where i_cmt_cmt=#{i_cmt_cmt} and i_cmt=#{i_cmt}
+		where i_cmt_cmt=#{i_cmt_cmt} and
+		i_cmt=#{i_cmt}
 	</delete>
 
 

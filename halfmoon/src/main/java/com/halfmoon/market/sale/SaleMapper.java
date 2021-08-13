@@ -25,9 +25,6 @@ public interface SaleMapper {
     List<ProductSaleDomain> selImgProduct(ProductSaleDTO dto);
     UserDomain selProUser(ProductSaleDTO dto);
     List<ProductSaleDomain> selTypeList(ProductSaleDTO dto);
-    List<ProductSaleDomain> selTypeSubList(ProductSaleDTO dto);
-    List<ProductSaleDomain> selProductListSort(ProductSaleDTO dto);
-    List<ProductSaleDomain> selProductSubListSort(ProductSaleDTO dto);
     FavoriteDomain selFavorite(FavoriteDTO dto);
     // 상품메인이미지업데이트
     int upsMainImg(ProductSaleDTO dto);
@@ -51,5 +48,6 @@ public interface SaleMapper {
     List<CmtCmtDomain> selCmtcmt(CmtCmtDTO dto);
     int insCmtcmt(CmtCmtDTO dto);
     int delCmtCmt(CmtCmtDTO dto);
-
+    //페이징
+    int countProduct();
 }

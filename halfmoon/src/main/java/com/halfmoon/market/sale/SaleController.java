@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -295,24 +296,22 @@ public class SaleController {
     //==================항목별 리스트 작업=========================
    
     @GetMapping("/sale/typeList")
-    public void ProductTypeList(Model model, ProductSaleDTO dto){
-//    	ProductSaleDTO dto = new ProductSaleDTO();
-//    	dto.setI_product_type(i_product_type);
-//    	System.out.println("i_product_type:"+dto.getI_product_type());
-//    	
-//    	model.addAttribute(Const.KEY_LIST,service.selTypeList(dto));
-    	
-//    	System.out.println("sortState:"+sortState);
-//    	System.out.println("i_product_type:"+i_product_type);
-//    	ProductSaleDTO dto = new ProductSaleDTO();
-//    	dto.setI_product_type(i_product_type);
-//    	dto.setSortState(sortState);
-//    	System.out.println(dto.getSortState());
-    	System.out.println("i_prodict_type:"+dto.getI_product_type());
-    	System.out.println("type_sub_title:"+dto.getType_sub_title());
-    	System.out.println("sort:"+dto.getSortState());
-    	System.out.println("searchText :" +dto.getSearchText());
-    	
+    public void ProductTypeList(Model model,ProductSaleDTO dto){
+    	int nowPage = dto.getNowPage();
+    	int cntPerPage = dto.getCntPerPage();
+    	int total =service.countProduct();
+    	if (nowPage == 0 && cntPerPage == 0) {
+    		nowPage = 1;
+    		cntPerPage = 16;
+    	} else if (nowPage == 0) {
+    		nowPage = 1;
+    	} else if (cntPerPage == 0) { 
+    		cntPerPage = 16;
+    	}
+    	System.out.println("A sort : "+dto.getSortState());
+    	dto = new ProductSaleDTO(total, nowPage,cntPerPage,dto.getSortState(),dto.getSearchText());
+    	System.out.println("B sort : " +dto.getSortState());
+    	model.addAttribute("paging",dto);
     	model.addAttribute(Const.KEY_LIST, service.selTypeList(dto));
     	
     }

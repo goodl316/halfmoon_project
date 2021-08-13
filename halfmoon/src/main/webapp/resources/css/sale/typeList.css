@@ -87,7 +87,12 @@ ul,li {
     color: gray;
     font-weight: bold;
 }
-
+.is_favorite{
+	font-size: 13px;
+    margin-left: 10px;
+    color: gray;
+    font-weight: bold;
+}
 
 .product_info_sub {
 	display: flex;
@@ -156,4 +161,11 @@ ul,li {
     position: absolute;
     margin-top: 3px;
     margin-left: -20px;
+}
+
+.selectPage {
+	text-align: center;
+    margin-top: 40px;
+    font-size: 18px;
+    cursor: pointer;
 }

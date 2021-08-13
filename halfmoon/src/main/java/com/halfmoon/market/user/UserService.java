@@ -157,6 +157,7 @@ public class UserService {
 		}
 		System.out.println(dto.getState());
 		System.out.println(dto.getUser_pw());
+		System.out.println(dto.getCode());
 		String encryptPw = SecurityUtils.hashPassword(dto.getUser_pw(), SecurityUtils.getsalt());
 		dto.setUser_pw(encryptPw);
 		mapper.updUser(dto);

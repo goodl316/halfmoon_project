@@ -98,6 +98,22 @@
 				<div id="title">${list[0].show_title}</div>
 				<div id="kinds">인기순</div>
 			</div>
+
+			<%-- <select id="cntPerPage" name="sel" onchange="selChange(${param.nowPage})">
+				<option value="5"
+					<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
+					보기</option>
+				<option value="10"
+					<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
+					보기</option>
+				<option value="15"
+					<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄
+					보기</option>
+				<option value="20"
+					<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
+					보기</option>
+			</select> --%>
+
 			<div class="product_info_sub">
 				<c:forEach var="item" items="${list}">
 					<c:if test="${item.state == 1}">
@@ -120,18 +136,39 @@
 										<img alt="" src="/res/img/star.png">4.6
 									</div>
 									<div class="item_review">댓글 ${item.cmt_count}</div>
+									<div class="is_favorite">좋아요 ${item.is_favorite}</div>
 								</div>
+									
 							</div>
 							<div class="loc_time_div">
 								<div class="loc">
 									<img alt="" src="/res/img/i_loc.png">${item.show_loc}</div>
 								<div class="time">${item.show_time}</div>
 							</div>
+
 						</div>
 					</c:if>
 				</c:forEach>
 			</div>
-
+			<div class="selectPage">
+				<c:if test="${paging.startPage != 1 }">
+					<a onclick="movePage(${paging.startPage},${paging.cntPerPage},${param.i_product_type},${param.sortState})">&lt;</a>
+				</c:if>
+				<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+					var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<b>${p }</b>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<a onclick="movePage1(${p},${paging.cntPerPage},${param.i_product_type},${param.sortState})">${p }</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${paging.endPage != paging.lastPage}">
+					<a onclick="movePage2(${paging.endPage},${paging.cntPerPage},${param.i_product_type},${param.sortState})">&gt;</a>
+				</c:if>
+			</div>
 		</div>
 	</div>
 </div>

@@ -129,20 +129,20 @@ function chkCode(state){
 		}
 	})
 }
-function chPw(){
+function chPw(code){
 	if(userPw.value != chk_Pw.value){
 		return alert('변경할 비밀번호가 일치하지 않습니다.')
 	}
-	updpwAjax()
+	updpwAjax(code)
 }
 
 function updpwAjax(code){
 	var params={
 		user_pw:user_Pw.value,
 		state : 4,
-		code: code
+		code:code
 	}
-	
+	console.log(params.code)
 	fetch(`/user/my/chPw`,{
 		method:'POST',
 		headers: {
@@ -152,7 +152,7 @@ function updpwAjax(code){
 	}).then(function(res){
 		return res.json()
 	}).then(function(data){
-		switch(data.result){
+		switch(data.result){	
 			case 1:
 				alert("비밀번호가 변경되었습니다.")
 				location.href=`/login`
@@ -164,6 +164,6 @@ function updpwAjax(code){
 		}
 	})
 	
-	
+
 	
 }

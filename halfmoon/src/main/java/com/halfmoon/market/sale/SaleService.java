@@ -211,34 +211,14 @@ public class SaleService {
     public List<ProductSaleDomain> selTypeList(ProductSaleDTO dto){
     	List<ProductSaleDomain> list = mapper.selTypeList(dto);
     	for(int i=0; i<list.size(); i++) {
-    		System.out.println(list.get(i).getI_product_type()-1);
     		list.get(i).setShow_title(Const.titleArr[list.get(i).getI_product_type()-1]);
-    		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc() - 1]);
-    	}
-    	return list;
-    }
-    List<ProductSaleDomain> selTypeSubList(ProductSaleDTO dto){
-    	List<ProductSaleDomain> list = mapper.selTypeSubList(dto);
-    	for(int i=0; i<list.size(); i++) {
     		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc() - 1]);
     	}
     	return list;
     }
     
-    List<ProductSaleDomain> selProductListSort(ProductSaleDTO dto){
-    	List<ProductSaleDomain> list = mapper.selProductListSort(dto);
-    	for(int i=0; i<list.size(); i++) {
-    		System.out.println("i_product_type:"+list.get(i).getI_product_type());
-    		list.get(i).setShow_title(Const.titleArr[list.get(i).getI_product_type()-1]);
-    		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc()-1]);
-    	}
-    	return list;
+    public int countProduct() {
+    	return mapper.countProduct();
     }
-    List<ProductSaleDomain> selProductSubListSort(ProductSaleDTO dto){
-    	List<ProductSaleDomain> list = mapper.selProductSubListSort(dto);
-    	for(int i=0; i<list.size(); i++) {
-    		list.get(i).setShow_loc(Const.locArr[list.get(i).getI_loc()-1]);
-    	}
-    	return list;
-    }
+
 }

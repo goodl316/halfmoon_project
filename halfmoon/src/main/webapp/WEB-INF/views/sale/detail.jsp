@@ -97,19 +97,24 @@
 	</div>
 	<div class="similar_product">
 		<div class="similarSlide">
-		<div class="imgFlex">
-			<div class="page">1/3</div>
-			<c:forEach var="item" items="${img}">
-			<div>
-				<img class="similarSlideImg"
-					onclick="moveDetail(${item.i_product},${item.i_user},${item.i_product_type })"
-					src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
-				<div class="product_title">
-					<div class="product_data_title">${item.title}</div>
-				</div>
+			<div class="imgFlex">
+				<div class="page">1/3</div>
+				<c:forEach var="item" items="${img}" begin="0" end ="5">
+					<div>
+						<c:choose>
+							<c:when test="${data.p_img_main != item.p_img_main }">
+								<img class="similarSlideImg"
+									onclick="moveDetail(${item.i_product},${item.i_user},${item.i_product_type })"
+									src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
+								<div class="product_title">
+									<div class="product_data_title">${item.title}</div>
+								</div>
+							</c:when>
+						</c:choose>
+
+					</div>
+				</c:forEach>
 			</div>
-			</c:forEach>
-		</div>
 		</div>
 
 		<a class="prev1" onclick="plusSlides1(-1)">&#10094;</a> <a
