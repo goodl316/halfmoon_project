@@ -80,9 +80,9 @@ function TypeSubList(type_sub_title,sortState){
 	location.href =`/sale/typeList?type_sub_title=`+type_sub_title+"&sortState="+sortState
 }
 
-function search(searchText){
+function search(searchText,sortState){
 	searchText= main_form_input.value
 	console.log("searchText :"+searchText)
-	location.href='/sale/typeList?searchText='+searchText
+	location.href='/sale/typeList?searchText='+searchText+"&sortState="+sortState
 	
 }

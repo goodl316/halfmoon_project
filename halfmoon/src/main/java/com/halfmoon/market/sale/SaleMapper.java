@@ -49,5 +49,6 @@ public interface SaleMapper {
     int insCmtcmt(CmtCmtDTO dto);
     int delCmtCmt(CmtCmtDTO dto);
     //페이징
-    int countProduct();
+    ProductSaleDomain countProduct(ProductSaleDTO dto);
+    ProductSaleDomain countImg(ProductSaleDTO dto);
 }

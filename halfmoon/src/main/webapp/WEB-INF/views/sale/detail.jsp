@@ -98,8 +98,8 @@
 	<div class="similar_product">
 		<div class="similarSlide">
 			<div class="imgFlex">
-				<div class="page">1/3</div>
-				<c:forEach var="item" items="${img}" begin="0" end ="5">
+				<div class="page">1/${count.countImg}</div>
+				<c:forEach var="item" items="${img}" begin="0" end="5" >
 					<div>
 						<c:choose>
 							<c:when test="${data.p_img_main != item.p_img_main }">

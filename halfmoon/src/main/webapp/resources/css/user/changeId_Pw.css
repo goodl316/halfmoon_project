@@ -12,8 +12,9 @@ button {
 #findCont {
 	width: 100%;
     margin: auto;
-    background-color: #36cc36;
+    background-color: hsla(50,35%,25%,.75);
     border-bottom: 1px solid gray;
+    position: relative;
 }
 
 #find_div {
@@ -22,7 +23,7 @@ button {
 }
 
 #find_div > button {
-	padding: 20px 40px;
+	padding: 40px 40px;
     background-color: transparent;
     border: none;
     margin-right: 20px;
@@ -30,7 +31,7 @@ button {
     outline: 0px;
     color: white;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 19px;
 }
 
 .span {
@@ -62,7 +63,6 @@ button {
 .info_input {
 	position: absolute;
 	right: 86px;
-	color: green;
 }
 .next {
 	padding: 0px 2px;
@@ -95,7 +95,7 @@ button {
 	width: 217px;
     height: 23px;
     border: 1px solid #ccc;
-    margin-left: 54px;
+    margin-left: 50px;
     margin-bottom: 5px;
 }
 
@@ -183,7 +183,6 @@ button {
 .id_input {
 	position: absolute;
 	right: 242px;
-	color: green;
 }
 .pw_next1 {
 	position: absolute;
@@ -260,7 +259,7 @@ button {
 	width: 217px;
     height: 23px;
     border: 1px solid #ccc;
-    margin: 0px 0px 5px 41px;
+    margin: 0px 0px 5px 39px;
 }
 
 .findPw_user_email button {
@@ -273,7 +272,7 @@ button {
 	width: 217px;
     height: 23px;
     border: 1px solid #ccc;
-    margin-left: 84px;
+    margin-left: 76px;
 }
 
 
@@ -296,3 +295,9 @@ button {
     border: 1px solid #ccc;
 }
 
+.mainLogo{
+	width: 200px;
+	position: absolute;
+	padding-top: 10px;
+	padding-left: 30px;
+}

@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +110,7 @@ public class SaleController {
         
         //관련 이미지 
         model.addAttribute("img",service.selImgProduct(dto));
+        model.addAttribute("count",service.countImg(dto));
         
     }
 
@@ -297,9 +299,11 @@ public class SaleController {
    
     @GetMapping("/sale/typeList")
     public void ProductTypeList(Model model,ProductSaleDTO dto){
+    	ProductSaleDomain vo = service.countProduct(dto);
+    	
     	int nowPage = dto.getNowPage();
     	int cntPerPage = dto.getCntPerPage();
-    	int total =service.countProduct();
+    	int total = vo.getCountProduct();
     	if (nowPage == 0 && cntPerPage == 0) {
     		nowPage = 1;
     		cntPerPage = 16;
@@ -309,10 +313,20 @@ public class SaleController {
     		cntPerPage = 16;
     	}
     	System.out.println("A sort : "+dto.getSortState());
-    	dto = new ProductSaleDTO(total, nowPage,cntPerPage,dto.getSortState(),dto.getSearchText());
+    	System.out.println("A i_product_type : " + dto.getI_product_type());
+    	System.out.println("A type_sub_title : " + dto.getType_sub_title());
+    	dto = new ProductSaleDTO(total, nowPage,cntPerPage,dto.getSortState(),
+    			dto.getSearchText(),dto.getI_product_type(),dto.getType_sub_title());
     	System.out.println("B sort : " +dto.getSortState());
+    	System.out.println("B i_product_type : " + dto.getI_product_type());
+    	System.out.println("B type_sub_title : " + dto.getType_sub_title());
     	model.addAttribute("paging",dto);
     	model.addAttribute(Const.KEY_LIST, service.selTypeList(dto));
+    	
+    }
+    
+    @GetMapping("/")
+    public void tt(HttpServletRequest hr) {
     	
     }
  

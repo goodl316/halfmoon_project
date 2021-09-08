@@ -54,6 +54,7 @@ public class UserService {
 
 		vo.setUser_pw(null);
 		hs.setAttribute(Const.KEY_LOGINUSER, vo);
+		
 		return 1;
 	}
 

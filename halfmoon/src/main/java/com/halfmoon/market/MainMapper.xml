@@ -10,7 +10,7 @@
 	<!-- 전체상품 list 뿌리기 -->
 	<select id="selTotalList" resultType="ProductSaleDomain">
 		select i_product,i_product_type,
-		p_img_main, title, p_price, i_loc, i_user,state,
+		p_img_main, title, p_price, i_loc, i_user,state,hit,
 		TIMESTAMPDIFF(SECOND, r_dt,
 		now()) as show_time,(select count(*) from t_cmt where i_product = a.i_product) as "cmt_count"
 		from t_product_sale a

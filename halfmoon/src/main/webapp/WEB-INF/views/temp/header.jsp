@@ -22,7 +22,7 @@
 					<form class="form-select" action="" method="" id="form_search">
 						<input class="main_form_input" placeholder="상품명 검색" type="text"
 							name="" value=""> <img class="main-select"
-							onclick="search('')" alt="" src="/res/img/search.png">
+							onclick="search('',0)" alt="" src="/res/img/search.png">
 						<div class="form-select-window">
 							<div class="window-div1">
 								<div class="window-a1">최근검색어</div>

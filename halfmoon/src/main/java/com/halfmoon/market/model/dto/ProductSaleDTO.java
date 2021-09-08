@@ -11,9 +11,16 @@ public class ProductSaleDTO extends ProductSaleEntity {
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
 	
-	public ProductSaleDTO() {
+	public int getCntPage() {
+		return cntPage;
 	}
-	public ProductSaleDTO(int total, int nowPage, int cntPerPage,int sortState,String searchText) {
+	public void setCntPage(int cntPage) {
+		this.cntPage = cntPage;
+	}
+	
+	public ProductSaleDTO() {}
+	
+	public ProductSaleDTO(int total, int nowPage, int cntPerPage,int sortState,String searchText,int i_product_type,String type_sub_title) {
 		setNowPage(nowPage);
 		setCntPerPage(cntPerPage);
 		setTotal(total);
@@ -22,6 +29,8 @@ public class ProductSaleDTO extends ProductSaleEntity {
 		calcStartEnd(getNowPage(), getCntPerPage());
 		this.sortState = sortState;
 		this.searchText = searchText;
+		super.setI_product_type(i_product_type);
+		super.setI_product_type(i_product_type);
 	}
 	// 제일 마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {

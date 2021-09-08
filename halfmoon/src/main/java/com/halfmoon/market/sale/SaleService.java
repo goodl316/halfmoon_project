@@ -217,8 +217,24 @@ public class SaleService {
     	return list;
     }
     
-    public int countProduct() {
-    	return mapper.countProduct();
+    public ProductSaleDomain countProduct(ProductSaleDTO dto) {
+    	
+    	return mapper.countProduct(dto);
+    }
+    
+    public ProductSaleDomain countImg(ProductSaleDTO dto) {
+    	ProductSaleDomain vo = mapper.countImg(dto);
+    	int avg = 0;
+    	System.out.println(vo.getCountImg());
+    	if(vo.getCountImg()%6 != 0) {
+    		avg = vo.getCountImg()/6 + 1;
+    		vo.setCountImg(avg);
+    		return vo;
+    	}
+    	
+    	avg = vo.getCountImg()/6;
+    	vo.setCountImg(avg);
+    	return vo;
     }
 
 }
