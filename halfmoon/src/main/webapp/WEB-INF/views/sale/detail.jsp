@@ -216,7 +216,7 @@
 				</a>
 			</div>
 			<div class="user_product_more">
-				<a href="/user/my/salePage?menu=1">${data.i_user} 상품 더보기 ></a>
+				<a onclick="userBlog(${data.i_user})">${data.i_user} 상품 더보기 ></a>
 			</div>
 			<div class="product_review ">
 				상품후기 <span>${data.i_user}</span>

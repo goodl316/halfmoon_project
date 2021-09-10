@@ -480,8 +480,9 @@ if (cmtListElem) {
 }
 
 
-
-
+function userBlog(i_user){
+	location.href= "/user/my/salePage?i_user="+i_user
+}
 
 
 

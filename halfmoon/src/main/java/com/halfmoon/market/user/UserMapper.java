@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
+import com.halfmoon.market.model.dto.ProductSaleDTO;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Mapper
@@ -31,7 +32,8 @@ public interface UserMapper {
 	// D
 	int delUserImg(UserDTO p);
 
-	
+	List<ProductSaleDomain> productUser(ProductSaleDTO dto);
+	UserDomain selProductUser(UserDTO dto);
 
 
 	

@@ -87,6 +87,29 @@
 		id_email = #{id_email}
 	</select>
 
+	<select id="productUser" resultType="ProductSaleDomain">
+		select
+		a.i_user,a.i_product,a.p_nm,a.p_price,a.i_product_type,
+		a.type_sub_title,a.p_img_main,a.title,b.user_nm,b.profile_img
+		from
+		t_product_sale a
+		left join t_user b
+		on a.i_user = b.i_user
+		where a.i_user
+		= #{i_user}
+	</select>
+
+	<select id="selProductUser" resultType="UserDomain">
+		select DISTINCT
+		a.i_user,a.user_nm,a.profile_img from t_user a
+		left join t_product_sale
+		b
+		on a.i_user = b.i_user
+		where a.i_user = #{i_user};
+	</select>
+
+
+
 
 	<update id="updAuth">
 		UPDATE t_user

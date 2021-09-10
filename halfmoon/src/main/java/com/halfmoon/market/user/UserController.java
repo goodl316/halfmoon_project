@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.halfmoon.market.common.Const;
 import com.halfmoon.market.model.UserEntity;
 import com.halfmoon.market.model.domain.UserDomain;
+import com.halfmoon.market.model.dto.ProductSaleDTO;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Controller
@@ -187,7 +188,10 @@ public class UserController {
 
 	// =================== 판매자 센터 ===================//
 	@GetMapping("/user/my/salePage")
-	public void salePage() {
+	public void salePage(Model model,ProductSaleDTO p_dto,UserDTO u_dto) {
+		System.out.println("i_user : "+u_dto.getI_user());
+		model.addAttribute("product", service.productUser(p_dto));
+		model.addAttribute("user", service.selProductUser(u_dto));
 	}
 
 	// =================== 아이디 찾기 ===================

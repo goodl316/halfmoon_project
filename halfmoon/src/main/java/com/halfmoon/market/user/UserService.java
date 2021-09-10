@@ -15,6 +15,7 @@ import com.halfmoon.market.common.MailUtils;
 import com.halfmoon.market.common.SecurityUtils;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
 import com.halfmoon.market.model.domain.UserDomain;
+import com.halfmoon.market.model.dto.ProductSaleDTO;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Service
@@ -237,5 +238,12 @@ public class UserService {
 		dto.setI_user(SecurityUtils.getUserPk(hs));
 		System.out.println("favorite" + dto.getI_user());
 		return mapper.selFavoriteMyList(dto);
+	}
+	
+	List<ProductSaleDomain> productUser(ProductSaleDTO dto) {
+		return mapper.productUser(dto);
+	}
+	UserDomain selProductUser(UserDTO dto) {
+		return mapper.selProductUser(dto);
 	}
 }

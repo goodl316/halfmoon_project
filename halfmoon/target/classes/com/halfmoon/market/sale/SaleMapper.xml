@@ -83,15 +83,18 @@
 	</select>
 	
 	<select id="selTypeList" resultType="ProductSaleDomain">
-		SELECT * FROM(SELECT distinct a.i_product, a.i_user,i_product_type,
+		SELECT * FROM
+		(SELECT distinct a.i_product, a.i_user,i_product_type,
 		title, p_nm, p_price, type_sub_title, hit,
-		state,p_img_main,i_loc,(select user_nm from t_user where i_user =
-		a.i_user) as user_nm,
-		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,(select
-		count(i_product) from t_cmt where i_product = a.i_product) as
-		"cmt_count",(select count(i_user) from t_favorite where i_product =
-		a.i_product group by i_product) is_favorite ,@ROWNUM:=@ROWNUM+1 as
-		rowNum
+		state,p_img_main,i_loc,
+		(select user_nm from t_user
+		 where i_user = a.i_user) as user_nm,
+		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time,
+		(select count(i_product) from t_cmt where i_product = a.i_product) as
+		"cmt_count",
+		(select count(i_user) from t_favorite 
+		where i_product = a.i_product group by i_product) is_favorite ,
+		@ROWNUM:=@ROWNUM+1 as rowNum
 		FROM t_product_sale a,(SELECT @ROWNUM:=0) AS R where
 		<choose>
 			<when test="i_product_type ==0 and type_sub_title == null">
