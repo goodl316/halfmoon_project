@@ -30,7 +30,7 @@ public class ProductSaleDTO extends ProductSaleEntity {
 		this.sortState = sortState;
 		this.searchText = searchText;
 		super.setI_product_type(i_product_type);
-		super.setI_product_type(i_product_type);
+		super.setType_sub_title(type_sub_title);
 	}
 	// 제일 마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {

@@ -110,8 +110,8 @@
 							<div class="item_star_img">
 								<img alt="" src="/res/img/star.png">4.6
 							</div>
-							<div class="item_review">댓글 ${item.cmt_count}</div>
-							<div class="is_favorite">좋아요 ${item.is_favorite}</div>
+						<%-- 	<div class="item_review">댓글 ${item.cmt_count}</div>
+							<div class="is_favorite">좋아요 ${item.is_favorite}</div> --%>
 						</div>
 
 					</div>
@@ -124,6 +124,91 @@
 				</div>
 
 			</c:forEach>
+			<div class="product_cont" onclick="">
+				<input type="hidden" id=i_product value=""> <img alt=""
+					src="/res/img/basic_profile.jpg">
+				<div class="product_info_cont">
+					<div class="product_title">물품이름</div>
+					<div class="product_pt">
+						<div class="price">25000원</div>
+						<div class="time">13시간전</div>
+					</div>
+				</div>
+				<div class="loc">
+					<img alt="" src="/res/img/i_loc.png">달서구
+				</div>
+			</div>
+			<div class="product_cont" onclick="">
+				<input type="hidden" id=i_product value=""> <img alt=""
+					src="/res/img/basic_profile.jpg">
+				<div class="product_info_cont">
+					<div class="product_title">물품이름</div>
+					<div class="product_pt">
+						<div class="price">25000원</div>
+						<div class="time">13시간전</div>
+					</div>
+				</div>
+				<div class="loc">
+					<img alt="" src="/res/img/i_loc.png">달서구
+				</div>
+			</div>
+			<div class="product_cont" onclick="">
+				<input type="hidden" id=i_product value=""> <img alt=""
+					src="/res/img/basic_profile.jpg">
+				<div class="product_info_cont">
+					<div class="product_title">물품이름</div>
+					<div class="product_pt">
+						<div class="price">25000원</div>
+						<div class="time">13시간전</div>
+					</div>
+				</div>
+				<div class="loc">
+					<img alt="" src="/res/img/i_loc.png">달서구
+				</div>
+			</div>
+			<div class="product_cont" onclick="">
+				<input type="hidden" id=i_product value=""> <img alt=""
+					src="/res/img/basic_profile.jpg">
+				<div class="product_info_cont">
+					<div class="product_title">물품이름</div>
+					<div class="product_pt">
+						<div class="price">25000원</div>
+						<div class="time">13시간전</div>
+					</div>
+				</div>
+				<div class="loc">
+					<img alt="" src="/res/img/i_loc.png">달서구
+				</div>
+			</div>
+			<div class="product_cont" onclick="">
+				<input type="hidden" id=i_product value=""> <img alt=""
+					src="/res/img/basic_profile.jpg">
+				<div class="product_info_cont">
+					<div class="product_title">물품이름</div>
+					<div class="product_pt">
+						<div class="price">25000원</div>
+						<div class="time">13시간전</div>
+					</div>
+				</div>
+				<div class="loc">
+					<img alt="" src="/res/img/i_loc.png">달서구
+				</div>
+			</div>
+			<div class="product_cont" onclick="">
+				<input type="hidden" id=i_product value=""> <img alt=""
+					src="/res/img/basic_profile.jpg">
+				<div class="product_info_cont">
+					<div class="product_title">물품이름</div>
+					<div class="product_pt">
+						<div class="price">25000원</div>
+						<div class="time">13시간전</div>
+					</div>
+				</div>
+				<div class="loc">
+					<img alt="" src="/res/img/i_loc.png">달서구
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="info_div2">

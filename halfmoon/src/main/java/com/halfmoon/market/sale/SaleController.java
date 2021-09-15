@@ -312,14 +312,8 @@ public class SaleController {
     	} else if (cntPerPage == 0) { 
     		cntPerPage = 16;
     	}
-    	System.out.println("A sort : "+dto.getSortState());
-    	System.out.println("A i_product_type : " + dto.getI_product_type());
-    	System.out.println("A type_sub_title : " + dto.getType_sub_title());
     	dto = new ProductSaleDTO(total, nowPage,cntPerPage,dto.getSortState(),
-    			dto.getSearchText(),dto.getI_product_type(),dto.getType_sub_title());
-    	System.out.println("B sort : " +dto.getSortState());
-    	System.out.println("B i_product_type : " + dto.getI_product_type());
-    	System.out.println("B type_sub_title : " + dto.getType_sub_title());
+    	           dto.getSearchText(),dto.getI_product_type(),dto.getType_sub_title());
     	model.addAttribute("paging",dto);
     	model.addAttribute(Const.KEY_LIST, service.selTypeList(dto));
     	
