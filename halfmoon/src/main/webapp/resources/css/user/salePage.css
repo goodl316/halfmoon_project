@@ -218,10 +218,12 @@ a {
 	border: 1px solid rgb(238, 238, 238);
 	margin-top: 20px;
 	cursor: pointer;
+	height: 282px;
 }
 
 .product_cont > img {
 	width: 193px;
+	height: 167px;
 }
 
 .product_info_cont {
@@ -266,13 +268,16 @@ a {
 	font-size: 18px;
     padding: 50px 0px 20px;
 }
+
 .product_ctnt {
 	border: 1px solid rgb(238,238,238);
+	width: 1000px;
 }
+
 
 .product_ctnt_input {
 	white-space: pre-wrap;
-    width: 100%;
+    width: 960px;
     padding: 20px;
     height: 80px;
     border: none;
@@ -498,5 +503,95 @@ a {
 	width: 13px;
 }
 
+.product_img_div {
+	width: 10px;
+	height: 10px;
+}
 
+/*   cmt css    */
+.cmt_main_div{
+	display: flex;
+	padding-bottom: 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
 
+.cmt_main_img img{
+	width: 50px;
+	margin-right: 10px;
+}
+.cmt_user_time {
+	display: flex;
+	width: 600px;
+	justify-content: space-between;
+	font-weight: 200;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+.cmt_ctnt {
+	font-size: 18px;
+	word-break: break-word;
+	margin-bottom: 6px;
+}
+.cmt_btn {
+	display: flex;
+    justify-content: space-between;
+}
+
+.input_btn button {
+	background-color: white;
+    border: none;
+    outline: 0px;
+    cursor: pointer;
+	
+}
+.cmt_cmt_btn {
+	margin-right: 380px;
+}
+
+.cmt_cmt_input {
+	border-bottom: 1px solid #ccc;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+    margin-top: 10px;
+    width: 539px;
+    height: 25px;
+}
+.cmt_cmt_input_btn{
+    color: gray;
+}
+.cmt_cmt_div2 {
+	display: flex;
+}
+.cmt_cmt_ctnt {
+	margin-left: 94px;
+}
+
+.cmt_cmt_more {
+	margin-left: -69px;
+    margin-top: 20px;
+}
+
+.cmt_cmt_main {
+	display: flex;
+}
+
+.cmt_cmt_main_ctnt {
+	margin-left: 10px;
+    margin-top: 4px;
+    width: 188px;
+}
+
+.cmt_cmt_main_arrow {
+	width: 25px;
+}
+
+.cmt_cmt_del_btn {
+	margin-left: 286px;
+}
+
+#secret_chk {
+	margin-left: 63%;
+}

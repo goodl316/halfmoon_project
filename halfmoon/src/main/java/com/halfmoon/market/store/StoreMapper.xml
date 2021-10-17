@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfmoon.market.store.StoreMapper">
+
+	<insert id="insCmt">
+		insert into t_store_cmt
+		(i_user,i_store,ctnt)
+		values
+		(#{i_user},#{i_store},#{ctnt})
+	</insert>
+
+	<insert id="insFollow">
+		insert into t_follow
+		(i_user,target_user)
+		values
+		(#{i_user},#{target_user})
+	</insert>
+
+	<select id="selProductUser" resultType="UserDomain">
+		select DISTINCT
+		a.i_user,a.user_nm,a.profile_img,a.r_dt,
+		TIMESTAMPDIFF(SECOND, a.r_dt,
+		now()) as
+		show_time, c.i_store, c.r_dt as store_dt,
+		(select count(state)
+		from t_product_sale where state = 2) as sold_out,
+		(select
+		count(i_product) from t_product_sale where state = 1 and i_user=
+		#{i_user})
+		as product_count,
+		(select count(i_user) from t_follow
+		where
+		i_user =
+		#{loginUser} and target_user = #{i_user}) as is_follow,
+		(select count(i_user) from t_follow where i_user = #{i_user}) as
+		count_following,
+		(select count(target_user) from t_follow where
+		target_user=#{i_user})
+		as
+		count_follow,
+		(select count(i_store) from
+		t_store_cmt where i_store = #{i_user} )
+		as count_cmt
+		from t_user a
+		left
+		join t_product_sale b
+		on a.i_user =
+		b.i_user
+		left join t_store c
+		on
+		a.i_user = c.i_user
+		where a.i_user =
+		#{i_user};
+	</select>
+
+	<select id="productUser" resultType="ProductSaleDomain">
+		select
+		a.i_user,a.i_product,a.p_nm,a.p_price,a.i_product_type,a.i_loc,
+		a.type_sub_title,a.p_img_main,a.title,b.user_nm,b.profile_img
+		from
+		t_product_sale a
+		left join t_user b
+		on a.i_user = b.i_user
+		left join
+		t_store c
+		on a.i_user = c.i_user
+		where a.i_user
+		= #{i_user}
+		order by
+		i_product desc;
+	</select>
+	<select id="productImg" resultType="followDomain">
+		select a.target_user, b.p_img_main,b.i_product from t_follow a
+		left join t_product_sale b
+		on a.target_user = b.i_user
+		where a.i_user = #{i_user} order by i_product desc limit 0,3;
+	</select>
+
+	<select id="selStoreCmt" resultType="StoreCmtDomain">
+		select
+		a.i_cmt,a.i_user,a.i_store,a.ctnt,b.user_nm,
+		b.profile_img,TIMESTAMPDIFF(SECOND, a.r_dt,now()) as show_time
+		from
+		t_store_cmt a
+		left join t_user b
+		on a.i_user = b.i_user
+		where
+		i_store
+		=#{i_store}
+	</select>
+
+	<select id="selFollower" resultType="FollowDomain">
+		select distinct
+		a.i_user,b.i_user,a.target_user,b.user_nm,b.profile_img,
+		(select
+		count(i_user) from t_product_sale where i_user = b.i_user)
+		as
+		saleCount,
+		(select count(i_user) from t_follow where target_user =
+		b.i_user) as countFollow
+		from t_follow a
+		left join t_user b
+		on a.i_user =
+		b.i_user
+		where a.target_user
+		=#{i_user};
+	</select>
+
+
+	<select id="selFollowing" resultType="FollowDomain">
+		select distinct
+		a.i_user,b.i_user,a.target_user,b.profile_img,b.user_nm,
+		(select
+		count(i_user) from t_product_sale where i_user = a.target_user)
+		as
+		saleCount,
+		(select count(i_user) from t_follow where target_user =
+		a.target_user) as countFollow
+		from t_follow a
+		left join t_user b
+		on
+		a.target_user = b.i_user
+		where a.i_user
+		=#{i_user};
+	</select>
+
+	<delete id="delCmt">
+		delete from t_store_cmt
+		where i_cmt = #{i_cmt} and
+		i_user = #{i_user}
+	</delete>
+	<delete id="delFollow">
+		delete from t_follow
+		where i_user = #{i_user} and
+		target_user = #{target_user}
+	</delete>
+
+</mapper>

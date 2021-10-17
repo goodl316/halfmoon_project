@@ -13,9 +13,13 @@ import com.halfmoon.market.common.Const;
 import com.halfmoon.market.common.FileUtils;
 import com.halfmoon.market.common.MailUtils;
 import com.halfmoon.market.common.SecurityUtils;
+import com.halfmoon.market.common.Utils;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
+import com.halfmoon.market.model.domain.StoreCmtDomain;
 import com.halfmoon.market.model.domain.UserDomain;
+import com.halfmoon.market.model.dto.FollowDTO;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
+import com.halfmoon.market.model.dto.StoreCmtDTO;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Service
@@ -240,10 +244,4 @@ public class UserService {
 		return mapper.selFavoriteMyList(dto);
 	}
 	
-	List<ProductSaleDomain> productUser(ProductSaleDTO dto) {
-		return mapper.productUser(dto);
-	}
-	UserDomain selProductUser(UserDTO dto) {
-		return mapper.selProductUser(dto);
-	}
 }

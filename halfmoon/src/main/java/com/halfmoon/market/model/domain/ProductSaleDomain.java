@@ -13,6 +13,15 @@ public class ProductSaleDomain extends ProductSaleEntity {
 	private int cmt_count;
 	private int countImg;
 	private int countProduct;
+	private int saleCount;
+
+	public int getSaleCount() {
+		return saleCount;
+	}
+
+	public void setSaleCount(int saleCount) {
+		this.saleCount = saleCount;
+	}
 
 	public int getCountProduct() {
 		return countProduct;

@@ -87,22 +87,19 @@ public class SaleController {
     @GetMapping("/sale/detail")
     public void saleDetail(Model model, int i_product, int i_user, int i_product_type) {
     	System.out.println("dddd"+i_product_type);
+    	System.out.println(i_user);
         ProductSaleDTO dto = new ProductSaleDTO();
         dto.setI_product(i_product);
         dto.setI_user(i_user);
         dto.setI_product_type(i_product_type);
         service.updHits(dto);
 
-        // 상품 기본 유저 정보 추가
-        model.addAttribute("user_basic", service.selProUser(dto));
-        dto.setI_user(SecurityUtils.getUserPk(hs));
-       
       
         // 상품 데이터 추가
         ProductSaleDomain vo = service.selProduct(dto);
         vo.setShow_time(Utils.timeFormatter(vo.getShow_time()));
         model.addAttribute(Const.KEY_DATA, vo);
-        
+        System.out.println(vo.getI_user());
         //상품 좋아요 갯수
         FavoriteDTO dto2 = new FavoriteDTO();
         dto2.setI_product(i_product);
@@ -244,9 +241,6 @@ public class SaleController {
     @ResponseBody
     public List<CmtDomain> selCmt(Model model,CmtDTO dto){
     	List<CmtDomain> list = service.selCmt(dto);
-    	for(CmtDomain vo : list) {
-    		System.out.println("isSecret : " + vo.getIsSecret());
-    	}
     	return list;
     }
   
@@ -263,6 +257,7 @@ public class SaleController {
     @ResponseBody
     public Map<String, Object> delCmt(@RequestBody CmtDTO dto) {
     	System.out.println(dto.getI_product());
+    
     	Map<String, Object> val  = new HashMap<String, Object>();
     	val.put(Const.KEY_RESULT, service.delCmt(dto));
     	return val;

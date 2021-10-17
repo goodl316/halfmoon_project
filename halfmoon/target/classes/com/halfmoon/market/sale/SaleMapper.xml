@@ -43,9 +43,14 @@
 		p_price, a.i_product_type, a.type_sub_title, a.p_img_main, a.title,
 		a.ctnt, a.i_loc, a.ctnt, a.state, a.tag, a.r_dt, a.m_dt, a.hit,
 		a.i_user, b.user_nm, TIMESTAMPDIFF(SECOND, a.r_dt, now()) as
-		show_time, (select count(i_user) from t_favorite where i_user =
-		#{i_user} and
-		i_product = #{i_product}) as is_favorite
+		show_time,
+		(select count(i_user) from t_favorite
+		where i_user = #{i_user}
+		and
+		i_product = #{i_product}) as is_favorite,
+		(select count(i_product) from t_product_sale 
+		where i_user= #{i_user} and state = 1) as saleCount,
+		(select count(i_cmt) from t_cmt where i_product= #{i_product}) as cmt_count
 		from
 		t_product_sale a
 		left join t_user b

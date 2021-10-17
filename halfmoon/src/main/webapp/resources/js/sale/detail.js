@@ -110,6 +110,15 @@ question_btn.onclick = function() {
 	question.style.display = 'block'
 	info_btn.style.borderBottom = "1px solid gray"
 	question_btn.style.borderBottom = "none"
+	
+	$(function() {
+      $('.product_ctnt_input').keyup(function (e){
+          var content = $(this).val();
+          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+          $('#counter').html(content.length + '/100');
+      });
+      $('.product_ctnt_input').keyup();
+});
 }
 
 //좋아요 기능
@@ -187,6 +196,7 @@ function clkCtnt(i_product, i_user) {
 			console.log(res.result)
 			if (res.result == 1) {
 				ctntElem.value = ''
+				$('#counter').html('0' + '/100')
 				cmtObj.getCmtList()
 			} else {
 				alert('댓글 작성에 실패했습니다.')
@@ -480,9 +490,10 @@ if (cmtListElem) {
 }
 
 
-function userBlog(i_user){
-	location.href= "/user/my/salePage?i_user="+i_user
+function userStore(i_user){
+	location.href= "/store/salePage?i_user="+i_user
 }
+
 
 
 

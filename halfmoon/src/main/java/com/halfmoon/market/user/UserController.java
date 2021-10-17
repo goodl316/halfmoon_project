@@ -1,6 +1,7 @@
 package com.halfmoon.market.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,8 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.halfmoon.market.common.Const;
 import com.halfmoon.market.model.UserEntity;
+import com.halfmoon.market.model.domain.StoreCmtDomain;
 import com.halfmoon.market.model.domain.UserDomain;
+import com.halfmoon.market.model.dto.FollowDTO;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
+import com.halfmoon.market.model.dto.StoreCmtDTO;
 import com.halfmoon.market.model.dto.UserDTO;
 
 @Controller
@@ -185,15 +189,7 @@ public class UserController {
 	@GetMapping("/user/my/findInfo")
 	public void findInfo() {
 	}
-
-	// =================== 판매자 센터 ===================//
-	@GetMapping("/user/my/salePage")
-	public void salePage(Model model,ProductSaleDTO p_dto,UserDTO u_dto) {
-		System.out.println("i_user : "+u_dto.getI_user());
-		model.addAttribute("product", service.productUser(p_dto));
-		model.addAttribute("user", service.selProductUser(u_dto));
-	}
-
+	
 	// =================== 아이디 찾기 ===================
 
 	@GetMapping("/user/my/findUser")
@@ -241,7 +237,6 @@ public class UserController {
 		
 		return val;
 	}
-	
 	
 	
 

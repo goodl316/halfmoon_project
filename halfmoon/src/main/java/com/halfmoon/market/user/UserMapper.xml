@@ -28,12 +28,25 @@
 			</if>
 		</where>
 	</select>
-
+	
+	<insert id="insCmt">
+	insert into t_store_cmt
+	(i_user,i_store,ctnt)
+	values
+	(#{i_user},#{i_store},#{ctnt})
+	</insert>
+	
+	<insert id="insFollow">
+	insert into t_follow
+	(i_user,target_user)
+	values
+	(#{i_user},#{target_user})
+	</insert>
 
 
 	<!-- 마이페이지 등록 상품 목록 list -->
 	<select id="selMySaleList" resultType="ProductSaleDomain">
-		select i_product, i_user,
+		select i_product, i_user,i_product_type,
 		title, p_nm, p_price, type_sub_title, hit, state,p_img_main,
 		DATE_FORMAT(r_dt,'%Y-%m-%d') as show_time
 		from t_product_sale
@@ -87,29 +100,13 @@
 		id_email = #{id_email}
 	</select>
 
-	<select id="productUser" resultType="ProductSaleDomain">
-		select
-		a.i_user,a.i_product,a.p_nm,a.p_price,a.i_product_type,
-		a.type_sub_title,a.p_img_main,a.title,b.user_nm,b.profile_img
-		from
-		t_product_sale a
-		left join t_user b
-		on a.i_user = b.i_user
-		where a.i_user
-		= #{i_user}
+	
+	
+	<select id="selFollow">
+	
 	</select>
 
-	<select id="selProductUser" resultType="UserDomain">
-		select DISTINCT
-		a.i_user,a.user_nm,a.profile_img from t_user a
-		left join t_product_sale
-		b
-		on a.i_user = b.i_user
-		where a.i_user = #{i_user};
-	</select>
-
-
-
+	
 
 	<update id="updAuth">
 		UPDATE t_user
@@ -174,5 +171,6 @@
 		WHERE i_user =
 		#{i_user}
 	</update>
+
 
 </mapper>

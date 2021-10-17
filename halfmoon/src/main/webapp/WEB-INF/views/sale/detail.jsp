@@ -5,7 +5,7 @@
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="/res/css/sale/detail.css?ver=13">
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div id="detail_cont">
 
 	<!-- 본격 디테일 작업 시작, 번개장터 참고.-->
@@ -159,10 +159,10 @@
 				<div class="product_div">
 					<div class="product_ctnt_div">
 						<input type="text" class="product_ctnt_input"
-							placeholder="상품문의 입력">
+							placeholder="상품문의 입력" maxlength="100">
 					</div>
 					<div class="product_div2">
-						<div>0 / 100</div>
+						<div id="counter">###</div>
 						<label id="secret_chk">비밀글 등록<input id="isSecret"
 							type="checkbox" name="isSecret" value="1"></label> <input
 							type="button" class="product_btn" value="등록"
@@ -199,10 +199,10 @@
 				</a>
 				<div>
 					<div>
-						<a href="" class="user_id">${data.i_user}</a>
+						<a href="" class="user_id">${data.user_nm}</a>
 					</div>
 					<div>
-						<a href="" class="shop_after">상품 ${data.i_user}</a> <a href="">팔로워
+						<a href="" class="shop_after">상품 ${data.saleCount}</a> <a href="">팔로워
 							${data.i_user}</a>
 					</div>
 				</div>
@@ -216,10 +216,10 @@
 				</a>
 			</div>
 			<div class="user_product_more">
-				<a onclick="userBlog(${data.i_user})">${data.i_user} 상품 더보기 ></a>
+				<a onclick="userStore(${data.i_user})">${data.saleCount}개 상품 더보기 ></a>
 			</div>
 			<div class="product_review ">
-				상품후기 <span>${data.i_user}</span>
+				상품후기 <span>${data.cmt_count}</span>
 			</div>
 			<div class="product_review_div">
 				<a href=""> <img class="user_profile" alt="판매자 프로필"
