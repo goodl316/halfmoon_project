@@ -12,6 +12,7 @@
 - JAVA
 - SPRING MVC
 - HTML,CSS,JAVASCRIPT
+- Ajax
 - JSTL
 - MYSQL
 - SPRING JDBC
@@ -20,6 +21,9 @@
 - Jackson
 - Tile3
 - Java Mail
+- webSocket
+- sockJs
+- STOMP
 
 //기능구현
 UserController
@@ -34,6 +38,15 @@ ProductController
 - 판매중 물품 상세 정보 보기
 - 판매중 물품 댓글,대댓글,좋아요,조회수
 - 판매중 물품 수정,삭제
+
+StoreController
+- 판매자 정보
+- 판매자 팔로워,팔로잉
+- 물건등록 물품
+
+WebSocket
+- 댓글 작성시 알람기능
+
 Security Util
 - isLogin : 로그인 세션 체크
 - getLoginUser : 세션의 유저 domain 객체 가져오기
