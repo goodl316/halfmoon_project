@@ -2,7 +2,11 @@ var loginI_user = document.querySelector('#loginI_user').value
 var productI_user = document.querySelector('#productI_user').value
 var i_product = document.querySelector('#sold_i_product')
 var similarSlideImg =document.querySelector('similarSlideImg')
-
+let UserNm = document.querySelector('#UserNm').value
+let writer = document.querySelector('#writer').value
+let item_i_user = document.querySelector('#item_i_user').value
+let item_title = document.querySelector('#item_title').value
+let i_product_type = document.querySelector('#i_product_type').value
 function moveDetail(i_product,i_user,i_product_type){
 	location.href = '/sale/detail?i_product=' + i_product + '&i_user=' + i_user+'&i_product_type='+i_product_type;
 }
@@ -198,6 +202,12 @@ function clkCtnt(i_product, i_user) {
 				ctntElem.value = ''
 				$('#counter').html('0' + '/100')
 				cmtObj.getCmtList()
+				console.debug("reply.js::socket>>",socket1)
+				if(socket1){
+					let socketMsg = "reply,"+UserNm+","+writer+","+i_product+","+item_title+","+item_i_user+","+i_product_type
+					console.debug("ssssssssmsg>>",socketMsg)
+					socket1.send(socketMsg)
+				}
 			} else {
 				alert('댓글 작성에 실패했습니다.')
 			}

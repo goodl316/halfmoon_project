@@ -15,6 +15,12 @@
 		values
 		(#{i_user},#{target_user})
 	</insert>
+	<insert id="insCmtCmt">
+		insert into t_store_cmt_cmt
+		(i_cmt,ctnt,i_store)
+		values
+		(#{i_cmt},#{ctnt},#{i_store})
+	</insert>
 
 	<select id="selProductUser" resultType="UserDomain">
 		select DISTINCT
@@ -70,10 +76,23 @@
 		i_product desc;
 	</select>
 	<select id="productImg" resultType="followDomain">
-		select a.target_user, b.p_img_main,b.i_product from t_follow a
+		select a.target_user,
+		b.p_img_main,b.i_product from t_follow a
 		left join t_product_sale b
-		on a.target_user = b.i_user
-		where a.i_user = #{i_user} order by i_product desc limit 0,3;
+		on
+		a.target_user = b.i_user
+		where a.i_user = #{i_user} order by i_product
+		desc limit 0,3;
+	</select>
+	
+	<select id="selp_img" resultType="followDomain">
+		select a.target_user,
+		b.p_img_main,b.i_product from t_follow a
+		left join t_product_sale b
+		on
+		a.target_user = b.i_user
+		where a.i_user = #{i_user} order by i_product
+		desc limit 0,3;
 	</select>
 
 	<select id="selStoreCmt" resultType="StoreCmtDomain">
@@ -87,6 +106,12 @@
 		where
 		i_store
 		=#{i_store}
+	</select>
+
+	<select id="selStoreCmtCmt" resultType="StoreCmtCmtDomain">
+		select *from
+		t_store_cmt_cmt where
+		i_cmt=#{i_cmt}
 	</select>
 
 	<select id="selFollower" resultType="FollowDomain">
@@ -124,6 +149,23 @@
 		=#{i_user};
 	</select>
 
+	<select id="selFollowList" resultType="FollowDomain">
+		select distinct
+		a.i_user,b.i_user,a.target_user,b.profile_img,b.user_nm,
+		(select
+		count(i_user) from t_product_sale where i_user = a.target_user)
+		as
+		saleCount,
+		(select count(i_user) from t_follow where target_user =
+		a.target_user) as countFollow
+		from t_follow a
+		left join t_user b
+		on
+		a.target_user = b.i_user
+		where a.i_user
+		=#{i_user};
+	</select>
+
 	<delete id="delCmt">
 		delete from t_store_cmt
 		where i_cmt = #{i_cmt} and
@@ -135,4 +177,10 @@
 		target_user = #{target_user}
 	</delete>
 
+	<delete id="delCmtCmt">
+		delete from t_store_cmt_cmt
+		where
+		i_cmt_cmt=#{i_cmt_cmt} and
+		i_cmt=#{i_cmt}
+	</delete>
 </mapper>

@@ -2,13 +2,25 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<link rel="stylesheet" href="/res/css/main/header.css?ver=4">
-
+<link rel="stylesheet" href="/res/css/main/header.css?ver=5">
 <tiles:importAttribute name="menuList" />
 <tiles:importAttribute name="subMenuList" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 <header>
-
+	<div class="alert alert-warning" role="alert" id="socketAlert" ></div>
+	<input type="text" id="chktext">
+	<input type="button" onclick="send()" value="send">
+	
 	<div class="mainlogodiv">
 		<div class="mainlogodiv2">
 			<div class="mainlogo a-img">
@@ -74,10 +86,10 @@
 			</ul>
 		</nav>
 	</div>
-	
+
 
 	<div id="main_h3"></div>
-	
+
 	<div class="sub_div">
 		<ul class="sub_ul">
 			<c:forEach items="${subMenuList}" var="item" begin="0" end="4">
@@ -243,4 +255,5 @@
 		</div>
 	</div>
 </header>
-<script defer src="/res/js/temp/header.js"></script>
+
+<script defer src="/res/js/temp/header.js?ver=9"></script>

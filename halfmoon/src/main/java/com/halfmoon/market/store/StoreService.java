@@ -12,10 +12,12 @@ import com.halfmoon.market.common.SecurityUtils;
 import com.halfmoon.market.common.Utils;
 import com.halfmoon.market.model.domain.FollowDomain;
 import com.halfmoon.market.model.domain.ProductSaleDomain;
+import com.halfmoon.market.model.domain.StoreCmtCmtDomain;
 import com.halfmoon.market.model.domain.StoreCmtDomain;
 import com.halfmoon.market.model.domain.UserDomain;
 import com.halfmoon.market.model.dto.FollowDTO;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
+import com.halfmoon.market.model.dto.StoreCmtCmtDTO;
 import com.halfmoon.market.model.dto.StoreCmtDTO;
 import com.halfmoon.market.model.dto.UserDTO;
 
@@ -35,6 +37,8 @@ public class StoreService {
     	}
 		return list;
 	}
+	
+	
 	UserDomain selProductUser(UserDTO dto) {
 		dto.setLoginUser(SecurityUtils.getUserPk(hs));
 		UserDomain vo = mapper.selProductUser(dto);
@@ -55,6 +59,9 @@ public class StoreService {
 		
 		return list;
 	}
+	List<StoreCmtCmtDomain> selStoreCmtCmt(StoreCmtCmtDTO dto){
+		return mapper.selStoreCmtCmt(dto);
+	}
 	
 	List<FollowDomain> selFollower(FollowDTO dto){
 		return mapper.selFollower(dto);
@@ -66,6 +73,14 @@ public class StoreService {
 		List<FollowDomain> list = mapper.productImg(dto);
 		
 		return list;
+	}
+	
+	List<FollowDomain> selFollowList(FollowDTO dto){
+		return mapper.selFollowList(dto);
+	}
+	
+	List<FollowDomain> selp_img(FollowDTO dto){
+		return mapper.selp_img(dto);
 	}
 	
 	int insCmt(StoreCmtDTO dto) {
@@ -88,6 +103,12 @@ public class StoreService {
 		int result = mapper.delFollow(dto);
 		return result;
 	}
+	int insCmtCmt(StoreCmtCmtDTO dto) {
+		return mapper.insCmtCmt(dto);
+	}
 	
+	int delCmtCmt(StoreCmtCmtDTO dto) {
+		return mapper.delCmtCmt(dto);
+	}
 	
 }

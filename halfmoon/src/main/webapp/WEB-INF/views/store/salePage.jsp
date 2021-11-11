@@ -28,25 +28,33 @@
 				<a class="seller_product_a" href="">상품${user.product_count}</a> <a
 					href="">팔로워${user.count_follow }</a>
 			</div>
-			<div class="seller_follow_talk_btn">
-				<button class="follow"
-					onclick="isfollow(${user.i_user},${loginUser.i_user})">
-					<span id="followContainer" is_follow="${user.is_follow}"> <c:choose>
-							<c:when test="${user.is_follow == 0 }">
-								<img alt="" src="/res/img/follow.white.png">
-								<span>팔로우</span>
-							</c:when>
-							<c:otherwise>
-								<img alt="" src="/res/img/following.png">
-								<span>팔로잉</span>
-							</c:otherwise>
-						</c:choose>
-					</span>
-				</button>
-				<button>
-					<span>반월톡</span>
-				</button>
-			</div>
+			<c:choose>
+				<c:when test="${loginUser.i_user !=user.i_user }">
+					<div class="seller_follow_talk_btn">
+						<button class="follow"
+							onclick="isfollow(${user.i_user},${loginUser.i_user})">
+							<span id="followContainer" is_follow="${user.is_follow}">
+								<c:choose>
+									<c:when test="${user.is_follow == 0 }">
+										<img alt="" src="/res/img/follow.white.png">
+										<span>팔로우</span>
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/res/img/following.png">
+										<span>팔로잉</span>
+									</c:otherwise>
+								</c:choose>
+							</span>
+						</button>
+						<button>
+							<span>반월톡</span>
+						</button>
+					</div>
+				</c:when>
+				<c:otherwise>
+				<input type="button" class="manageStore" value="내 상점 관리">
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="seller_info_right">
 			<div id="seller_info_div1">
@@ -208,8 +216,9 @@
 		<div class="following">
 			팔로잉 <span class="count">${user.count_following }</span>
 		</div>
-		<div>
-			<c:forEach items="${following }" var="item">
+		<div class="followList">
+			
+			<%-- <c:forEach items="${following }" var="item">
 				<div class="following_user_cont">
 
 					<div class="following_user_left">
@@ -241,10 +250,9 @@
 					</div>
 
 				</div>
-			</c:forEach>
+			</c:forEach> --%>
 		</div>
-		<div></div>
-
+	
 
 	</div>
 	<div class="info_div5">

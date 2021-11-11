@@ -18,6 +18,18 @@ a {
 
 /* seller_info_left */
 
+.manageStore {
+	background: none;
+    border: 1px solid #fff;
+    display: block;
+    position: absolute;
+    width: 110px;
+    height: 45px;
+    margin-left: 95px;
+    margin-top: 10px;
+    border-collapse: separate;
+    color: #fff;
+}
 #seller_info_left {
 	width: 300px;
 	background-color: #b7b5b5;

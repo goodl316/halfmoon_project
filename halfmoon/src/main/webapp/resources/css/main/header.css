@@ -375,5 +375,7 @@ button {
 }
 
 
-
+#socketAlert{
+	display: none;
+}
 

@@ -432,6 +432,7 @@ body{
 }
 .user_product_more a {
 	font-size: 13px;
+	cursor:pointer;
 }
 .product_review {
 	padding: 20px 0px 20px;

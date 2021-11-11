@@ -6,6 +6,11 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="/res/css/sale/detail.css?ver=13">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<input type="hidden" value="${loginUser.user_nm}" id="UserNm">
+<input type="hidden" value="${data.user_nm }" id="writer">
+<input type="hidden" value="${data.i_user }" id="item_i_user">
+<input type="hidden" value="${data.title }" id="item_title">
+<input type="hidden" value="${data.i_product_type }" id="i_product_type">
 <div id="detail_cont">
 
 	<!-- 본격 디테일 작업 시작, 번개장터 참고.-->
@@ -249,7 +254,7 @@
 	</div>
 </div>
 
-<script defer src="/res/js/sale/detail.js?ver=5"></script>
+<script defer src="/res/js/sale/detail.js?ver=9"></script>
 
 
 

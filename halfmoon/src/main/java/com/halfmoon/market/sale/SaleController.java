@@ -85,13 +85,11 @@ public class SaleController {
     }
     //상품 디테일 페이지
     @GetMapping("/sale/detail")
-    public void saleDetail(Model model, int i_product, int i_user, int i_product_type) {
-    	System.out.println("dddd"+i_product_type);
-    	System.out.println(i_user);
-        ProductSaleDTO dto = new ProductSaleDTO();
-        dto.setI_product(i_product);
-        dto.setI_user(i_user);
-        dto.setI_product_type(i_product_type);
+    public void saleDetail(Model model, ProductSaleDTO dto) {
+    	String userNm = SecurityUtils.getUserId(hs);
+    	System.out.println(userNm);
+    	System.out.println(dto.getI_product());
+    	System.out.println(dto.getI_user());
         service.updHits(dto);
 
       
@@ -102,7 +100,7 @@ public class SaleController {
         System.out.println(vo.getI_user());
         //상품 좋아요 갯수
         FavoriteDTO dto2 = new FavoriteDTO();
-        dto2.setI_product(i_product);
+        dto2.setI_product(dto.getI_product());
         model.addAttribute("favorite", service.selFavorite(dto2));
         
         //관련 이미지 
@@ -239,7 +237,7 @@ public class SaleController {
     
     @GetMapping("/sale/cmtList")
     @ResponseBody
-    public List<CmtDomain> selCmt(Model model,CmtDTO dto){
+    public List<CmtDomain> selCmt(CmtDTO dto){
     	List<CmtDomain> list = service.selCmt(dto);
     	return list;
     }
@@ -266,7 +264,7 @@ public class SaleController {
   //====================대댓글 작업==============================
     @GetMapping("/sale/cmtcmtList")
     @ResponseBody
-    public List<CmtCmtDomain> selCmtCmt(Model model, CmtCmtDTO dto){
+    public List<CmtCmtDomain> selCmtCmt(CmtCmtDTO dto){
     	System.out.println(dto.getI_cmt());
     	return service.selCmtCmt(dto);
     }

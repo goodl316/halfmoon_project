@@ -18,6 +18,13 @@ public class SecurityUtils {
 		}
 		return vo;
 	}
+	
+	public static String getUserId(HttpSession hs) {
+		if (!isLogin(hs)) {
+			return null;
+		}
+		return getUserDomain(hs).getUser_nm();
+	}
 
 	public static boolean isLogin(HttpSession hs) {
 		if (getUserDomain(hs) == null) {

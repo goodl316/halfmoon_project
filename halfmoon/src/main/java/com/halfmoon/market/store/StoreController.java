@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.halfmoon.market.common.Const;
+import com.halfmoon.market.model.domain.FollowDomain;
+import com.halfmoon.market.model.domain.StoreCmtCmtDomain;
 import com.halfmoon.market.model.domain.StoreCmtDomain;
 import com.halfmoon.market.model.dto.FollowDTO;
 import com.halfmoon.market.model.dto.ProductSaleDTO;
+import com.halfmoon.market.model.dto.StoreCmtCmtDTO;
 import com.halfmoon.market.model.dto.StoreCmtDTO;
 import com.halfmoon.market.model.dto.UserDTO;
 
@@ -33,6 +36,19 @@ public class StoreController {
 		model.addAttribute("follower", service.selFollower(f_dto));
 		model.addAttribute("following", service.selFollowing(f_dto));
 		model.addAttribute("p_img", service.productImg(f_dto));
+	}
+	@GetMapping("/store/followList")
+	@ResponseBody
+	public List<FollowDomain> selFollowList(FollowDTO dto){
+		List<FollowDomain> list = service.selFollowList(dto);
+		return list;
+	}
+	
+	@GetMapping("/store/p_imgList")
+	@ResponseBody
+	public List<FollowDomain> selp_img(FollowDTO dto){
+		List<FollowDomain> list = service.selp_img(dto);
+		return list;
 	}
 	
 	@GetMapping("/store/cmtList")
@@ -57,6 +73,31 @@ public class StoreController {
 	public Map<String, Object> delCmt(@RequestBody StoreCmtDTO dto){
 		Map<String, Object> val = new HashMap<>();
 		val.put(Const.KEY_RESULT, service.delCmt(dto));
+		return val;
+	}
+	
+	@GetMapping("/store/cmtcmtList")
+	@ResponseBody
+	public List<StoreCmtCmtDomain> storeCmtCmt(StoreCmtCmtDTO dto){
+		List<StoreCmtCmtDomain> list = service.selStoreCmtCmt(dto);
+		
+		return list;
+	}
+	
+	@PostMapping("/store/insCmtCmt")
+	@ResponseBody
+	public Map<String,Object> storeinsCmtCmt(@RequestBody StoreCmtCmtDTO dto){
+		System.out.println("i_store : "+dto.getI_store());
+		Map<String, Object> val = new HashMap<>();
+		val.put(Const.KEY_RESULT, service.insCmtCmt(dto));
+		return val;
+	}
+	
+	@PostMapping("/store/delCmtCmt")
+	@ResponseBody
+	public Map<String, Object> delCmtCmt(@RequestBody StoreCmtCmtDTO dto){
+		Map<String, Object> val = new HashMap<>();
+		val.put(Const.KEY_RESULT, service.delCmtCmt(dto));
 		return val;
 	}
 	

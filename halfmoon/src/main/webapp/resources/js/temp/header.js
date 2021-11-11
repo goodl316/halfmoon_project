@@ -86,3 +86,101 @@ function search(searchText,sortState){
 	location.href='/sale/typeList?searchText='+searchText+"&sortState="+sortState
 	
 }
+
+///socket
+$(document).ready(function(){
+	
+	
+	connectWS();
+	//connectSocketJs();
+	connectStomp();
+	
+})
+
+var socket= null;
+var socket1 = null;
+var isStomp = null;
+
+function connectStomp(){
+	var sock = new SockJS("/stompTest");
+	var client = Stomp.over(sock);
+	isStomp = true;
+	socket = client;
+	
+	client.connect({}, function(){
+		console.log("Connected stompTest!");
+		
+		client.send('/TTT',{},"msg: Haha~~");
+		
+		client.subscribe('/topic/message', function(event){
+			console.log("!!!!!!!!!event>>",event)
+		});
+	});
+}
+
+function connectSocketJs(){
+	var sock1 = new SockJS("/replyEcho");
+	socket1 = sock1;
+	sock1.onopen = function(){
+		console.log('Info : connection opend.')
+		sock1.send("hi~");
+		
+		sock1.onmessage = function(event){
+			console.log("ReceivedMessage :",event.data+'\n')
+			
+		};
+		sock1.onclose = function(event){
+			console.log('Info: connection closed.')
+		}
+	}
+	  
+}
+// pure web-socket
+function connectWS(){
+	var ws= new WebSocket("ws://localhost:8090/replyEcho?bno=?1234");
+	socket1= ws;
+	
+	ws.onopen = function (){
+		console.log('info: connection opend')
+	};
+	console.log("test1")
+	ws.onmessage = function(event){
+		console.log("ReceiveMessage:",event.data+'\n');
+		let $socketAlert = document.querySelector('#socketAlert')
+		$(socketAlert).html(event.data)
+		$(socketAlert).css('display','block')
+		setTimeout(function(){
+			$(socketAlert).css('display','none')
+		},5000)
+		
+	};
+	
+	console.log("test2")
+	ws.onclose = function(event){
+		console.log('Info:connection closed.');
+	};
+	
+	ws.onerror = function(err){
+		console.log('Error:',err);
+	};
+	
+}
+
+function send(){
+	if(!isStomp && socket.readyState !== 1) {
+		return;
+	}
+	
+	let text = $('input#chktext').val()
+	let text1 = "dfdfdf"
+	if(isStomp){
+		socket.send('/TTT',{},JSON.stringify({id:1234, msg: text}))
+	}else{
+		socket.send(text)
+	}
+	
+}
+
+
+
+
