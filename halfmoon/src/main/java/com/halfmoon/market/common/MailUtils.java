@@ -20,11 +20,11 @@ public class MailUtils {
 	private String host;
 	private String port;
 	private String fromEmail;
-	
+		
 	public int sendJoinEmail(final String toEmail, final UserDTO dto) {
 		String subject = "[반월마켓] 회원가입 인증 이메일 입니다.";
 		// 나중에 본인이 구동하는 서버 ip로 고칠것.
-		String body = String.format("<div><a href=\"http://172.20.10.2:8090/joinSucess?i_user=%d\">회원가입 인증하기</a></div>", dto.getI_user());		
+		String body = String.format("<div><a href=\"http://172.30.1.43:8090/joinSucess?i_user=%d\">회원가입 인증하기</a></div>", dto.getI_user());		
 		return sendMail(toEmail, subject, body);
 	}
 	
@@ -42,7 +42,7 @@ public class MailUtils {
 			prop.put("mail.smtp.port", port);
 			prop.put("mail.smtp.host", host);
 			prop.put("mail.smtp.ssl.trust", host);
-			
+			prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			//Session 생성 
 			Session session = Session.getDefaultInstance(prop, new Authenticator() {
 				protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
@@ -84,4 +84,5 @@ public class MailUtils {
 	public void setFromEmail(String fromEmail) {
 		this.fromEmail = fromEmail;
 	}
+
 }

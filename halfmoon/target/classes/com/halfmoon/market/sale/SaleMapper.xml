@@ -132,8 +132,8 @@
 		</if>
 		) T
 		where rowNum
-		between
-		#{start} and #{end}
+		limit
+		#{start}, #{end}
 	</select>
 
 	<!-- 상품수정정보 -->

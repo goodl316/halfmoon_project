@@ -12,6 +12,7 @@ a {
 	display: flex;
 	height: 300px;
 	margin-bottom: 30px;
+	margin-top: -50px;
 }
 
 
@@ -223,7 +224,6 @@ a {
 .product_info_sub {
 	display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .product_cont {
@@ -471,7 +471,8 @@ a {
 }
 
 .following_user_right img {
-	width: 200px;
+	width: 235px;
+	height: 250px;
 }
 
 

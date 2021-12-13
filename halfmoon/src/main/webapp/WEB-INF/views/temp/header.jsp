@@ -8,19 +8,24 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 <header>
-	<div class="alert alert-warning" role="alert" id="socketAlert" ></div>
-	<input type="text" id="chktext">
-	<input type="button" onclick="send()" value="send">
-	
+	<div class="alert alert-warning" role="alert" id="socketAlert"></div>
+	<!-- <input type="text" id="chktext">
+	<input type="button" onclick="send()" value="send"> -->
+
 	<div class="mainlogodiv">
 		<div class="mainlogodiv2">
 			<div class="mainlogo a-img">
@@ -174,73 +179,74 @@
 		<ul class="sub-ul">
 			<li><img class="line" src="/res/img/line.png">
 				<ul>
-					<li class="li-border"><a href="">디지털/가전</a>
+					<li class="li-border"><a onclick="TypeList(1,0)">디지털/가전</a>
 						<ul>
-							<li><a href="">생활가전</a></li>
-							<li><a href="">주방가전</a></li>
-							<li><a href="">모바일/태블릿</a></li>
-							<li><a href="">PC</a></li>
-							<li class="last-li"><a href="">PC주변기기</a></li>
+							<li><a onclick="TypeSubList('생활가전',0)">생활가전</a></li>
+							<li><a onclick="TypeSubList('주방가전',0)">주방가전</a></li>
+							<li><a onclick="TypeSubList('모바일/태블릿',0)">모바일/태블릿</a></li>
+							<li><a onclick="TypeSubList('PC',0)">PC</a></li>
+							<li class="last-li"><a onclick="TypeSubList('PC주변기기',0)">PC주변기기</a></li>
 						</ul></li>
-					<li><a href="">스포츠/레저</a>
+					<li><a onclick="TypeList2,0()">스포츠/레저</a>
 						<ul>
-							<li><a href="">스포츠용품</a></li>
-							<li><a href="">악기용품</a></li>
-							<li><a href="">등산용품</a></li>
-							<li><a href="">캠핑용품</a></li>
-							<li class="last-li"><a href="">낚시용품</a></li>
+							<li><a onclick="TypeSubList('스포츠용품',0)">스포츠용품</a></li>
+							<li><a onclick="TypeSubList('악기용품',0)">악기용품</a></li>
+							<li><a onclick="TypeSubList('등산용품',0)">등산용품</a></li>
+							<li><a onclick="TypeSubList('캠핑용품',0)">캠핑용품</a></li>
+							<li class="last-li"><a onclick="TypeSubList('낚시용품',0)">낚시용품</a></li>
 						</ul></li>
-					<li><a href="">남성의류</a>
+					<li><a onclick="TypeList(3,0)">여성의류</a>
 						<ul>
-							<li><a href="">상의</a></li>
-							<li><a href="">하의</a></li>
-							<li class="last-li"><a href="">신발/악세사리</a></li>
+							<li><a onclick="TypeSubList('여성상의',0)">여성상의</a></li>
+							<li><a onclick="TypeSubList('여성하의',0)">여성하의</a></li>
+							<li class="last-li"><a onclick="TypeSubList('신발/악세사리',0)">신발/악세사리</a></li>
 						</ul></li>
-					<li><a href="">여성의류</a>
+					<li><a onclick="TypeList(4,0)">남성의류</a>
 						<ul>
-							<li><a href="">상의</a></li>
-							<li><a href="">하의</a></li>
-							<li class="last-li"><a href="">신발/악세사리</a></li>
+							<li><a onclick="TypeSubList('남성상의',0)">남성상의</a></li>
+							<li><a onclick="TypeSubList('남성하의',0)">남성하의</a></li>
+							<li class="last-li"><a onclick="TypeSubList('신발/악세사리',0)">신발/악세사리</a></li>
 						</ul></li>
-					<li><a href="">가구/인테리어</a>
+					<li><a onclick="TypeList(5,0)">가구/인테리어</a>
 						<ul>
-							<li><a href="">가구DIY</a></li>
-							<li><a href="">조명</a></li>
-							<li><a href="">침구/커튼</a></li>
-							<li><a href="">생활용품</a></li>
-							<li class="last-li"><a href="">주방용품</a></li>
+							<li><a onclick="TypeSubList('가구DIY',0)">가구DIY</a></li>
+							<li><a onclick="TypeSubList('조명',0)">조명</a></li>
+							<li><a onclick="TypeSubList('침구/커튼',0)">침구/커튼</a></li>
+							<li><a onclick="TypeSubList('생활용품',0)">생활용품</a></li>
+							<li class="last-li"><a onclick="TypeSubList('주방용품',0)">주방용품</a></li>
 						</ul></li>
-					<li><a href="">생활/가공식품</a>
+					<li><a onclick="TypeList(6,0)">생활/가공식품</a>
 						<ul>
-							<li><a href="">건강식품</a></li>
-							<li><a href="">신선식품</a></li>
-							<li><a href="">즉석식품</a></li>
-							<li class="last-li"><a href="">기타/</a></li>
+							<li><a onclick="TypeSubList('건강식품',0)">건강식품</a></li>
+							<li><a onclick="TypeSubList('신선식품',0)">신선식품</a></li>
+							<li><a onclick="TypeSubList('즉석식품',0)">즉석식품</a></li>
+							<li class="last-li"><a onclick="TypeSubList('기타',0)">기타</a></li>
 						</ul></li>
-					<li><a href="">게임/취미</a>
+					<li><a onclick="TypeList(7,0)">게임/취미</a>
 						<ul>
-							<li><a href="">콘솔</a></li>
-							<li class="last-li"><a href="">기타</a></li>
+							<li><a onclick="TypeSubList('콘솔',0)">콘솔</a></li>
+							<li class="last-li"><a onclick="TypeSubList('기타',0)">기타</a></li>
 						</ul></li>
-					<li><a href="">반려동물</a>
+					<li><a onclick="TypeList(8,0)">반려동물</a>
 						<ul>
-							<li><a href="">간식</a></li>
-							<li><a href="">장난감</a></li>
-							<li class="last-li"><a href="">기타</a></li>
+							<li><a onclick="TypeSubList('간식',0)">간식</a></li>
+							<li><a onclick="TypeSubList('장난감',0)">장난감</a></li>
+							<li class="last-li"><a onclick="TypeSubList('기타',0)">기타</a></li>
 						</ul></li>
-					<li><a href="">도서/티켓/음반</a>
+					<li><a onclick="TypeList(9,0)">도서/티켓/음반</a>
 						<ul>
-							<li><a href="">일반도서</a></li>
-							<li><a href="">교육도서</a></li>
-							<li><a href="">음반</a></li>
-							<li class="last-li"><a href="">티켓</a></li>
+							<li><a onclick="TypeSubList('일반도서',0)">일반도서</a></li>
+							<li><a onclick="TypeSubList('교육도서',0)">교육도서</a></li>
+							<li><a onclick="TypeSubList('음반',0)">음반</a></li>
+							<li class="last-li"><a onclick="TypeSubList('티켓',0)">티켓</a></li>
 						</ul></li>
-					<li class="last-li"><a href="">유아용품</a>
+					<li class="last-li"><a onclick="TypeList(10,0)">유아용품</a>
 						<ul>
-							<li><a href="">유아의류</a></li>
-							<li><a href="">장난감</a></li>
-							<li><a href="">유아식품</a></li>
-							<li class="last-li"><a href="">기타</a></li>
+							<li><a onclick="TypeSubList('유아의류',0)">유아의류</a></li>
+							<li><a onclick="TypeSubList('장난감',0)">장난감</a></li>
+							<li><a onclick="TypeSubList('유아식품',0)">유아식품</a></li>
+							<li class="last-li" onclick="TypeSubList('기타',0)"><a
+								onclick="TypeSubList('기타',0)">기타</a></li>
 						</ul></li>
 				</ul></li>
 		</ul>

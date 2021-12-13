@@ -21,5 +21,6 @@ public static List<ProductTypeSubDomain> subMenuList = null;
 	public static final int CODE_LENGTH = 10;
 	
 	public static final int AUTH_REST_SEC = 300;
-
+	
+	
 }

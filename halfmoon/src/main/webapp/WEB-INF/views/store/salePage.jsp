@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="/res/css/user/salePage.css?ver=13">
-<script defer src="/res/js/user/salePage.js?ver=1"></script>
+<script defer src="/res/js/store/salePage.js?ver=1"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <input type="hidden" class="i_user" value="${loginUser.i_user}">

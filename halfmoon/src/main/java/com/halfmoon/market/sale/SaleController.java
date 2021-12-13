@@ -309,6 +309,8 @@ public class SaleController {
     	           dto.getSearchText(),dto.getI_product_type(),dto.getType_sub_title());
     	model.addAttribute("paging",dto);
     	model.addAttribute(Const.KEY_LIST, service.selTypeList(dto));
+    	System.out.println("start:"+dto.getStart());
+    	System.out.println("end:"+dto.getEnd());
     	
     }
     

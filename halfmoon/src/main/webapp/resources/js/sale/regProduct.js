@@ -260,7 +260,7 @@ function typeChange(e) {
     var target = []
     switch (e.value) {
         case '0':
-           target = ['소분류']
+            target = ['소분류']
         case '1':
             target = type_1
             break
@@ -301,5 +301,3 @@ function typeChange(e) {
         product_sub_type.appendChild(opt);
     })
 }
-
-

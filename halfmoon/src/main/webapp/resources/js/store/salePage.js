@@ -3,7 +3,7 @@ var i_store = document.querySelector('.i_store').value
 var selectMenu = document.querySelector('#selectMenu')
 var storeI_user = document.querySelector('.storeI_user').value
 var product_btn = document.querySelector('.product_btn')
-
+var sub_nav = document.querySelector('#sub_nav')
 
 console.log('menu : ' + selectMenu.value)
 
@@ -22,6 +22,19 @@ var menuBtn = document.querySelectorAll('.menuBtn')
 
 // 첫 페이지 메뉴 조정
 showMenu(selectMenu.value)
+showCate()
+function showCate() {
+	var sub_nav = document.querySelector('#sub_nav')
+	var list_div = document.querySelector('.List')
+	list_div.style.display = 'none';
+	sub_nav.style.display = "block"
+	if (sub_nav) {
+		console.log("asd")
+	}
+	if (list_div) {
+		console.log("dfdfdf")
+	}
+}
 
 function showMenu(select) {
 	console.log('select : ' + select)
@@ -341,7 +354,7 @@ function isfollow(target_user, i_user) {
 	}).then(function(res) {
 		if (res.result == 1) {
 			//	location.reload()
-			var iconClass = toggle == 1 ? 'follow.white' : 'following';
+			var iconClass = toggle == 0 ? 'follow.white' : 'following';
 			fc.innerHTML = `<img src="/res/img/${iconClass}.png"> <span> 팔로잉</span>`
 			fc.setAttribute('is_follow', toggle);
 		} else {
@@ -504,14 +517,15 @@ function getFollowList() {
 			console.log("aaaa")
 			console.log(list)
 			followList.innerHTML = ''
+
 			followProc(list)
-			getp_img();
-			
+			getp_img()
 		})
 
 }
 
 function followProc(list) {
+	console.log("listchk", list.length)
 	if (list.length == 0) {
 		return
 	}
@@ -520,8 +534,8 @@ function followProc(list) {
 		var recode = createRecode2(list[i])
 		div.append(recode)
 	}
-		followList.append(div)
-	
+	followList.append(div)
+
 
 }
 
@@ -529,7 +543,6 @@ function createRecode2(item) {
 	var div = document.createElement('div')
 	div.innerHTML = `
 		<div>
-		<input type="hidden" value="${item.target_user}" class="target">
 			<div>
 				<div class="following_user_cont">
 
@@ -549,7 +562,8 @@ function createRecode2(item) {
 						</div>
 
 					</div>
-					<div class="following_user_right">
+					<div class="following_user_right following_user_right_${item.target_user}">
+					<input type="hidden" value="${item.target_user}" class="follow_target_user">
 					</div>
 				</div>
 			</div>
@@ -568,7 +582,13 @@ if (followList) {
 
 //==================팔로우 상품 사진 start ==============================
 function getp_img() {
-	let following_user_right = document.querySelector('.following_user_right')
+	let following_user_right = document.querySelectorAll('.following_user_right')
+	if (following_user_right) {
+		console.log("is true")
+		console.log(following_user_right[0])
+	} else (
+		console.log("is not true")
+	)
 	fetch(`/store/p_imgList?i_user=${this.i_store}`)
 		.then(function(res) {
 			return res.json()
@@ -584,33 +604,65 @@ function getp_img() {
 
 function p_imgProc(list) {
 	let following_user_right = document.querySelector('.following_user_right')
+	console.log("chkkk1", list[0])
+	console.log("chkkk2", list[1])
+	console.log("chkkk3", list[2])
+
 	if (list.length == 0) {
 		return
 	}
+
+
 	var div = document.createElement('div')
 	for (var i = 0; i < list.length; i++) {
+		let following_user_right = document.querySelectorAll('.following_user_right')
 		var recode = createRecode3(list[i])
 		div.append(recode)
-		console.log("list2")
+
 	}
-	following_user_right.append(div)
+	for (var i = 0; i < list.length; i++) {
+		let following_user_right = document.querySelectorAll('.following_user_right')
+		let following_user_right1 = document.querySelector('.following_user_right_' + list[i].target_user)
+		var recode = createRecode3(list[i])
+		console.log("asdf", i)
+		console.log("asdff", list[i].target_user)
+		var div = document.createElement('div')
+
+		div.append(recode)
+		following_user_right1.append(div)
+
+	}
+
+
+
 }
 
 function createRecode3(item) {
-	let target = document.querySelector('.target').value
-	
+	var target = document.querySelectorAll('.follow_target_user')
+
 	var a = document.createElement('a')
-	
-		console.log("true")
-		console.log(target+"|"+item.target_user)
-		a.innerHTML =
-			`
-		<input type="hidden" value="${item.target_user}" class="target1">
-			 <img alt="" src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
+	console.log("asdfasdfasdfasd", target.length)
+	for (var i = 0; i < target.length; i++) {
+		console.log("ssssss", i)
+		var target = document.querySelectorAll('.follow_target_user')
+		var target_value = target[i].value
+		console.log(target_value + "|" + item.target_user)
+
+		if (target[i].value == item.target_user) {
+			a.innerHTML =
+				`
+		<input type="hidden" value="${item.target_user}" class="target1 target1_${item.target_user}">
+			 <img alt="" class="right_img" src="/res/img/sale/p_${item.i_product}/${item.p_img_main}">
 			
 		`
-		console.log("list1")
-		return a
+		}
+
+	}
+
+
+	return a
+
+
 }
 
 //==================팔로우 상품 사진 end ==============================
