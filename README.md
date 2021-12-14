@@ -1,7 +1,10 @@
 # halfmoon_project
 //현재 까지 진행된 프로젝트 기능 영상입니다.
+
 https://www.youtube.com/watch?v=hCpXN-xRqcc
+
 해당 링크로 가시면 영상을 시청할수 있습니다.
+
 //중고거래 사이트 웹개발 포트폴리오 halfmoon
 
 //지역을 선택하여 중고거래 가능한 사이트입니다.
